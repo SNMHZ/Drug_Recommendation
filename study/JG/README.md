@@ -1,22 +1,38 @@
 # Reference, source
-	![Drug recommendation using review in Kaggle](https://www.kaggle.com/bhuemims/recommendation-medicines-by-using-a-review)
+	[Drug recommendation using review in Kaggle](https://www.kaggle.com/bhuemims/recommendation-medicines-by-using-a-review)
 
 
 # Data Analysis
 	
+
 	
-> 전체 데이터 구성은 unique id를 가진 환자가 가지고 있는 증상에 필요한 약을 구입한뒤에 특정 날짜에 review와 rating을 남김. 그리고 다른 환자가 해당 리뷰를 보고 도움이 되었는지에 대해 usefulCount attribute에 점수(1점 추가)를 줌
+> 전체 데이터 구성은 uniqueID를 가진 환자가 가지고 있는 증상에 필요한 약을 구입한 뒤에 특정 날짜에 review와 rating을 남김. 그리고 다른 환자가 해당 리뷰를 보고 도움이 되었는지에 대해 usefulCount attribute에 점수(1점 추가)를 줌
 
 
 
-## 1. Attribute는unique id를 포함해서 training data와 test data는 총 7개가 있음
+## 1. Training data는 161297개, Test data는 53766개
+
+![percentage of data](./images/percentageofData.png)
+
+## 2. Attribute는 uniqueID를 포함해서 training data와 test data 모두 7개가 있음
 
 
 
 | uniqueID | drugName | condition | review | rating | date | usefulCount |
 | -------- | -------- | --------- | ------ | ------ | ---- | ----------- |
-| identify individual data | name of drug | name of condition | patient review | 10 start patient rating | date of review entry | number of users who found review useful |
+| identify individual data | name of drug | name of condition | patient review | 10 star patient rating | date of review entry | number of users who found review useful |
 
+
+
+'''python
+training data 에서 attribute :  Index(['uniqueID', 'drugName', 'condition', 'review', 'rating', 'date',
+       'usefulCount'],
+      dtype='object')
+	  
+test data 에서 attribute :  Index(['uniqueID', 'drugName', 'condition', 'review', 'rating', 'date',
+       'usefulCount'],
+      dtype='object')
+'''
 
 
     1. uniqueID
@@ -24,25 +40,56 @@
 	
 		한명의 고객이 중복해서 여러 리뷰를 작성했는지 검사
 
-		[그림]
+		'''python
+		df_all = pd.concat([df_train, df_test]).reset_index()
+		del df_all['index']
 
-		161297개의 training data와 53766개의 test data에 대해 중복된 uniqueID는 없음을 확인
+		uniqueValue = df_all.shape[0]
+		print("uniqueID를 기준으로 중복된 데이터 있는지 확인 : ", uniqueValue)
+		print("set 메서드를 이용해서 중복 개수 확인 : ", len(set(df_all['uniqueID'].values)))
+		'''
+		
+		'''python
+		uniqueID를 기준으로 중복된 데이터 있는지 확인 :  215063
+		
+		set 메서드를 이용해서 중복 개수 확인 :  215063
+		
+		'''
 
+		전체 215063개의 데이터에 대해 각각 161297개의 training data와 53766개의 test data에 대해 중복된 uniqueID는 없음을 확인
+		
 
 	2. condition and drugName
 
 
-		증상과 약품명은 서로 관련이 깊음. 
-		증상의 경우 unique하게 3671개가 있음
-		약품명의 경우 unique하게 917개가 있음
+		증상과 약품명은 서로 관련이 깊음.
+		
+		'''python
+		
+		The number of unique condition is  917
+		
+		The number of unique drugName is  3671
+		
+		'''
+		
+		증상의 경우, condition 열에서 unique하게 3671개가 있음
+		약품명의 경우, drugName 열에서 unique하게 917개가 있음
 
 		데이터를 수집하는 과정중에서 condition항목에 '3</span> users found this comment helpful.'이라는 에러  데이터가 들어가 있음. (4</span>...도 마찬가지)
+		
+		condition의 경우, 약품 명과 관련이 깊으므로 둘과 연관지어서 데이터를 알아볼 수 있음
+		
+		![drug number per condition]()
+		
+		![condition per drug]()
 
 
 	3. review
 
 
-		html 태그가 존재하는 경우도 있고, 괄호 안에 감정 구문을 넣거나 특정 단어를 대문자로만 적은 경우도 있음. <strong>특정 문자가 깨진 경우도 존재</strong>
+		html 태그가 존재하는 경우도 있고, 괄호 안에 감정 구문을 넣거나 특정 단어를 대문자로만 적은 경우도 있음.
+		
+		\*\*특정 문자가 깨진 경우(에러)도 존재\*\*
 
 
 	4. rating
@@ -59,7 +106,19 @@
 	5. date
 	
 		
-		XXXX년 부터 XXXX년 까지 존재
+		2008년 2월 24일부터 2017년 12월 12일까지 존재
+		
+		'''python
+		Code
+		print("가장 처음 날짜 : ", df_all['date'].min())
+		print("가장 마지막 날짜 : ", df_all['date'].max())
+		
+		
+		Output
+		가장 처음 날짜 :  2008-02-24 00:00:00
+		가장 마지막 날짜 :  2017-12-12 00:00:00
+		'''
+		
 			
 		년도별 리뷰 개수 
 		[그림]
@@ -82,21 +141,32 @@
 		해당 소스코드에서는 약의 효과에 관계없이, 사람들이 더 많이 찾는 약일수록 사람들이 더 많이 review를 읽어보고 usefulcount를 높게 주는 경향이 있다고 함
 			
 		[그림]
+		
+		'''python
+		Output
+		usefulCount의 대한 통계 count    215063.000000
+		mean         28.001004
+		std          36.346069
+		min           0.000000
+		25%           6.000000
+		50%          16.000000
+		75%          36.000000
+		max        1291.000000
+		Name: usefulCount, dtype: float64
+		'''
+		
+		따라서 condition들을 사용할 때 normalization을 사용해야 한다고함
 
 
 
-## 2. Training data는 161297개, Test data는 53766개
+
 
 ## 3. Unique ID로는 test와 training 모두 중복되는 데이터가 없음
 
-## 4. 크롤링 과정중에서 html태그(<span>)가 들어가 있음
 
-## 5. Revieww의 경우 escape 문자랑 감정표현 문자가 들어가 있음
- 
-## 6. 증상당 사용되는 약의 개수
+![그림]()
 
-	[그림]
-## 7. 
+
 
 # Project Analysis
 
