@@ -14,8 +14,7 @@
 
 		| uniqueID | drugName | condition | review | rating | date | usefulCount |
 		| -------- | -------- | --------- | ------ | ------ | ---- | ----------- |
-		| identify individual data | name of drug | name of condition | patient review | 10 start patient rating | date of review entry | number of users who found review useful |
-
+		
 
 		1. uniqueID
 			한명의 고객이 중복해서 여러 리뷰를 작성했는지 검사
