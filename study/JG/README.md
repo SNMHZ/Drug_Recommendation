@@ -9,7 +9,7 @@
 
 
 
-1. Attribute는unique id를 포함해서 training data와 test data는 총 7개가 있음
+## 1. Attribute는unique id를 포함해서 training data와 test data는 총 7개가 있음
 
 
 
@@ -85,18 +85,18 @@
 
 
 
-2. Training data는 161297개, Test data는 53766개
+## 2. Training data는 161297개, Test data는 53766개
 
-3. Unique ID로는 test와 training 모두 중복되는 데이터가 없음
+## 3. Unique ID로는 test와 training 모두 중복되는 데이터가 없음
 
-4. 크롤링 과정중에서 html태그(<span>)가 들어가 있음
+## 4. 크롤링 과정중에서 html태그(<span>)가 들어가 있음
 
-5. Revieww의 경우 escape 문자랑 감정표현 문자가 들어가 있음
+## 5. Revieww의 경우 escape 문자랑 감정표현 문자가 들어가 있음
  
- 6. 증상당 사용되는 약의 개수
+## 6. 증상당 사용되는 약의 개수
 
 	[그림]
-7. 
+## 7. 
 
 # Project Analysis
 
