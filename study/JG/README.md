@@ -20,7 +20,7 @@
 
 
 
-	1. uniqueID
+&nbsp&nbsp&nbsp&nbsp1. uniqueID
 		한명의 고객이 중복해서 여러 리뷰를 작성했는지 검사
 
 		[그림]
