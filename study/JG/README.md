@@ -198,7 +198,6 @@ max        1291.000000
 Name: usefulCount, dtype: float64
 ```
 		
-따라서 condition들을 사용할 때 normalization을 사용해야 한다고함
 
 
 
