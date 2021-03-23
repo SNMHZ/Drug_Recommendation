@@ -4,9 +4,8 @@
 
 # Data Analysis
 	
-	'''
-	전체 데이터 구성은 unique id를 가진 환자가 가지고 있는 증상에 필요한 약을 구입한뒤에 특정 날짜에 review와 rating을 남김. 그리고 다른 환자가 해당 리뷰를 보고 도움이 되었는지에 대해 usefulCount attribute에 점수(1점 추가)를 줌
-	'''
+	
+> 전체 데이터 구성은 unique id를 가진 환자가 가지고 있는 증상에 필요한 약을 구입한뒤에 특정 날짜에 review와 rating을 남김. 그리고 다른 환자가 해당 리뷰를 보고 도움이 되었는지에 대해 usefulCount attribute에 점수(1점 추가)를 줌
 
 
 
