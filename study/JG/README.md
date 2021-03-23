@@ -20,14 +20,18 @@
 
 
 
-&nbsp&nbsp&nbsp&nbsp1. uniqueID
+    1. uniqueID
+	
+	
 		한명의 고객이 중복해서 여러 리뷰를 작성했는지 검사
 
 		[그림]
 
 		161297개의 training data와 53766개의 test data에 대해 중복된 uniqueID는 없음을 확인
 
+
 	2. condition and drugName
+
 
 		증상과 약품명은 서로 관련이 깊음. 
 		증상의 경우 unique하게 3671개가 있음
@@ -35,11 +39,15 @@
 
 		데이터를 수집하는 과정중에서 condition항목에 '3</span> users found this comment helpful.'이라는 에러  데이터가 들어가 있음. (4</span>...도 마찬가지)
 
+
 	3. review
+
 
 		html 태그가 존재하는 경우도 있고, 괄호 안에 감정 구문을 넣거나 특정 단어를 대문자로만 적은 경우도 있음. <strong>특정 문자가 깨진 경우도 존재</strong>
 
+
 	4. rating
+		
 		
 		rating은 1~10점까지 존재하며, 1점씩 interval을 가짐
 		각 rating별 review의 개수는 아래와 같이 분포
@@ -50,6 +58,7 @@
 			
 			
 	5. date
+	
 		
 		XXXX년 부터 XXXX년 까지 존재
 			
@@ -69,6 +78,7 @@
 			
 		
 	6. usefulCount
+			
 			
 		해당 소스코드에서는 약의 효과에 관계없이, 사람들이 더 많이 찾는 약일수록 사람들이 더 많이 review를 읽어보고 usefulcount를 높게 주는 경향이 있다고 함
 			
