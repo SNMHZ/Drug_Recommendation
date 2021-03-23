@@ -14,8 +14,8 @@
 
 
 
-| uniqueID | drugName | condition | review | rating | date | usefulCount |
-| -------- | -------- | --------- | ------ | ------ | ---- | ----------- |
+	| uniqueID | drugName | condition | review | rating | date | usefulCount |
+	| -------- | -------- | --------- | ------ | ------ | ---- | ----------- |
 		
 		
 
