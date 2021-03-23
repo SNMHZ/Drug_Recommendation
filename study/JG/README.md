@@ -14,9 +14,10 @@
 
 
 
-		| uniqueID | drugName | condition | review | rating | date | usefulCount |
-		| -------- | -------- | --------- | ------ | ------ | ---- | ----------- |
-		| identify individual data | name of drug | name of condition | patient review | 10 start patient rating | date of review entry | number of users who found review useful |
+| uniqueID | drugName | condition | review | rating | date | usefulCount |
+| -------- | -------- | --------- | ------ | ------ | ---- | ----------- |
+		
+		
 
 
 
