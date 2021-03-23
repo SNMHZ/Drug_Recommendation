@@ -68,7 +68,6 @@ set 메서드를 이용해서 중복 개수 확인 :  215063
 2. condition and drugName
 
 
-증상과 약품명은 서로 관련이 깊음.
 		
 		
 ```python
@@ -83,11 +82,12 @@ The number of unique drugName is  3671
 		
 		
 증상의 경우, condition 열에서 unique하게 3671개가 있음
+
 약품명의 경우, drugName 열에서 unique하게 917개가 있음
 
 데이터를 수집하는 과정중에서 condition항목에 '3</span> users found this comment helpful.'이라는 에러  데이터가 들어가 있음. (4</span>...도 마찬가지)
 		
-condition의 경우, 약품 명과 관련이 깊으므로 둘과 연관지어서 데이터를 알아볼 수 있음
+condition의 경우, 약품 명과 관련이 깊으므로 둘과 연관지어서 데이터를 알아볼 수 있다고 함
 	
 	
 ![drug_number_per_condition](./images/number_of_drugs_per_condition.png)
@@ -207,7 +207,7 @@ Name: usefulCount, dtype: float64
 
 1. 어떤 증상에 대해 하나의 제품만 있다면, 추천하는데 적합하지 않으므로 증상당 최소 2개 이상의 약품이 존재하는 경우만 다룸
 
-2. rating을 1~5점은 negative로, 6~10점은 positive로 분류
+2. rating을 1 ~ 5점은 negative로, 6 ~ 10점은 positive로 분류
 	
 3. N-gram을 사용해서 positive와 negative를 분류하는데, 1, 2-gram의 경우 상위 5개 corpus가 negative와 positive에서 동일한 분포를 가지므로 1, 2-gram은 적합하지 않음
 	
