@@ -40,21 +40,27 @@ test data 에서 attribute :  Index(['uniqueID', 'drugName', 'condition', 'revie
 	
 		한명의 고객이 중복해서 여러 리뷰를 작성했는지 검사
 
+
 		```python
+		
 		df_all = pd.concat([df_train, df_test]).reset_index()
 		del df_all['index']
 
 		uniqueValue = df_all.shape[0]
 		print("uniqueID를 기준으로 중복된 데이터 있는지 확인 : ", uniqueValue)
 		print("set 메서드를 이용해서 중복 개수 확인 : ", len(set(df_all['uniqueID'].values)))
+		
 		```
 		
+		
 		```python
+		
 		uniqueID를 기준으로 중복된 데이터 있는지 확인 :  215063
 		
 		set 메서드를 이용해서 중복 개수 확인 :  215063
 		
 		```
+
 
 		전체 215063개의 데이터에 대해 각각 161297개의 training data와 53766개의 test data에 대해 중복된 uniqueID는 없음을 확인
 		
@@ -64,13 +70,17 @@ test data 에서 attribute :  Index(['uniqueID', 'drugName', 'condition', 'revie
 
 		증상과 약품명은 서로 관련이 깊음.
 		
+		
 		```python
+		
 		
 		The number of unique condition is  917
 		
 		The number of unique drugName is  3671
 		
+		
 		```
+		
 		
 		증상의 경우, condition 열에서 unique하게 3671개가 있음
 		약품명의 경우, drugName 열에서 unique하게 917개가 있음
@@ -79,13 +89,13 @@ test data 에서 attribute :  Index(['uniqueID', 'drugName', 'condition', 'revie
 		
 		condition의 경우, 약품 명과 관련이 깊으므로 둘과 연관지어서 데이터를 알아볼 수 있음
 		
-		![drug number per condition](./images/number of drugs per condition.png)
+		![drug_number_per_condition](./images/number_of_drugs_per_condition.png)
 		
-		![drug number per condition bottom 20](./images/number of drugs per condition bottom20.png)
+		![drug_number_per_condition_bottom_20](./images/number_of_drugs_per_condition_bottom20.png)
 		
-		![condition per drug](./images/number of condition per drug.png)
+		![condition_per_drug](./images/number_of_condition_per_drug.png)
 		
-		![condition per drug bottom 20](./images/number of condition per drug bottom20.png)
+		![condition_per_drug_bottom_20](./images/number_of_condition_per_drug_bottom20.png)
 
 
 	3. review
@@ -102,7 +112,7 @@ test data 에서 attribute :  Index(['uniqueID', 'drugName', 'condition', 'revie
 		rating은 1~10점까지 존재하며, 1점씩 interval을 가짐
 		각 rating별 review의 개수는 아래와 같이 분포
 		
-		![count of rating values](./images/count of rating values.png)
+		![count_of_rating_values](./images/count_of_rating_values.png)
 			
 		사람들이 대부분 극단적으로 점수를 줌을 알수있으며, 10점이 9, 1, 8점보다 약 2배 높음
 			
@@ -144,7 +154,7 @@ test data 에서 attribute :  Index(['uniqueID', 'drugName', 'condition', 'revie
 			
 		해당 소스코드에서는 약의 효과에 관계없이, 사람들이 더 많이 찾는 약일수록 사람들이 더 많이 review를 읽어보고 usefulcount를 높게 주는 경향이 있다고 함
 			
-		![distribution of usefulCount](./images/Distribution of usefulCount.png)
+		![distribution of usefulCount](./images/Distribution_of_usefulCount.png)
 		
 		```python
 		Output
