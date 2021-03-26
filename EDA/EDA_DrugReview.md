@@ -45,18 +45,6 @@ uniqueID를 가진 환자가 가지고 있는 증상에 필요한 약을 구입�
 
     condition의 경우, 약품 명과 관련이 깊으므로 둘과 연관지어서 데이터를 알아볼 수 있다고 함
 
-    #### 약물당 컨디션 수(상위20)
-    ![drug_number_per_condition](./images/number_of_drugs_per_condition.png)
-                
-    #### 약물당 컨디션 수(하위20)
-    ![drug_number_per_condition_bottom_20](./images/number_of_drugs_per_condition_bottom20.png)
-            
-    #### 컨디션당 약물 수 (상위20)
-    ![condition_per_drug](./images/number_of_condition_per_drug.png)
-            
-    #### 컨디션당 약물 수 (하위20)
-    ![condition_per_drug_bottom_20](./images/number_of_condition_per_drug_bottom20.png)
-
  
 3. review
     html 태그가 존재하는 경우도 있고, 괄호 안에 감정 구문을 넣거나 특정 단어를 대문자로만 적은 경우도 있음.
