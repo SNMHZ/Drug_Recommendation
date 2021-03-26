@@ -99,7 +99,7 @@ uniqueID를 가진 환자가 가지고 있는 증상에 필요한 약을 구입�
     년도별 리뷰 개수 
     ![numberofreviewsperyear](./images/Number_of_reviews_in_year.png)
     -> 조금씩 늘어나는 모습
-                
+
     salary day와 같이, 날짜가 rating에 영향을 미치는지 알아보기 위해 아래와 같이 일(day)별 평균 rating을 파악
 
     ![mean rating per day](./images/Mean_rating_in_day.png)
@@ -107,7 +107,7 @@ uniqueID를 가진 환자가 가지고 있는 증상에 필요한 약을 구입�
 
 6. usefulCount
     해당 소스코드에서는 약의 효과에 관계없이, 사람들이 더 많이 찾는 약일수록 사람들이 더 많이 review를 읽어보고 usefulcount를 높게 주는 경향이 있다고 함
-                
+
     ![distribution of usefulCount](./images/Distribution_of_usefulCount.png)
             
     ```python

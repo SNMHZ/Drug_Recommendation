@@ -5,6 +5,9 @@
  - [UCI Drug Review Dataset](https://archive.ics.uci.edu/ml/datasets/Drug+Review+Dataset+%28Drugs.com%29)
 
 
+### DATASET EDA
+ - [UCI Drug Review Dataset](./EDA/EDA_DrugReview.md)
+
 ### Members
  - [이상목](https://github.com/SNMHZ)
  - [김준기](https://github.com/junhardstudy)
