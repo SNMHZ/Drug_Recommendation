@@ -201,6 +201,31 @@ plot1.text(200, 0.012, str(description), fontsize=15, bbox={'facecolor': 'white'
 plt.plot()
 plt.savefig('./Distribution_of_usefulCount.png')
 
+plt.figure(12)
+test = df_all.groupby(['drugName'])['review'].nunique().sort_values(ascending=False)
+plot1 = test[0:20].plot(kind="bar", figsize = (14,17), fontsize = 10,color=colors)
+for p in plot1.patches:
+    left, bottom, width, height = p.get_bbox().bounds
+    plot1.annotate("%d" % height, (left+width/2, height*1.01), ha='center')
+plt.xlabel("", fontsize = 20)
+plt.ylabel("The number of review", fontsize = 15)
+plt.title("Top20 : The number of review per drug.", fontsize = 20)
+plt.plot()
+plt.savefig('./number_of_review_per_drugName.png')
+
+plt.figure(13)
+test = df_all.groupby(['condition'])['review'].nunique().sort_values(ascending=False)
+plot1 = test[0:20].plot(kind="bar", figsize = (14,17), fontsize = 10,color=colors)
+for p in plot1.patches:
+    left, bottom, width, height = p.get_bbox().bounds
+    plot1.annotate("%d" % height, (left+width/2, height*1.01), ha='center')
+plt.xlabel("", fontsize = 20)
+plt.ylabel("The number of review", fontsize = 15)
+plt.title("Top20 : The number of review per condition.", fontsize = 20)
+plt.plot()
+plt.savefig('./number_of_review_per_condition.png')
+
+
 
 print('usefulCount의 대한 통계', df_all['usefulCount'].describe())
 '''
