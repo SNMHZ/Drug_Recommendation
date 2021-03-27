@@ -20,14 +20,14 @@
 현준
 
 평점(rating)별 통계
-    rating KDE(히스토그램으로 충분. 불필요)
-    Counts of rating(히스토그램. 필요)
-    Ratio of counts(원그래프 비율. 음.. 필요한가?)
+    rating KDE(히스토그램으로 충분. 불필요) semi-O (커널밀도함수가 뭔지 알아봐야함)
+    Counts of rating(히스토그램. 필요) O
+    Ratio of counts(원그래프 비율. 음.. 필요한가?) O
 
 날짜별 리뷰 통계
-    Reviews per year
-    Reviews per month
-    Reviews per day
+    Reviews per year O
+    Reviews per month O
+    Reviews per day O
     (크게 관계 없다는 점 시사. 진짜로 리뷰를 쓴 날이기 때문인거로 생각. ex. 5월에 사서 먹고 10월에 써도 전혀 상관이 없는 데이터.. 그냥 하나로 묶어서 보여주는게 좋을 듯!)
 
 추천수(usefulCount)별 통계
@@ -51,13 +51,16 @@ rating->대부분이 점수를 극단적으로 준다.
 준병
 
 train, test 합병하고 시작.
-약별로 상위 하위 20개 차트.(필요할 지 모르겟음)
-평점 분포(위에 많이 중복됨)
+약별로 상위 하위 20개 차트.(필요할 지 모르겟음) -> 만약 고려해본다면, attribute간의 상관관계에서 고려해볼수 있을듯(rating - drugName)
+평점 분포(위에 많이 중복됨) O
 10점짜리, 1점짜리 워드클라우드. stopword때문에 비슷하게 보임
 상관관계 히트맵
  - 단어 분석.(n-gram)
  - 축약어 풀기
 
+feature importance는 고려하려면, 모델 파트 고민할 때 붙여야 하는가? ( )
+uniqueID, rating, usefulCount 간의 상관관계 추가 O
+n-grams를 내건 버리고, 준병이 코드 사용하는게 좋을듯(ipython안 쓰고 로컬에서 바로 그릴수있기때문!) O
 ----------------------------------------
 
 상목
