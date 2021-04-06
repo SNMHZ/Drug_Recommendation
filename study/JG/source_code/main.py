@@ -46,12 +46,22 @@ from sklearn.metrics import roc_auc_score, precision_recall_curve, roc_curve, av
 from sklearn.model_selection import KFold
 from lightgbm import LGBMClassifier
 from sklearn.metrics import confusion_matrix
+from tensorflow.keras.models import load_model
 
 pd.options.mode.chained_assignment = None
 pd.options.display.max_columns = 999
 
-df_train = pd.read_csv("drugsComTrain_raw.csv", parse_dates=["date"])
-df_test = pd.read_csv("drugsComTest_raw.csv", parse_dates=["date"])
+'''
+raw_data = pd.DataFrame(columns=['review'])
+raw_data = input("type your condition or symptom : ")
+raw_data_frame = pd.DataFrame(columns=['review'])
+test = raw_data_frame.append({'review' : raw_data}, ignore_index=True)
+print(test['review'])
+'''
+
+df_train = pd.read_csv("../../../dataset/drugsComTrain_raw.csv", parse_dates=["date"], infer_datetime_format=True)
+df_test = pd.read_csv("../../../dataset/drugsComTest_raw.csv", parse_dates=["date"], infer_datetime_format=True)
+
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
@@ -59,6 +69,7 @@ print("Train shape :", df_train.shape)
 print("Test shape :", df_test.shape)
 
 # data set has 7 attributes
+'''
 pd.set_option('display.max_columns', 7)
 print(df_train.head())
 
@@ -84,7 +95,7 @@ plt.plot()
 plt.savefig('./total missing value.png')
 
 print("Missing value (%):", 1200/df_all.shape[0] *100)
-
+'''
 '''
 Data Preprocessing - delete missing value
 '''
@@ -93,7 +104,7 @@ df_train = df_train.dropna(axis=0)
 df_test = df_test.dropna(axis=0)
 df_all = pd.concat([df_train, df_test]).reset_index()
 #concat data
-
+'''
 percent = (df_all.isnull().sum()).sort_values(ascending=False)
 plt.figure(2)
 percent.plot(kind="bar", figsize = (14,6), fontsize = 10, color='green')
@@ -103,7 +114,7 @@ plt.title("Total Missing Value ", fontsize = 20)
 plt.plot()
 plt.savefig('./total missing value after preprocessing.png')
 plt.show()
-
+'''
 '''
 Data Preprocessing - delete '</span>' phrase in data by crawling data set
 '''
@@ -208,7 +219,7 @@ def plot_wordcloud(text, mask=None, max_words=200, max_font_size=100, figure_siz
 
 
 
-plot_wordcloud(stops, title="World Cloud of stops")
+#plot_wordcloud(stops, title="World Cloud of stops")
 
 
 
@@ -219,6 +230,11 @@ Deep Learning Model Using N-gram
 '''
 
 df_all['sentiment'] = df_all["rating"].apply(lambda x: 1 if x > 5 else 0)
+
+print("[my]df_all analyze : ")
+print(df_all)
+
+
 df_train, df_test = train_test_split(df_all, test_size=0.33, random_state=42)
 
 vectorizer = CountVectorizer(analyzer = 'word',
@@ -229,7 +245,14 @@ vectorizer = CountVectorizer(analyzer = 'word',
                              ngram_range=(4, 4),
                              max_features = 20000
                             )
-vectorizer
+# parameter description
+
+'''
+ngram_range(4, 4) : 단어장 생성에 사용할 토큰의 크기를 4로 정함
+min_df = 2 : 문서에서 토큰이 나타난 횟수가 2미만일 경우 무시(단어장에 포함되기 위한 최소 빈도)
+    
+ 
+'''
 
 pipeline = Pipeline([
     ('vect', vectorizer),
@@ -246,7 +269,11 @@ y_train = df_train['sentiment']
 y_test = df_test['sentiment']
 solution = y_test.copy()
 
+print("[my] y_train : ")
+print(y_train)
+
 # 2. Model Structures
+'''
 model = tensorflow.keras.models.Sequential()
 
 model.add(keras.layers.Dense(200, input_shape=(20000,)))
@@ -261,17 +288,29 @@ model.add(keras.layers.Dropout(0.5))
 
 model.add(keras.layers.Dense(100, activation='relu'))
 model.add(keras.layers.Dense(1, activation='sigmoid'))
-
+'''
 # 3. Model compile
-model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+#model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
-model.summary()
+#model.summary()
 
 # 4. Train model
-hist = model.fit(train_data_features, y_train, epochs=10, batch_size=64)
+from tensorflow.keras.models import load_model
+#hist = model.fit(train_data_features, y_train, epochs=10, batch_size=64)
+model = load_model('saved_model.h5')
+#model.save('saved_model.h5')
+
+# 생성된 model을 가시화 하기
+
+from IPython.display import SVG
+from tensorflow.keras.utils import model_to_dot
+from tensorflow.keras.utils import plot_model
+
+SVG(model_to_dot(model, show_shapes=True).create(prog='dot', format='svg'))
+plot_model(model, to_file='model_visualization.png')
 
 # 5. Traing process
-
+'''
 fig, loss_ax = plt.subplots()
 
 acc_ax = loss_ax.twinx()
@@ -290,10 +329,83 @@ loss_ax.legend(loc='upper left')
 acc_ax.legend(loc='lower left')
 
 plt.show()
-
+'''
 # 6. Evaluation
+
 loss_and_metrics = model.evaluate(test_data_features, y_test, batch_size=32)
 print('loss_and_metrics : ' + str(loss_and_metrics))
-
+print("------[my]test data analysis------")
+print(test_data_features.shape)
 
 sub_preds_deep = model.predict(test_data_features,batch_size=32)
+print(sub_preds_deep)
+while True:
+    raw_data = input("type your condition or symptom : ")
+    raw_data_frame = pd.DataFrame(columns=['review'])
+
+    test = raw_data_frame.append({'review' : raw_data}, ignore_index=True)
+    test['review_clean'] = test['review'].apply(review_to_words)
+
+    print("raw data : ")
+    print(test['review'])
+
+    print("cleaned data : ")
+    print(test['review_clean'])
+
+    test_data = pipeline.fit_transform(test['review_clean'])
+    print(model.predict(test_data, batch_size=32))
+
+
+#word_table = pd.read_csv("../../../dataset/inquirerbasic.xls")
+
+#Positiv word list
+'''
+temp_Positiv = []
+Positiv_word_list = []
+for i in range(0,len(word_table.Positiv)):
+    if word_table.iloc[i,2] == "Positiv":
+        temp = word_table.iloc[i,0].lower()
+        temp1 = re.sub('\d+', '', temp)
+        temp2 = re.sub('#', '', temp1)
+        temp_Positiv.append(temp2)
+
+Positiv_word_list = list(set(temp_Positiv))
+len(temp_Positiv)
+len(Positiv_word_list)  #del temp_Positiv
+
+#Negativ word list
+temp_Negativ = []
+Negativ_word_list = []
+for i in range(0,len(word_table.Negativ)):
+    if word_table.iloc[i,3] == "Negativ":
+        temp = word_table.iloc[i,0].lower()
+        temp1 = re.sub('\d+', '', temp)
+        temp2 = re.sub('#', '', temp1)
+        temp_Negativ.append(temp2)
+
+Negativ_word_list = list(set(temp_Negativ))
+len(temp_Negativ)
+len(Negativ_word_list)  #del temp_Negativ
+
+vectorizer = CountVectorizer(vocabulary = Positiv_word_list)
+content = df_test['review_clean']
+X = vectorizer.fit_transform(content)
+f = X.toarray()
+f = pd.DataFrame(f)
+f.columns=Positiv_word_list
+df_test["num_Positiv_word"] = f.sum(axis=1)
+
+vectorizer2 = CountVectorizer(vocabulary = Negativ_word_list)
+content = df_test['review_clean']
+X2 = vectorizer2.fit_transform(content)
+f2 = X2.toarray()
+f2 = pd.DataFrame(f2)
+f2.columns=Negativ_word_list
+df_test["num_Negativ_word"] = f2.sum(axis=1)
+
+df_test["Positiv_ratio"] = df_test["num_Positiv_word"]/(df_test["num_Positiv_word"]+df_test["num_Negativ_word"])
+df_test["sentiment_by_dic"] = df_test["Positiv_ratio"].apply(lambda x: 1 if (x>=0.5) else (0 if (x<0.5) else 0.5))
+
+
+
+'''
