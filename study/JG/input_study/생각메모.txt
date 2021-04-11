@@ -1,0 +1,52 @@
+Symptom
+condition
+disease 
+관계
+
+kaggle에서 symptom -> disease recommender가 있음
+
+think
+
+목 구멍에 이질감이 있습니다.
+
+목, 겨드랑이, 사타구니가 부었습니다.
+(림프절에 염증이 발생했습니다.)
+
+
+input model(내 마음대로 생각)
+
+1.Disease-Symptom knowledge database로 부터, symptom에 맞는 단어를 찾거나
+	
+	이 방법에서는 https://www.kaggle.com/plarmuseau/symptom-disease-recommender 와
+	https://people.dbmi.columbia.edu/~friedma/Projects/DiseaseSymptomKB/index.html 
+	의 dataset을 이용햇음
+	
+	
+2.해당 단어를 찾지 못하면, symptom corpus에서 context에서 유사한 symptom을 찾기
+
+	https://www.kaggle.com/banabasave/symptoms-data dataset을 이용했음
+	
+	
+3.또는 문장 자체를 kaggle drug recommendation set에 대응되는 condition바로 찾기? 
+
+
+
+Dataset
+
+1. Symptoms Corpus(https://www.kaggle.com/banabasave/symptoms-data)
+
+
+Error
+
+1. vomitting은 symptom도 되고, condition도 되지 않나?
+
+
+
+나중에 ULMS에 관한 자료도 읽어봐야 할듯
+https://blog.daum.net/ontologicallearning/6942009
+https://snowple.tistory.com/77
+https://www.nlm.nih.gov/research/umls/index.html
+
+http://www.nactem.ac.uk/facta/cgi-bin/facta3.cgi?query=UMLS:C0008031|111111|80|0
+
+bi-gram으로 유사한 symptom단어 찾으면 될듯
