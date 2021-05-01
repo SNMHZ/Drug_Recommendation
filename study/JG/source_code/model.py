@@ -3,7 +3,6 @@ import pandas as pd
 import re
 from nltk.tokenize import word_tokenize, sent_tokenize
 from gensim.models import Word2Vec
-from konlpy.tag import Okt
 from sklearn.metrics.pairwise import  cosine_similarity
 
 df_train = pd.read_csv("../../../dataset/lem_train.csv", parse_dates=["date"], infer_datetime_format=True)
@@ -42,14 +41,26 @@ model = Word2Vec(sentences= tokenize_data, size=100, window=5, min_count=5, work
 
 print(model.wv.vectors.shape)
 
-print(model.wv.most_similar('depression'))
+print(type(model.wv.most_similar('anxiety')))
 
 def predictCondition(data):
-    words = data.split
+    words = re.split('[, ]', data)
+    result = []
     print(words)
 
     for word in words:
+        try:
+            tmp = model.wv.most_similar(word)
+            print(len(tmp))
+            print(tmp)
+        except:
+            print(word + "not in here\n")
+
         
+while True:
+    msg = input("data : ")
+    predictCondition(msg)
+
 
 '''
 def vectors(document_list):

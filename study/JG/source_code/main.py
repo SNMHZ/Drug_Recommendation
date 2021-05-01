@@ -306,7 +306,7 @@ from IPython.display import SVG
 from tensorflow.keras.utils import model_to_dot
 from tensorflow.keras.utils import plot_model
 
-SVG(model_to_dot(model, show_shapes=True).create(prog='dot', format='svg'))
+#SVG(model_to_dot(model, show_shapes=True).create(prog='dot', format='svg'))
 plot_model(model, to_file='model_visualization.png')
 
 # 5. Traing process
