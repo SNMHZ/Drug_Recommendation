@@ -1,0 +1,836 @@
+﻿,original,modified,size
+0,left ventricular dysfunction,leftventriculardysfunction,3
+1,adhd,adhd,1
+2,birth control,birthcontrol,2
+4,opiate dependence,opiatedependence,2
+5,benign prostatic hyperplasia,benignprostatichyperplasia,3
+6,emergency contraception,emergencycontraception,2
+7,bipolar disorde,bipolardisorde,2
+8,epilepsy,epilepsy,1
+10,migraine prevention,migraineprevention,2
+11,depression,depression,1
+12,crohn's disease,crohn'sdisease,2
+13,cough,cough,1
+15,obesity,obesity,1
+16,urinary tract infection,urinarytractinfection,3
+17,ibromyalgia,ibromyalgia,1
+19,chronic myelogenous leukemia,chronicmyelogenousleukemia,3
+20,hiv infection,hivinfection,2
+21,insomnia,insomnia,1
+23,rheumatoid arthritis,rheumatoidarthritis,2
+24,vaginal yeast infection,vaginalyeastinfection,3
+25,chlamydia infection,chlamydiainfection,2
+26,hirsutism,hirsutism,1
+28,panic disorde,panicdisorde,2
+29,migraine,migraine,1
+31,pain,pain,1
+33,irritable bowel syndrome,irritablebowelsyndrome,3
+34,osteoarthritis,osteoarthritis,1
+35,constipation,constipation,1
+37,bowel preparation,bowelpreparation,2
+38,psychosis,psychosis,1
+42,muscle spasm,musclespasm,2
+44,hepatitis c,hepatitisc,2
+47,overactive bladde,overactivebladde,2
+49,"diabetes, type 2","diabetes,type2",3
+52,"asthma, maintenance","asthma,maintenance",2
+53,non-small cell lung cance,non-smallcelllungcance,4
+54,schizophrenia,schizophrenia,1
+55,dysuria,dysuria,1
+57,smoking cessation,smokingcessation,2
+59,anxiety,anxiety,1
+65,acne,acne,1
+70,emale infertility,emaleinfertility,2
+71,"constipation, acute","constipation,acute",2
+72,"constipation, drug induced","constipation,druginduced",3
+75,erectile dysfunction,erectiledysfunction,2
+79,trigeminal neuralgia,trigeminalneuralgia,2
+84,underactive thyroid,underactivethyroid,2
+86,chronic pain,chronicpain,2
+88,atrophic vaginitis,atrophicvaginitis,2
+90,skin and structure infection,skinandstructureinfection,4
+93,tinnitus,tinnitus,1
+94,major depressive disorde,majordepressivedisorde,3
+98,anxiety and stress,anxietyandstress,3
+102,rosacea,rosacea,1
+103,high blood pressure,highbloodpressure,3
+108,restless legs syndrome,restlesslegssyndrome,3
+109,osteolytic bone metastases of solid tumors,osteolyticbonemetastasesofsolidtumors,6
+117,bronchitis,bronchitis,1
+119,skin or soft tissue infection,skinorsofttissueinfection,5
+123,obsessive compulsive disorde,obsessivecompulsivedisorde,3
+124,endometriosis,endometriosis,1
+130,keratoconjunctivitis sicca,keratoconjunctivitissicca,2
+134,breakthrough pain,breakthroughpain,2
+143,seizures,seizures,1
+146,neuropathic pain,neuropathicpain,2
+148,sedation,sedation,1
+153,menstrual disorders,menstrualdisorders,2
+156,allergic rhinitis,allergicrhinitis,2
+161,anesthesia,anesthesia,1
+163,undifferentiated connective tissue disease,undifferentiatedconnectivetissuedisease,4
+165,"diabetes, type 1","diabetes,type1",3
+173,abnormal uterine bleeding,abnormaluterinebleeding,3
+175,weight loss,weightloss,2
+176,"constipation, chronic","constipation,chronic",2
+178,"breast cancer, metastatic","breastcancer,metastatic",3
+185,period pain,periodpain,2
+186,helicobacter pylori infection,helicobacterpyloriinfection,3
+188,atrial fibrillation,atrialfibrillation,2
+192,uterine fibroids,uterinefibroids,2
+196,kidney infections,kidneyinfections,2
+199,generalized anxiety disorde,generalizedanxietydisorde,3
+200,asthma,asthma,1
+202,postmenopausal symptoms,postmenopausalsymptoms,2
+203,high cholesterol,highcholesterol,2
+205,"hypogonadism, male","hypogonadism,male",2
+213,hyperthyroidism,hyperthyroidism,1
+216,back pain,backpain,2
+227,anaplastic oligodendroglioma,anaplasticoligodendroglioma,2
+232,sjogren's syndrome,sjogren'ssyndrome,2
+234,"asthma, acute","asthma,acute",2
+236,hot flashes,hotflashes,2
+239,"herpes simplex, suppression","herpessimplex,suppression",3
+240,bacterial infection,bacterialinfection,2
+243,bursitis,bursitis,1
+254,diaper rash,diaperrash,2
+259,systemic mastocytosis,systemicmastocytosis,2
+267,trichotillomania,trichotillomania,1
+271,hashimoto's disease,hashimoto'sdisease,2
+283,eczema,eczema,1
+295,dental abscess,dentalabscess,2
+297,headache,headache,1
+300,hypersomnia,hypersomnia,1
+306,xerostomia,xerostomia,1
+311,breast cance,breastcance,2
+313,sore throat,sorethroat,2
+322,barrett's esophagus,barrett'sesophagus,2
+329,pain/feve,pain/feve,1
+339,diverticulitis,diverticulitis,1
+341,sinusitis,sinusitis,1
+345,polycystic ovary syndrome,polycysticovarysyndrome,3
+354,influenza,influenza,1
+359,"hypothyroidism, after thyroid removal","hypothyroidism,afterthyroidremoval",4
+364,"onychomycosis, toenail","onychomycosis,toenail",2
+375,progesterone insufficiency,progesteroneinsufficiency,2
+386,gerd,gerd,1
+395,"nausea/vomiting, postoperative","nausea/vomiting,postoperative",2
+399,herpes simplex,herpessimplex,2
+405,gastroparesis,gastroparesis,1
+406,"gout, acute","gout,acute",2
+408,motion sickness,motionsickness,2
+411,multiple sclerosis,multiplesclerosis,2
+446,autism,autism,1
+449,otitis media,otitismedia,2
+451,upper respiratory tract infection,upperrespiratorytractinfection,4
+466,surgical prophylaxis,surgicalprophylaxis,2
+468,psoriatic arthritis,psoriaticarthritis,2
+469,erosive esophagitis,erosiveesophagitis,2
+476,premature ventricular depolarizations,prematureventriculardepolarizations,3
+477,stomach ulce,stomachulce,2
+481,nausea/vomiting,nausea/vomiting,1
+482,light anesthesia,lightanesthesia,2
+502,angina pectoris prophylaxis,anginapectorisprophylaxis,3
+513,paranoid disorde,paranoiddisorde,2
+527,prostatitis,prostatitis,1
+532,extrapyramidal reaction,extrapyramidalreaction,2
+543,mance anxiety,manceanxiety,2
+548,night terrors,nightterrors,2
+551,"high cholesterol, familial heterozygous","highcholesterol,familialheterozygous",4
+585,spondyloarthritis,spondyloarthritis,1
+586,clostridial infection,clostridialinfection,2
+593,dermatomyositis,dermatomyositis,1
+596,bronchiectasis,bronchiectasis,1
+607,nasal congestion,nasalcongestion,2
+611,benign essential trem,benignessentialtrem,3
+613,angina,angina,1
+625,moterol / mometasone),moterol/mometasone),3
+638,impetig,impetig,1
+642,"conjunctivitis, bacterial","conjunctivitis,bacterial",2
+650,post traumatic stress disorde,posttraumaticstressdisorde,4
+656,alcohol withdrawal,alcoholwithdrawal,2
+658,psoriasis,psoriasis,1
+659,cold sores,coldsores,2
+662,hyperhidrosis,hyperhidrosis,1
+668,ankylosing spondylitis,ankylosingspondylitis,2
+670,hemorrhoids,hemorrhoids,1
+687,schizoaffective disorde,schizoaffectivedisorde,2
+698,not listed / othe,notlisted/othe,4
+699,rhinitis,rhinitis,1
+714,oral thrush,oralthrush,2
+719,hyperlipoproteinemia,hyperlipoproteinemia,1
+721,neutropenia associated with chemotherapy,neutropeniaassociatedwithchemotherapy,4
+735,osteoporosis,osteoporosis,1
+761,reflex sympathetic dystrophy syndrome,reflexsympatheticdystrophysyndrome,4
+785,urticaria,urticaria,1
+806,narcolepsy,narcolepsy,1
+807,systemic lupus erythematosus,systemiclupuserythematosus,3
+808,ulcerative colitis,ulcerativecolitis,2
+812,adult human growth hormone deficiency,adulthumangrowthhormonedeficiency,5
+850,bacterial vaginitis,bacterialvaginitis,2
+855,"copd, maintenance","copd,maintenance",2
+860,anorexia,anorexia,1
+878,tsh suppression,tshsuppression,2
+889,"breast cancer, adjuvant","breastcancer,adjuvant",3
+907,glaucoma,glaucoma,1
+909,cough and nasal congestion,coughandnasalcongestion,4
+913,inflammatory conditions,inflammatoryconditions,2
+925,urinary incontinence,urinaryincontinence,2
+931,gout,gout,1
+941,bladder infection,bladderinfection,2
+947,human papillomavirus prophylaxis,humanpapillomavirusprophylaxis,3
+948,glioblastoma multiforme,glioblastomamultiforme,2
+986,strep throat,strepthroat,2
+1002,bacterial skin infection,bacterialskininfection,3
+1004,hereditary angioedema,hereditaryangioedema,2
+1006,cold symptoms,coldsymptoms,2
+1015,labor pain,laborpain,2
+1022,dry skin,dryskin,2
+1025,diabetes insipidus,diabetesinsipidus,2
+1043,methicillin-resistant staphylococcus aureus infection,methicillin-resistantstaphylococcusaureusinfection,4
+1055,borderline personality disorde,borderlinepersonalitydisorde,3
+1059,amenorrhea,amenorrhea,1
+1096,pneumonia,pneumonia,1
+1098,seborrheic dermatitis,seborrheicdermatitis,2
+1126,interstitial cystitis,interstitialcystitis,2
+1136,malaria prevention,malariaprevention,2
+1139,prevention of dental caries,preventionofdentalcaries,4
+1142,herbal supplementation,herbalsupplementation,2
+1148,plaque psoriasis,plaquepsoriasis,2
+1151,raynaud's syndrome,raynaud'ssyndrome,2
+1176,addison's disease,addison'sdisease,2
+1195,prostate cance,prostatecance,2
+1212,allergies,allergies,1
+1216,opioid-induced constipation,opioid-inducedconstipation,2
+1228,moterol),moterol),1
+1275,diarrhea,diarrhea,1
+1279,seasonal allergic conjunctivitis,seasonalallergicconjunctivitis,3
+1286,opioid overdose,opioidoverdose,2
+1326,spondylolisthesis,spondylolisthesis,1
+1329,shift work sleep disorde,shiftworksleepdisorde,4
+1342,obstructive sleep apnea/hypopnea syndrome,obstructivesleepapnea/hypopneasyndrome,4
+1354,nausea/vomiting of pregnancy,nausea/vomitingofpregnancy,3
+1355,mucositis,mucositis,1
+1379,"ulcerative colitis, active","ulcerativecolitis,active",3
+1395,head lice,headlice,2
+1400,tonsillitis/pharyngitis,tonsillitis/pharyngitis,1
+1403,pseudotumor cerebri,pseudotumorcerebri,2
+1427,parkinson's disease,parkinson'sdisease,2
+1458,sciatica,sciatica,1
+1460,cance,cance,1
+1496,bacterial endocarditis prevention,bacterialendocarditisprevention,3
+1498,"diarrhea, chronic","diarrhea,chronic",2
+1500,hypertensive emergency,hypertensiveemergency,2
+1504,keratosis,keratosis,1
+1509,ovarian cysts,ovariancysts,2
+1519,behcet's disease,behcet'sdisease,2
+1522,chronic idiopathic constipation,chronicidiopathicconstipation,3
+1533,lic acid deficiency,licaciddeficiency,3
+1570,chronic fatigue syndrome,chronicfatiguesyndrome,3
+1573,basal cell carcinoma,basalcellcarcinoma,3
+1579,cataplexy,cataplexy,1
+1584,"crohn's disease, maintenance","crohn'sdisease,maintenance",3
+1594,diabetic peripheral neuropathy,diabeticperipheralneuropathy,3
+1613,arrhythmia,arrhythmia,1
+1615,primary ovarian failure,primaryovarianfailure,3
+1662,influenza prophylaxis,influenzaprophylaxis,2
+1684,agitated state,agitatedstate,2
+1686,heart failure,heartfailure,2
+1688,atigue,atigue,1
+1710,opiate withdrawal,opiatewithdrawal,2
+1748,"endometrial hyperplasia, prophylaxis","endometrialhyperplasia,prophylaxis",3
+1773,immunosuppression,immunosuppression,1
+1780,dystonia,dystonia,1
+1794,alopecia,alopecia,1
+1807,vulvodynia,vulvodynia,1
+1810,premenstrual dysphoric disorde,premenstrualdysphoricdisorde,3
+1841,alcohol dependence,alcoholdependence,2
+1861,myasthenia gravis,myastheniagravis,2
+1864,social anxiety disorde,socialanxietydisorde,3
+1866,atopic dermatitis,atopicdermatitis,2
+1868,schistosoma japonicum,schistosomajaponicum,2
+1883,sinus symptoms,sinussymptoms,2
+1933,min / sitagliptin),min/sitagliptin),3
+1939,dermatitis,dermatitis,1
+1969,eye redness,eyeredness,2
+1971,warts,warts,1
+2011,menorrhagia,menorrhagia,1
+2015,seizure prevention,seizureprevention,2
+2036,ophthalmic surgery,ophthalmicsurgery,2
+2047,skin rash,skinrash,2
+2052,condylomata acuminata,condylomataacuminata,2
+2084,nsaid-induced ulcer prophylaxis,nsaid-inducedulcerprophylaxis,3
+2090,tinea versicol,tineaversicol,2
+2157,peripheral neuropathy,peripheralneuropathy,2
+2164,deep vein thrombosis,deepveinthrombosis,3
+2198,heart attack,heartattack,2
+2235,"pulmonary embolism, recurrent event","pulmonaryembolism,recurrentevent",4
+2238,light sedation,lightsedation,2
+2260,acute lymphoblastic leukemia,acutelymphoblasticleukemia,3
+2270,hyperprolactinemia,hyperprolactinemia,1
+2297,indigestion,indigestion,1
+2332,hepatitis b,hepatitisb,2
+2336,dysautonomia,dysautonomia,1
+2362,status epilepticus,statusepilepticus,2
+2392,postpartum depression,postpartumdepression,2
+2396,multiple myeloma,multiplemyeloma,2
+2401,prevention of hypokalemia,preventionofhypokalemia,3
+2408,edema,edema,1
+2437,urinary retention,urinaryretention,2
+2444,prevention of thromboembolism in atrial fibrillation,preventionofthromboembolisminatrialfibrillation,6
+2499,cluster headaches,clusterheadaches,2
+2576,"sexual dysfunction, ssri induced","sexualdysfunction,ssriinduced",4
+2600,dermatitis herpetiformis,dermatitisherpetiformis,2
+2612,temporomandibular joint disorde,temporomandibularjointdisorde,3
+2616,"burns, external","burns,external",2
+2619,actinic keratosis,actinickeratosis,2
+2639,pharyngitis,pharyngitis,1
+2657,"melanoma, metastatic","melanoma,metastatic",2
+2673,atrial flutte,atrialflutte,2
+2684,lyme disease,lymedisease,2
+2704,dry eye disease,dryeyedisease,3
+2725,allergic reactions,allergicreactions,2
+2727,hypertriglyceridemia,hypertriglyceridemia,1
+2741,pruritus,pruritus,1
+2768,carcinoid tum,carcinoidtum,2
+2822,muscle pain,musclepain,2
+2883,colorectal cance,colorectalcance,2
+2921,vitamin/mineral supplementation during pregnancy/lactation,vitamin/mineralsupplementationduringpregnancy/lactation,4
+2943,"nausea/vomiting, chemotherapy induced","nausea/vomiting,chemotherapyinduced",3
+2952,women (oxybutynin),women(oxybutynin),2
+2999,primary immunodeficiency syndrome,primaryimmunodeficiencysyndrome,3
+3008,new daily persistent headache,newdailypersistentheadache,4
+3061,pneumococcal disease prophylaxis,pneumococcaldiseaseprophylaxis,3
+3093,burning mouth syndrome,burningmouthsyndrome,3
+3099,urinary tract stones,urinarytractstones,3
+3186,pseudobulbar affect,pseudobulbaraffect,2
+3202,eye redness/itching,eyeredness/itching,2
+3222,"deep vein thrombosis, first event","deepveinthrombosis,firstevent",5
+3235,pulmonary hypertension,pulmonaryhypertension,2
+3249,malaria,malaria,1
+3268,sarcoidosis,sarcoidosis,1
+3320,dietary supplementation,dietarysupplementation,2
+3324,bulimia,bulimia,1
+3329,tendonitis,tendonitis,1
+3337,nasal polyps,nasalpolyps,2
+3356,hypokalemia,hypokalemia,1
+3426,"anemia, sickle cell","anemia,sicklecell",3
+3432,uveitis,uveitis,1
+3500,streptococcal infection,streptococcalinfection,2
+3609,perimenopausal symptoms,perimenopausalsymptoms,2
+3620,asperger syndrome,aspergersyndrome,2
+3649,tinea corporis,tineacorporis,2
+3650,mania,mania,1
+3673,renal cell carcinoma,renalcellcarcinoma,3
+3686,copd,copd,1
+3712,biliary cirrhosis,biliarycirrhosis,2
+3716,vertig,vertig,1
+3809,reversal of opioid sedation,reversalofopioidsedation,4
+3815,non-hodgkin's lymphoma,non-hodgkin'slymphoma,2
+3827,"high cholesterol, familial homozygous","highcholesterol,familialhomozygous",4
+3856,periodic limb movement disorde,periodiclimbmovementdisorde,4
+3900,supraventricular tachycardia,supraventriculartachycardia,2
+3911,hypoestrogenism,hypoestrogenism,1
+4007,juvenile idiopathic arthritis,juvenileidiopathicarthritis,3
+4027,swine flu,swineflu,2
+4043,giardiasis,giardiasis,1
+4047,binge eating disorde,bingeeatingdisorde,3
+4048,tourette's syndrome,tourette'ssyndrome,2
+4115,trichomoniasis,trichomoniasis,1
+4119,acial wrinkles,acialwrinkles,2
+4200,pulmonary embolism,pulmonaryembolism,2
+4258,"conjunctivitis, allergic","conjunctivitis,allergic",2
+4269,avian influenza,avianinfluenza,2
+4278,hemangioma,hemangioma,1
+4367,nocturnal leg cramps,nocturnallegcramps,3
+4405,thyroid suppression test,thyroidsuppressiontest,3
+4411,muscle twitching,muscletwitching,2
+4440,pupillary dilation,pupillarydilation,2
+4475,lennox-gastaut syndrome,lennox-gastautsyndrome,2
+4499,opiate adjunct,opiateadjunct,2
+4525,postoperative pain,postoperativepain,2
+4569,candida urinary tract infection,candidaurinarytractinfection,4
+4608,cerebral spasticity,cerebralspasticity,2
+4648,lipodystrophy,lipodystrophy,1
+4660,androgenetic alopecia,androgeneticalopecia,2
+4674,computed tomography,computedtomography,2
+4697,mitral valve prolapse,mitralvalveprolapse,3
+4701,vitamin d deficiency,vitaminddeficiency,3
+4720,"glaucoma, open angle","glaucoma,openangle",3
+4765,endoscopy or radiology premedication,endoscopyorradiologypremedication,4
+4881,alzheimer's disease,alzheimer'sdisease,2
+4946,gouty arthritis,goutyarthritis,2
+4967,paroxysmal supraventricular tachycardia,paroxysmalsupraventriculartachycardia,3
+5077,"deep vein thrombosis, prophylaxis","deepveinthrombosis,prophylaxis",4
+5113,gaucher disease,gaucherdisease,2
+5177,lymphocytic colitis,lymphocyticcolitis,2
+5295,pancreatic cance,pancreaticcance,2
+5296,cystic fibrosis,cysticfibrosis,2
+5335,noninfectious colitis,noninfectiouscolitis,2
+5402,nephrocalcinosis,nephrocalcinosis,1
+5473,iron deficiency anemia,irondeficiencyanemia,3
+5481,mulation) (phenylephrine),mulation)(phenylephrine),2
+5490,hiccups,hiccups,1
+5499,bronchospasm prophylaxis,bronchospasmprophylaxis,2
+5533,chronic spasticity,chronicspasticity,2
+5550,min / saxagliptin),min/saxagliptin),3
+5564,post-cholecystectomy diarrhea,post-cholecystectomydiarrhea,2
+5620,postherpetic neuralgia,postherpeticneuralgia,2
+5640,"insomnia, stimulant-associated","insomnia,stimulant-associated",2
+5664,"copd, acute","copd,acute",2
+5784,herpes simplex dendritic keratitis,herpessimplexdendritickeratitis,4
+5798,oophorectomy,oophorectomy,1
+5926,cyclic vomiting syndrome,cyclicvomitingsyndrome,3
+5993,chronic lymphocytic leukemia,chroniclymphocyticleukemia,3
+6011,"lyme disease, arthritis","lymedisease,arthritis",3
+6094,pseudomembranous colitis,pseudomembranouscolitis,2
+6147,conjunctivitis,conjunctivitis,1
+6271,min),min),1
+6287,intraocular hypertension,intraocularhypertension,2
+6310,aphthous ulce,aphthousulce,2
+6331,"ulcerative colitis, maintenance","ulcerativecolitis,maintenance",3
+6357,melasma,melasma,1
+6414,"lyme disease, neurologic","lymedisease,neurologic",3
+6417,ge (amlodipine / valsartan),ge(amlodipine/valsartan),4
+6474,herpes zoste,herpeszoste,2
+6585,cervical dystonia,cervicaldystonia,2
+6650,labor induction,laborinduction,2
+6662,human papilloma virus,humanpapillomavirus,3
+6707,chronic pancreatitis,chronicpancreatitis,2
+6769,polycythemia vera,polycythemiavera,2
+6953,dermatological disorders,dermatologicaldisorders,2
+6986,lewy body dementia,lewybodydementia,3
+7030,amilial mediterranean feve,amilialmediterraneanfeve,3
+7210,neurosurgery,neurosurgery,1
+7263,gastroenteritis,gastroenteritis,1
+7341,macular edema,macularedema,2
+7518,tinea pedis,tineapedis,2
+7700,diagnosis and investigation,diagnosisandinvestigation,3
+7852,gas,gas,1
+7865,neuralgia,neuralgia,1
+7903,local anesthesia,localanesthesia,2
+8089,acute coronary syndrome,acutecoronarysyndrome,3
+8341,aspiration pneumonia,aspirationpneumonia,2
+8363,idiopathic thrombocytopenic purpura,idiopathicthrombocytopenicpurpura,3
+8411,"onychomycosis, fingernail","onychomycosis,fingernail",2
+8528,photoaging of the skin,photoagingoftheskin,4
+8552,premature lab,prematurelab,2
+8658,precocious puberty,precociouspuberty,2
+8779,prevention of bladder infection,preventionofbladderinfection,4
+8783,seasonal affective disorde,seasonalaffectivedisorde,3
+8804,diabetic kidney disease,diabetickidneydisease,3
+8819,"crohn's disease, acute","crohn'sdisease,acute",3
+8868,insulin resistance syndrome,insulinresistancesyndrome,3
+8922,pudendal neuralgia,pudendalneuralgia,2
+9210,reiter's syndrome,reiter'ssyndrome,2
+9491,amyotrophic lateral sclerosis,amyotrophiclateralsclerosis,3
+9503,body dysmorphic disorde,bodydysmorphicdisorde,3
+9562,"prosthetic heart valves, mechanical valves - thrombosis prophylaxis","prostheticheartvalves,mechanicalvalves-thrombosisprophylaxis",8
+9685,dandruff,dandruff,1
+9727,vitamin b12 deficiency,vitaminb12deficiency,3
+9735,bone infection,boneinfection,2
+9739,"prosthetic heart valves, tissue valves - thrombosis prophylaxis","prostheticheartvalves,tissuevalves-thrombosisprophylaxis",8
+9760,iritis,iritis,1
+9761,allergic urticaria,allergicurticaria,2
+9776,cardiovascular risk reduction,cardiovascularriskreduction,3
+9795,giant cell tumor of bone,giantcelltumorofbone,5
+9875,babesiosis,babesiosis,1
+9982,secondary hyperparathyroidism,secondaryhyperparathyroidism,2
+10016,hypoparathyroidism,hypoparathyroidism,1
+10044,performance anxiety,performanceanxiety,2
+10067,abortion,abortion,1
+10123,skin cance,skincance,2
+10148,ovulation induction,ovulationinduction,2
+10159,liver magnetic resonance imaging,livermagneticresonanceimaging,4
+10460,vitamin/mineral supplementation and deficiency,vitamin/mineralsupplementationanddeficiency,4
+10478,"herpes simplex, mucocutaneous/immunocompetent host","herpessimplex,mucocutaneous/immunocompetenthost",4
+10539,anemia associated with chronic renal failure,anemiaassociatedwithchronicrenalfailure,6
+10855,hyperphosphatemia of renal failure,hyperphosphatemiaofrenalfailure,4
+10912,dissociative identity disorde,dissociativeidentitydisorde,3
+11109,anal fissure and fistula,analfissureandfistula,4
+11183,"herpes simplex, mucocutaneous/immunocompromised host","herpessimplex,mucocutaneous/immunocompromisedhost",4
+11185,scabies,scabies,1
+11359,endometrial cance,endometrialcance,2
+11450,transient ischemic attack,transientischemicattack,3
+11587,granuloma annulare,granulomaannulare,2
+11692,traveler's diarrhea,traveler'sdiarrhea,2
+11849,candidemia,candidemia,1
+11892,t pac with cyclobenzaprine (cyclobenzaprine),tpacwithcyclobenzaprine(cyclobenzaprine),5
+11914,hypoactive sexual desire disorde,hypoactivesexualdesiredisorde,4
+11960,"epicondylitis, tennis elbow","epicondylitis,tenniselbow",3
+12048,nightmares,nightmares,1
+12080,dientamoeba fragilis,dientamoebafragilis,2
+12126,ventricular tachycardia,ventriculartachycardia,2
+12346,dumping syndrome,dumpingsyndrome,2
+12387,myelodysplastic syndrome,myelodysplasticsyndrome,2
+12652,hypodermoclysis,hypodermoclysis,1
+13113,zen shoulde,zenshoulde,2
+13200,topical disinfection,topicaldisinfection,2
+13320,perioral dermatitis,perioraldermatitis,2
+13421,agitation,agitation,1
+13470,intermittent claudication,intermittentclaudication,2
+13629,prevention of osteoporosis,preventionofosteoporosis,3
+13727,leukemia,leukemia,1
+13829,dermatitis herpeti,dermatitisherpeti,2
+13866,mis,mis,1
+14034,eosinophilic esophagitis,eosinophilicesophagitis,2
+14054,"hyperlipoproteinemia type iia, elevated ldl","hyperlipoproteinemiatypeiia,elevatedldl",5
+14118,endometrial hyperplasia,endometrialhyperplasia,2
+14270,peptic ulce,pepticulce,2
+14476,chronic myofascial pain,chronicmyofascialpain,3
+14660,enterocolitis,enterocolitis,1
+14685,secondary cutaneous bacterial infections,secondarycutaneousbacterialinfections,4
+14690,syringomyelia,syringomyelia,1
+14917,postoperative ocular inflammation,postoperativeocularinflammation,3
+14980,persistent depressive disorde,persistentdepressivedisorde,3
+15066,otitis externa,otitisexterna,2
+15189,"organ transplant, rejection prophylaxis","organtransplant,rejectionprophylaxis",4
+15543,intermittent explosive disorde,intermittentexplosivedisorde,3
+15642,dermatophytosis,dermatophytosis,1
+15652,inflammatory bowel disease,inflammatoryboweldisease,3
+15900,porphyria,porphyria,1
+15950,anemia,anemia,1
+16162,hyperuricemia secondary to chemotherapy,hyperuricemiasecondarytochemotherapy,4
+16308,wolff-parkinson-white syndrome,wolff-parkinson-whitesyndrome,2
+16361,eve,eve,1
+16688,ectopic pregnancy,ectopicpregnancy,2
+16765,thyroid cance,thyroidcance,2
+17053,"tuberculosis, latent","tuberculosis,latent",2
+17245,nasal carriage of staphylococcus aureus,nasalcarriageofstaphylococcusaureus,5
+17271,systemic candidiasis,systemiccandidiasis,2
+17361,ear wax impaction,earwaximpaction,3
+17458,hepatocellular carcinoma,hepatocellularcarcinoma,2
+17521,dyspareunia,dyspareunia,1
+17594,tic disorde,ticdisorde,2
+17616,head and neck cance,headandneckcance,4
+17651,klinefelter syndrome,klinefeltersyndrome,2
+17692,rhinorrhea,rhinorrhea,1
+17877,soft tissue sarcoma,softtissuesarcoma,3
+17968,diabetic macular edema,diabeticmacularedema,3
+18196,menopausal disorders,menopausaldisorders,2
+18215,anesthetic adjunct,anestheticadjunct,2
+18238,tinea cruris,tineacruris,2
+18966,tic (mycophenolic acid),tic(mycophenolicacid),3
+19215,ischemic stroke,ischemicstroke,2
+19219,malignant glioma,malignantglioma,2
+19240,thrombocythemia,thrombocythemia,1
+19261,atrophic urethritis,atrophicurethritis,2
+19409,systemic sclerosis,systemicsclerosis,2
+19515,macular degeneration,maculardegeneration,2
+19870,aids related wasting,aidsrelatedwasting,3
+20001,hemophilia a,hemophiliaa,2
+20016,osteolytic bone lesions of multiple myeloma,osteolyticbonelesionsofmultiplemyeloma,6
+20090,autoimmune hemolytic anemia,autoimmunehemolyticanemia,3
+20097,ailure to thrive,ailuretothrive,3
+20143,strongyloidiasis,strongyloidiasis,1
+20297,vitamin k deficiency,vitaminkdeficiency,3
+20308,ulcerative proctitis,ulcerativeproctitis,2
+20416,premenstrual syndrome,premenstrualsyndrome,2
+20473,primary hyperaldosteronism,primaryhyperaldosteronism,2
+20624,lactose intolerance,lactoseintolerance,2
+20774,anal itching,analitching,2
+20799,amilial cold autoinflammatory syndrome,amilialcoldautoinflammatorysyndrome,4
+20892,duodenal ulce,duodenalulce,2
+20945,"tuberculosis, prophylaxis","tuberculosis,prophylaxis",2
+20981,neurosis,neurosis,1
+21117,turner's syndrome,turner'ssyndrome,2
+21233,nsaid-induced gastric ulce,nsaid-inducedgastriculce,3
+21349,cns magnetic resonance imaging,cnsmagneticresonanceimaging,4
+21655,atherosclerosis,atherosclerosis,1
+21657,deep vein thrombosis prophylaxis after hip replacement surgery,deepveinthrombosisprophylaxisafterhipreplacementsurgery,8
+21750,gastritis/duodenitis,gastritis/duodenitis,1
+21958,"diarrhea, acute","diarrhea,acute",2
+22545,costochondritis,costochondritis,1
+22610,portal hypertension,portalhypertension,2
+22685,glaucoma/intraocular hypertension,glaucoma/intraocularhypertension,2
+22911,toothache,toothache,1
+23370,benzodiazepine withdrawal,benzodiazepinewithdrawal,2
+23569,m pain disorde,mpaindisorde,3
+23602,esophageal candidiasis,esophagealcandidiasis,2
+23758,deep vein thrombosis prophylaxis after knee replacement surgery,deepveinthrombosisprophylaxisafterkneereplacementsurgery,8
+23850,peripheral arterial disease,peripheralarterialdisease,3
+23940,"deep vein thrombosis, recurrent event","deepveinthrombosis,recurrentevent",5
+24428,"pseudogout, prophylaxis","pseudogout,prophylaxis",2
+24557,lichen planus,lichenplanus,2
+24570,cmv prophylaxis,cmvprophylaxis,2
+24876,neuritis,neuritis,1
+25052,typhoid feve,typhoidfeve,2
+25386,tardive dyskinesia,tardivedyskinesia,2
+25664,ichthyosis,ichthyosis,1
+25700,juvenile rheumatoid arthritis,juvenilerheumatoidarthritis,3
+25830,b12 nutritional deficiency,b12nutritionaldeficiency,3
+25902,primary nocturnal enuresis,primarynocturnalenuresis,3
+26195,dercum's disease,dercum'sdisease,2
+26663,cutaneous candidiasis,cutaneouscandidiasis,2
+26666,gingivitis,gingivitis,1
+26885,q feve,qfeve,2
+27160,hyperekplexia,hyperekplexia,1
+27340,niacin deficiency,niacindeficiency,2
+27551,dietary fiber supplementation,dietaryfibersupplementation,3
+27697,nephrotic syndrome,nephroticsyndrome,2
+28055,pinworm infection (enterobius vermicularis),pinworminfection(enterobiusvermicularis),4
+28109,pancreatic exocrine dysfunction,pancreaticexocrinedysfunction,3
+28130,"nausea/vomiting, radiation induced","nausea/vomiting,radiationinduced",3
+28208,schilling test,schillingtest,2
+28417,mild cognitive impairment,mildcognitiveimpairment,3
+28545,"ischemic stroke, prophylaxis","ischemicstroke,prophylaxis",3
+28899,"gonococcal infection, uncomplicated","gonococcalinfection,uncomplicated",3
+29011,ovarian cance,ovariancance,2
+29574,eyelash hypotrichosis,eyelashhypotrichosis,2
+29602,meniere's disease,meniere'sdisease,2
+29677,tinea capitis,tineacapitis,2
+29966,lichen sclerosus,lichensclerosus,2
+29994,min / pioglitazone),min/pioglitazone),3
+30162,renal transplant,renaltransplant,2
+30187,"gout, prophylaxis","gout,prophylaxis",2
+30228,von willebrand's disease,vonwillebrand'sdisease,3
+30308,prevention of atherothrombotic events,preventionofatherothromboticevents,4
+30549,small fiber neuropathy,smallfiberneuropathy,3
+31200,min / rosiglitazone),min/rosiglitazone),3
+31381,peyronie's disease,peyronie'sdisease,2
+31396,autoimmune hepatitis,autoimmunehepatitis,2
+31687,llicular lymphoma,llicularlymphoma,2
+31772,auditory processing disorde,auditoryprocessingdisorde,3
+31775,"herpes zoster, prophylaxis","herpeszoster,prophylaxis",3
+31785,submental fullness,submentalfullness,2
+31985,lactation augmentation,lactationaugmentation,2
+32016,radionuclide myocardial perfusion study,radionuclidemyocardialperfusionstudy,4
+32181,prevention of cardiovascular disease,preventionofcardiovasculardisease,4
+32660,varicella-zoste,varicella-zoste,1
+32864,pelvic inflammatory disease,pelvicinflammatorydisease,3
+32973,intraabdominal infection,intraabdominalinfection,2
+33098,croup,croup,1
+33369,dermatologic lesion,dermatologiclesion,2
+33598,"hyperlipoproteinemia type iv, elevated vldl","hyperlipoproteinemiatypeiv,elevatedvldl",5
+33891,expectoration,expectoration,1
+34226,primary hyperaldosteronism diagnosis,primaryhyperaldosteronismdiagnosis,3
+34735,abdominal distension,abdominaldistension,2
+34892,salivary gland cance,salivaryglandcance,3
+35018,"pulmonary embolism, first event","pulmonaryembolism,firstevent",4
+35263,postpartum breast pain,postpartumbreastpain,3
+35708,postural orthostatic tachycardia syndrome,posturalorthostatictachycardiasyndrome,4
+36414,pediatric growth hormone deficiency,pediatricgrowthhormonedeficiency,4
+36605,hypomagnesemia,hypomagnesemia,1
+36631,ge hct (amlodipine / hydrochlorothiazide / valsartan),gehct(amlodipine/hydrochlorothiazide/valsartan),7
+36765,hairy cell leukemia,hairycellleukemia,3
+36818,histoplasmosis,histoplasmosis,1
+36966,hypoglycemia,hypoglycemia,1
+38101,brain tum,braintum,2
+38147,gastrointestinal stromal tum,gastrointestinalstromaltum,3
+38611,tetanus,tetanus,1
+39101,"breast cancer, prevention","breastcancer,prevention",3
+39373,icu agitation,icuagitation,2
+39377,women (minoxidil),women(minoxidil),2
+39558,peripheral t-cell lymphoma,peripheralt-celllymphoma,3
+39944,chronic inflammatory demyelinating polyradiculoneuropathy,chronicinflammatorydemyelinatingpolyradiculoneuropathy,4
+41058,pathological hypersecretory conditions,pathologicalhypersecretoryconditions,3
+41124,oral and dental conditions,oralanddentalconditions,4
+41153,antiphospholipid syndrome,antiphospholipidsyndrome,2
+41191,ventricular arrhythmia,ventriculararrhythmia,2
+41301,asystole,asystole,1
+41522,wegener's granulomatosis,wegener'sgranulomatosis,2
+42108,thromboembolic stroke prophylaxis,thromboembolicstrokeprophylaxis,3
+42646,platelet aggregation inhibition,plateletaggregationinhibition,3
+42794,sleep paralysis,sleepparalysis,2
+42803,rejection prophylaxis,rejectionprophylaxis,2
+43054,"delayed puberty, male","delayedpuberty,male",3
+43117,ascariasis,ascariasis,1
+43646,acute promyelocytic leukemia,acutepromyelocyticleukemia,3
+44707,bartonellosis,bartonellosis,1
+45491,cyclothymic disorde,cyclothymicdisorde,2
+45518,hypokalemic periodic paralysis,hypokalemicperiodicparalysis,3
+45639,varicose veins,varicoseveins,2
+45672,mononucleosis,mononucleosis,1
+45824,cachexia,cachexia,1
+46253,hyperkalemia,hyperkalemia,1
+46428,still's disease,still'sdisease,2
+46614,dementia,dementia,1
+46703,ocular rosacea,ocularrosacea,2
+47126,hidradenitis suppurativa,hidradenitissuppurativa,2
+47718,siadh,siadh,1
+48365,bullous pemphigoid,bullouspemphigoid,2
+49367,angioedema,angioedema,1
+49399,mountain sickness / altitude sickness,mountainsickness/altitudesickness,5
+49586,severe mood dysregulation,severemooddysregulation,3
+49750,cutaneous t-cell lymphoma,cutaneoust-celllymphoma,3
+49890,adrenocortical insufficiency,adrenocorticalinsufficiency,2
+50341,myxedema coma,myxedemacoma,2
+50811,small bowel bacterial overgrowth,smallbowelbacterialovergrowth,4
+51013,sunburn,sunburn,1
+51846,transverse myelitis,transversemyelitis,2
+52058,squamous cell carcinoma,squamouscellcarcinoma,3
+53090,parkinsonism,parkinsonism,1
+55000,thyrotoxicosis,thyrotoxicosis,1
+55366,"epididymitis, sexually transmitted","epididymitis,sexuallytransmitted",3
+55795,neck pain,neckpain,2
+55852,bleeding disorde,bleedingdisorde,2
+56678,actor ix deficiency,actorixdeficiency,3
+57158,melanoma,melanoma,1
+57185,thrombocytopenia,thrombocytopenia,1
+57936,esophageal variceal hemorrhage prophylaxis,esophagealvaricealhemorrhageprophylaxis,4
+58614,glioblastoma multi,glioblastomamulti,2
+59909,cholera,cholera,1
+60142,anorexia/feeding problems,anorexia/feedingproblems,2
+61138,peritonitis,peritonitis,1
+61595,av heart block,avheartblock,3
+61786,pe,pe,1
+62393,wilson's disease,wilson'sdisease,2
+62537,nonalcoholic fatty liver disease,nonalcoholicfattyliverdisease,4
+63982,sepsis,sepsis,1
+64093,anthrax,anthrax,1
+64679,body imaging,bodyimaging,2
+64711,aggressive behavi,aggressivebehavi,2
+64762,hepatic tum,hepatictum,2
+65233,ehrlichiosis,ehrlichiosis,1
+65376,hypopituitarism,hypopituitarism,1
+65404,gender dysphoria,genderdysphoria,2
+65426,infectious diarrhea,infectiousdiarrhea,2
+65765,ventricular fibrillation,ventricularfibrillation,2
+66077,anaphylaxis,anaphylaxis,1
+66083,pemphigus,pemphigus,1
+66142,multiple endocrine adenomas,multipleendocrineadenomas,3
+66219,pre-exposure prophylaxis,pre-exposureprophylaxis,2
+66882,postoperative increased intraocular pressure,postoperativeincreasedintraocularpressure,4
+67469,pruritus of partial biliary obstruction,pruritusofpartialbiliaryobstruction,5
+67881,pertussis,pertussis,1
+68183,periodontitis,periodontitis,1
+68259,lymphoma,lymphoma,1
+68308,hypercalcemia of malignancy,hypercalcemiaofmalignancy,3
+68626,pityriasis rubra pilaris,pityriasisrubrapilaris,3
+68900,amebiasis,amebiasis,1
+68997,t care,tcare,2
+69057,hepatic encephalopathy,hepaticencephalopathy,2
+69336,deep neck infection,deepneckinfection,3
+69346,"meningitis, meningococcal","meningitis,meningococcal",2
+69652,parkinsonian trem,parkinsoniantrem,2
+71038,rabies prophylaxis,rabiesprophylaxis,2
+73135,hypotension,hypotension,1
+73295,myelofibrosis,myelofibrosis,1
+74528,cal segmental glomerulosclerosis,calsegmentalglomerulosclerosis,3
+74658,gastric ulcer maintenance treatment,gastriculcermaintenancetreatment,4
+75639,paget's disease,paget'sdisease,2
+76010,infection prophylaxis,infectionprophylaxis,2
+76036,gastrointestinal decontamination,gastrointestinaldecontamination,2
+76933,mixed connective tissue disease,mixedconnectivetissuedisease,4
+77064,somatoform pain disorde,somatoformpaindisorde,3
+77363,esophageal spasm,esophagealspasm,2
+78442,campylobacter gastroenteritis,campylobactergastroenteritis,2
+79768,hyperphosphatemia,hyperphosphatemia,1
+80146,oligospermia,oligospermia,1
+80518,wound cleansing,woundcleansing,2
+81075,euvolemic hyponatremia,euvolemichyponatremia,2
+81100,gallbladder disease,gallbladderdisease,2
+81442,"mycobacterium avium-intracellulare, treatment","mycobacteriumavium-intracellulare,treatment",3
+81996,oppositional defiant disorde,oppositionaldefiantdisorde,3
+82153,legionella pneumonia,legionellapneumonia,2
+82252,"breast cancer, palliative","breastcancer,palliative",3
+82396,hydrocephalus,hydrocephalus,1
+82751,"hyperlipoproteinemia type iii, elevated beta-vldl   idl","hyperlipoproteinemiatypeiii,elevatedbeta-vldlidl",8
+84954,anaplastic astrocytoma,anaplasticastrocytoma,2
+84963,dupuytren's contracture,dupuytren'scontracture,2
+86138,mumps prophylaxis,mumpsprophylaxis,2
+86265,"skin disinfection, preoperative","skindisinfection,preoperative",3
+86805,hyperbilirubinemia,hyperbilirubinemia,1
+87240,meningitis,meningitis,1
+87897,corneal ulce,cornealulce,2
+88340,acial lipoatrophy,aciallipoatrophy,2
+90182,percutaneous coronary intervention,percutaneouscoronaryintervention,3
+90399,hepatitis b prevention,hepatitisbprevention,3
+91055,"tuberculosis, active","tuberculosis,active",2
+91736,cerebrovascular insufficiency,cerebrovascularinsufficiency,2
+92196,head injury,headinjury,2
+92223,anti nmda receptor encephalitis,antinmdareceptorencephalitis,4
+92572,nonoccupational exposure,nonoccupationalexposure,2
+96726,gonadotropin inhibition,gonadotropininhibition,2
+97383,unctional gastric disorde,unctionalgastricdisorde,3
+97431,chronic eosinophilic leukemia,chroniceosinophilicleukemia,3
+97871,acetaminophen overdose,acetaminophenoverdose,2
+97986,duodenal ulcer prophylaxis,duodenalulcerprophylaxis,3
+98134,"paragonimus westermani, lung fluke","paragonimuswestermani,lungfluke",4
+99050,alpha-1 proteinase inhibitor deficiency,alpha-1proteinaseinhibitordeficiency,4
+99533,cogan's syndrome,cogan'ssyndrome,2
+99584,uterine bleeding,uterinebleeding,2
+99865,stomach cance,stomachcance,2
+100718,sporotrichosis,sporotrichosis,1
+103783,cluster-tic syndrome,cluster-ticsyndrome,2
+103944,gestational diabetes,gestationaldiabetes,2
+104254,stress ulcer prophylaxis,stressulcerprophylaxis,3
+105942,reversal of nondepolarizing muscle relaxants,reversalofnondepolarizingmusclerelaxants,5
+105964,solid tumors,solidtumors,2
+106095,mist (,mist(,2
+106562,schnitzler syndrome,schnitzlersyndrome,2
+106936,hypocalcemia,hypocalcemia,1
+109605,meningococcal meningitis prophylaxis,meningococcalmeningitisprophylaxis,3
+109945,nocardiosis,nocardiosis,1
+111706,hemophilia b,hemophiliab,2
+113189,microscopic polyangiitis,microscopicpolyangiitis,2
+113418,"gonococcal infection, disseminated","gonococcalinfection,disseminated",3
+113973,neurotic depression,neuroticdepression,2
+114399,keratitis,keratitis,1
+114756,hodgkin's lymphoma,hodgkin'slymphoma,2
+115443,me,me,1
+117352,std prophylaxis,stdprophylaxis,2
+118200,small bowel or pancreatic fistula,smallbowelorpancreaticfistula,5
+119293,prevention of perinatal group b streptococcal disease,preventionofperinatalgroupbstreptococcaldisease,7
+121461,cerebral edema,cerebraledema,2
+123674,short stature for age,shortstatureforage,4
+126648,"aspergillosis, aspergilloma","aspergillosis,aspergilloma",2
+127466,pemphigoid,pemphigoid,1
+128379,hyperparathyroidism secondary to renal impairment,hyperparathyroidismsecondarytorenalimpairment,5
+128512,ramsay hunt syndrome,ramsayhuntsyndrome,3
+129434,cutaneous larva migrans,cutaneouslarvamigrans,3
+132194,occipital neuralgia,occipitalneuralgia,2
+132260,blepharitis,blepharitis,1
+132523,patent ductus arteriosus,patentductusarteriosus,3
+132868,joint infection,jointinfection,2
+133675,manscaping pain,manscapingpain,2
+134311,strabismus,strabismus,1
+134480,"organ transplant, rejection reversal","organtransplant,rejectionreversal",4
+135706,leukocytoclastic vasculitis,leukocytoclasticvasculitis,2
+135772,coronary artery disease,coronaryarterydisease,3
+136240,gastric cance,gastriccance,2
+137212,ibrocystic breast disease,ibrocysticbreastdisease,3
+137555,ungal infection prophylaxis,ungalinfectionprophylaxis,3
+138090,short stature,shortstature,2
+138619,hypercalcemia,hypercalcemia,1
+139905,coccidioidomycosis,coccidioidomycosis,1
+140547,cyclitis,cyclitis,1
+141877,"anemia, chemotherapy induced","anemia,chemotherapyinduced",3
+142046,upper limb spasticity,upperlimbspasticity,3
+144576,diagnostic bronchograms,diagnosticbronchograms,2
+145171,neoplastic diseases,neoplasticdiseases,2
+151471,mycoplasma pneumonia,mycoplasmapneumonia,2
+151529,linear iga disease,linearigadisease,3
+152228,subarachnoid hemorrhage,subarachnoidhemorrhage,2
+152726,myeloproliferative disorders,myeloproliferativedisorders,2
+155017,ungal pneumonia,ungalpneumonia,2
+156361,scleroderma,scleroderma,1
+156856,zollinger-ellison syndrome,zollinger-ellisonsyndrome,2
+157295,tinea barbae,tineabarbae,2
+157539,acute nonlymphocytic leukemia,acutenonlymphocyticleukemia,3
+159220,neutropenia,neutropenia,1
+494,rat-bite feve,rat-bitefeve,2
+1549,"uveitis, posteri","uveitis,posteri",2
+2534,premature ejaculation,prematureejaculation,2
+3028,polymyositis/dermatomyositis,polymyositis/dermatomyositis,1
+3730,corneal refractive surgery,cornealrefractivesurgery,3
+3899,gastrointestinal hemorrhage,gastrointestinalhemorrhage,2
+9418,bacteremia,bacteremia,1
+10681,jet lag,jetlag,2
+11083,llicle stimulation,lliclestimulation,2
+11443,myotonia congenita,myotoniacongenita,2
+12789,aplastic anemia,aplasticanemia,2
+14531,hemorrhoids (pramoxine / zinc oxide),hemorrhoids(pramoxine/zincoxide),5
+15570,salmonella gastroenteritis,salmonellagastroenteritis,2
+15621,somat,somat,1
+22304,nausea (phosphorated carbohydrate solution),nausea(phosphoratedcarbohydratesolution),4
+25891,occupational exposure,occupationalexposure,2
+26619,tympanostomy tube placement surgery,tympanostomytubeplacementsurgery,4
+28134,pulmonary edema,pulmonaryedema,2
+28554,mantle cell lymphoma,mantlecelllymphoma,3
+32497,"lyme disease, erythema chronicum migrans","lymedisease,erythemachronicummigrans",5
+37969,renal tubular acidosis,renaltubularacidosis,3
+44292,yellow fever prophylaxis,yellowfeverprophylaxis,3
+46733,acute otitis externa,acuteotitisexterna,3
+46886,steroid responsive inflammatory conditions,steroidresponsiveinflammatoryconditions,4
+48090,pertussis prophylaxis,pertussisprophylaxis,2
