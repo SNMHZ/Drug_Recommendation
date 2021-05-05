@@ -50,9 +50,9 @@ def predictConditionSum(data):
     return predictCondition_concat(m_list)
 
 from nltk.corpus import stopwords
-#nltk.download('stopwords')
+nltk.download('stopwords')
 from nltk.stem import WordNetLemmatizer
-#nltk.download('wordnet')
+nltk.download('wordnet')
 
 n=WordNetLemmatizer()
 stop_words = set(stopwords.words('english'))
