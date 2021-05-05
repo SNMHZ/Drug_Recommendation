@@ -1,7 +1,12 @@
 import React from 'react'
+import { useDispatch, useSelector} from 'react-redux'
+import { saveMessage } from '../_actions/message_actions'
+import { List, Icon, Avatar } from 'antd'
 const axios = require('axios').default
 
 function Chatbot() {
+    const dispatch = useDispatch()
+    const messageFromRedux = useSelector(state => state.message.messages)
 
     const textQuery = async(text) => {
         
@@ -15,6 +20,8 @@ function Chatbot() {
             }
         }
 
+        dispatch(saveMessage(conversation))
+
         conversations.push(conversation)
 
         // send to server
@@ -25,11 +32,12 @@ function Chatbot() {
 
         try {
             const response = await axios.post('http://127.0.0.1:5000/test', textQueryVariables)
-            const content = response.data.text // fix later
+            const content = response.data // fix later
             conversation = {
                 who: 'bot',
                 content: content
             }
+            dispatch(saveMessage(conversation))
             console.log(conversation)
             conversations.push(conversation)
             
@@ -40,6 +48,7 @@ function Chatbot() {
                     text: "Error Error"
                 }
             }
+            dispatch(saveMessage(conversation))
             conversations.push(conversation)
         }
     
@@ -55,6 +64,33 @@ function Chatbot() {
 
             e.target.value = ""
         }
+
+    }
+
+    const renderOneMessage = (message, i) => {
+        console.log("message",message)
+
+        return <List.Item key={i} style={{ padding: '1rem'}}>
+            <List.Item.Meta
+                avatar = {<Avatar/>}
+                title={message.who}
+                description={message.content.text}
+            
+            />
+        </List.Item>
+    }
+
+    const renderMessage = (returnMessages) => {
+
+        if(returnMessages) {
+            return returnMessages.map((message, i) => {
+                return renderOneMessage(message, i)
+            })
+        }
+        else {
+            return null
+        }
+
     }
 
     return (
@@ -64,7 +100,7 @@ function Chatbot() {
         }}>
 
             <div style = {{ height: 644, width: '100%', overflow: 'auto'}}>
-
+                { renderMessage(messageFromRedux) }
             </div>
 
             <input
