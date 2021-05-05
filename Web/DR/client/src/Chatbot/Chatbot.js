@@ -24,7 +24,7 @@ function Chatbot() {
         }
 
         try {
-            const response = await axios.post('/api/topython/textQuery', textQueryVariables)
+            const response = await axios.post('http://127.0.0.1:5000/test', textQueryVariables)
             const content = response.data.text // fix later
             conversation = {
                 who: 'bot',

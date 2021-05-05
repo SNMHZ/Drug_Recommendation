@@ -1,6 +1,8 @@
 from flask import Flask, request
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 import nltk
 #nltk.download('punkt')
@@ -82,8 +84,13 @@ def hello_world():
 
 @app.route('/test', methods=['POST'])
 def test():
-    print(request.values['state'])
-    msg = request.values['state']
+    print(request)
+    value = request.get_json()
+
+    #print("hello world")
+    print(value['text'])
+    
+    msg = value['text']
     tmp = predictConditionSum(lemlem(msg))
     m_sorted_res = sorted(list(tmp.items()), key=lambda x:x[1], reverse=True)[:1000]
     r_msg=''
@@ -95,5 +102,5 @@ def test():
 
 
 if __name__ == '__main__':
-    app.debug = False
+    app.debug = True
     app.run()
