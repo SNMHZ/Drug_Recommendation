@@ -1,13 +1,12 @@
 from flask import Flask, request
-
-app = Flask(__name__)
-
+from flask_cors import CORS
 import nltk
-#nltk.download('punkt')
 import pandas as pd
 import re
 from gensim.models import Word2Vec
 
+app = Flask(__name__)
+CORS(app)
 model2 = Word2Vec.load("model2_word2vec.model")
 
 def predictCondition(data):
@@ -82,16 +81,26 @@ def hello_world():
 
 @app.route('/test', methods=['POST'])
 def test():
-    print(request.values['state'])
-    msg = request.values['state']
-    tmp = predictConditionSum(lemlem(msg))
+    # msg = request.values['state']
+    # tmp = predictConditionSum(lemlem(msg))
+    # m_sorted_res = sorted(list(tmp.items()), key=lambda x:x[1], reverse=True)[:1000]
+    # r_msg=''
+    # for i, res in enumerate(m_sorted_res):
+    #     if isincheck(res[0]):
+    #         print(i, res)
+    #         r_msg+=res[0]+' '
+    msg = request.get_json(force=True)
+
+    tmp = predictConditionSum(lemlem(msg['text']))
     m_sorted_res = sorted(list(tmp.items()), key=lambda x:x[1], reverse=True)[:1000]
     r_msg=''
     for i, res in enumerate(m_sorted_res):
         if isincheck(res[0]):
-            print(i, res)
             r_msg+=res[0]+' '
-    return r_msg
+
+    return {
+        "text" : r_msg
+    }
 
 
 if __name__ == '__main__':
