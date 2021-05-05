@@ -16,4 +16,7 @@ app.listen(port, () => {
 
 app.post('/', (req, res) => {
   console.log(`message :${req.body.message}`)
+  return res.status(200).json({
+    success: true
+  })
 })
