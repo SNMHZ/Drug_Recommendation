@@ -14,3 +14,9 @@
  - [배홍직](https://github.com/bhj8551)
  - [이준병](https://github.com/LJBang)
  - [이현준](https://github.com/allieclan)
+
+### System Architecture
+ - [Image](./documents/image/SystemArchitecture.png)
+
+### Model Description
+ - [모델 설명](./model/model_descript.md)
