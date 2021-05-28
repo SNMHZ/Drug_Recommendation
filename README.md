@@ -19,4 +19,4 @@
  - [Image](./documents/image/SystemArchitecture.png)
 
 ### Model Description
- - [모델 설명](./model/model_descript.md)
+ - [모델 설명](./model/readme.md)
