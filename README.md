@@ -3,7 +3,7 @@
 
 ### DATASET
  - [UCI Drug Review Dataset](https://archive.ics.uci.edu/ml/datasets/Drug+Review+Dataset+%28Drugs.com%29)
-
+ - [전처리된 데이터셋 설명](./dataset/readme.md)
 
 ### DATASET EDA
  - [UCI Drug Review Dataset](./EDA/EDA_DrugReview.md)
