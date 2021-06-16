@@ -1,0 +1,36 @@
+https://docs.google.com/document/d/1K0bZBv0LmpGN51nt2pAuS_9n_ACjpfbb00HZeoYNm0s/edit?usp=sharing
+
+Flow 정리
+사람에게 자연어 상태의 인풋을 받고
+받은 인풋에서 symptom들을 추출하고
+symptom으로 condition을 추출하고
+condition에 연결되는 drug를 추출합니다
+
+1. Input을 뭘 받을지
+2. input에서 symptom을 어떻게 추출할지
+3. symptom에서 condition을 어떻게 낼지
+4. condition에서 drugName을 어떻게 mapping할지
+
+symptom 이란?
+condition 이란?
+durg란?
+
+불용어 처리 필요할 듯
+
+챗봇이면 티키타카가 필요할텐데 어떻게 해야 하나?
+비슷한 단어를 찾아서 비슷한 증상도 있는지 물어보거나 하면 될듯//??
+
+input, output정리
+input - 자연어 상태 사람과 챗봇과의 대화
+output - 추천된 약 목록
+
+
+input 예시
+평문 and 단어?( )
+i have headache.
+i have toothache..
+
+어떻게 해서 이렇게 왔는지
+교수님이 내준 과제(캐글 레코멘데이션 돌려보고 예시 인풋 만들어서 결과 보기). 우리는 왜 이거를 하고 있는가?
+이거 결과가 0 or 1로 나옴
+인풋예시 각자 3개 (긴거~ 짧은거) 전처리까지 (stopword, stemmer)

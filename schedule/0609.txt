@@ -1,0 +1,28 @@
+https://docs.google.com/document/d/1pVNV7p71IJVhUQIu2yxvexKfWf_IPIvBbHKgiy4FTEM/edit?usp=sharing
+
+지금까지 한 것
+데이터 전처리
+문장별로 벡터 만들었지
+---
+월요일날 할 것
+컨디션별 (원핫) 인코딩 - 일단 테스트에만 있는 컨디션은 제외
+문장벡터를 클래스로 컨디션 학습
+
+사용 해볼 법한 모델
+(각자 하나씩?)
+(OOV 제외하고 F1-Score 산출 -> Test set에서 직접 oov 컨디션 드롭 후 계산)
+
+RANDOM-FOREST
+MLP
+RNN
+LSTM
+TEXT-CNN
+
+이런거 만들기
+
++이후 모델에서는 OOV문제 해결 필요. 어떻게 처리할건지 고민해서 작성 필요할 듯
+
+
+OOV란
+https://m.blog.naver.com/qbxlvnf11/221928905256
+
