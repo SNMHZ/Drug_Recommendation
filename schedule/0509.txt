@@ -1,0 +1,104 @@
+https://docs.google.com/document/d/1Rz8qx6sVdCsR04Vo5NjUCCcCe2pr94N9GypnO86wgLg/edit?usp=sharing
+
+word2vec설명?
+
+모델설명? 모델 적용방법?
+
+
+
+시연 하고 모델 설명
+
+<전처리>
+condition(소문자로, 특수문자 제거, 띄어쓰기 붙이기), review(소문자로, 특수문자, 숫자 제거, 중간에 condition이 있으면 띄어쓰기 붙이기, 마지막에 condition 추가) 
+
+다음과 같은 map을 만들어 변환시켜 주었습니다.
+'left ventricular dysfunction': 'leftventriculardysfunction'
+'birth control': 'birthcontrol'
+'opiate dependence': 'opiatedependence'
+'benign prostatic hyperplasia': 'benignprostatichyperplasia'
+'emergency contraception': 'emergencycontraception'
+'bipolar disorde': 'bipolardisorde'
+ 'epilepsy': 'epilepsy'
+'migraine prevention': 'migraineprevention'
+'depression': 'depression'
+'crohn s disease': 'crohn sdisease'
+'urinary tract infection': 'urinarytractinfection'
+'chronic myelogenous leukemia': 'chronicmyelogenousleukemia'
+'hiv infection': 'hivinfection'
+
+<모델 설명>
+word2vec의 방법
+‘The brown fox runs away from black fox’문장을 예로 들자
+1) 각 단어들을 원-핫-인코딩으로 임베딩 : The = [1,0,0,0,0,0,0,0], fox=[0,0,1,0,0,0,0,1] …
+2) 같은 문맥에서 나타나는 단어들은 유사한 문장이라고 판단하여 각 단어벡터를 중앙값으로 두고, 주변 단어들을 유추하는 방법을 사용
+: brown을 중앙에 두고, the와 fox를 유추
+3) brown벡터에 가중치 행렬(W)를 곱하여 결과를 도출 
+-> the벡터와 fox벡터와 비교한 후 유사한 결과가 나오도록 가중치 행렬 조정 
+-> 유사한 결과가 나오도록 지속적으로 학습
+-> 다음 윈도우로 옮겨서 새로 학습.
+4) 학습이 끝나면 각 단어별로 벡터가 생성되고, 두 단어 간 코사인 유사도를 계산해서 두 단어가 유사한지 판단
+	: brown의 벡터와 black의 벡터간 유사도가 비슷하게 나온다면 두 단어는 비슷한 단어
+
+
+
+
+왜 word2vec을 썼나?
+긍정적인 리뷰던 부정적인 리뷰던 리뷰에 나타나는 단어들과 컨디션간에 유사도가 있을것이라고 판단하여 word2vec방법을 사용했음.
+
+condition 하나를 왜 review string 마지막에 붙였나?
+부제 : 붙인것과 안 붙인것의 차이
+data[‘condition’]을 넣어야지 review string과 유사한 condition을 찾을 수 있는데, condition을 넣었을 때와 넣지 않을때 유의미한 차이가 나지 않았음.
+이 는 review string에 condition이 들어가 있는 경우가 의외로 많이 있었음. 따라서 condition을 마지막에 하나 붙이지 않아도 input data를 통해 condition을 찾을 수 있었음
+
+<모델 적용>
+문장을 위 리뷰와 똑같이 전처리해서 단어별로 토큰화한 뒤 모델에 입력 
+-> 각 토큰화된 단어별로 유사도가 높은  condition 추출
+ -> 추출된 condition들의 단어 유사도의 합이 가장 큰 순서대로 정렬
+ -> 유사도가 가장 높은 condition들에 대해서 rating의 평균값이 높은 약을 추천
+
+Benign Prostatic Hyperplasia 질병의 리뷰중 하나를 선택해 테스트한 결과
+*input [54] : take flomax month benign prostatic hyperplasia get urinate time night suffer severe pain urination since start flomax found dizzy get quickly blur vision decrease sex drive abnormal ejaculate low back pain feel weaker tire time side go night need get urinate pain urinate percent less
+
+[CBOW사용하고 condition 붙였을 때의 실행결과]
+
+
+[CBOW사용하고 condition 붙이지 않았을 때의 실행결과]
+
+
+
+[skip-gram사용하고 condition안 붙였을 때 실행결과]
+
+
+
+[skip-gram사용하고 condition 붙였을 때 실행결과]
+
+
+
+
+
+
+
+
+<웹으로 서비스 구현>
+유저 - 노드 - 플라스크 - 학습모델의 구조로 만듦
+
+시연을 했을 때 메세지를 입력하고 그걸 저장해서 파이썬으로 넘어감
+
+
+
+
+                  localhost:3000                                                 localhost:5000
+ ↔ 
+	
+
+HTTP POST 메소드로 통신
+
+<고찰 사항>
+성능이 좋아진건지 안좋아진건지 모르겠음. 일단 평가는 test set의 review를 넣어 review에 해당하는 condition이 나오는지 확인하는 방법으로 진행
+교수님께.. 좋은 평가함수 아이디어 부탁드립니다..
+
+
+<개선방향>
+word2vec 방법을 통해 개발후 test set의 리뷰를 입력해 판단한 결과 정확도가 부족하다고 판단(알맞게 나오는 것도 있었으나 알맞지 않은 것도 많이 나옴). doc2vec을 사용해볼 예정
+doc2vec - 문서와 문서의 레이블을 통하여 학습. 학습 방법은 word2vec과 같으나 매 학습 윈도우마다 문서의 레이블(이 프로젝트에서는 condition) 단어를 추가해서 학습하는 방법으로, condition이 항상 학습이 되어 문장을 통해 condition을 유추하기 좋을 것 같음.
+
