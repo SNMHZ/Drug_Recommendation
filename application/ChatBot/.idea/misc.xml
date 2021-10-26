@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/KJG/Desktop/ChatBot/app/src/main/res/drawable/incoming_chat_bubble_bg.xml" value="0.30462962962962964" />
         <entry key="..\:/Users/KJG/Desktop/ChatBot/app/src/main/res/drawable/outgoing_chat_bubble_bg.xml" value="0.30462962962962964" />
+        <entry key="..\:/Users/KJG/Desktop/ChatBot/app/src/main/res/drawable/shadow.xml" value="0.30462962962962964" />
         <entry key="..\:/Users/KJG/Desktop/ChatBot/app/src/main/res/layout/chat_layout.xml" value="0.2689969604863222" />
         <entry key="..\:/Users/KJG/Desktop/ChatBot/app/src/main/res/layout/main_layout.xml" value="0.4973637961335677" />
         <entry key="..\:/Users/KJG/Desktop/ChatBot/app/src/main/res/layout/message_recycler_item.xml" value="0.2689969604863222" />

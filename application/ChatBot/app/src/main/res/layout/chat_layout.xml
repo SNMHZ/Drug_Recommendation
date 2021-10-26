@@ -25,14 +25,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.1"
-        android:background="@color/purple_200"
+        android:background="@drawable/shadow"
         android:orientation="horizontal">
         <EditText
             android:id="@+id/message_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="9.5"
-            android:background="@color/purple_500"/>
+            android:background="@android:color/transparent"
+            android:layout_weight="9.5"/>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/send_btn"
             android:layout_width="wrap_content"
