@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,7 +24,7 @@ import kotlin.reflect.typeOf
 
 class ChatFragment : Fragment() {
     lateinit var messageEditText : EditText
-    lateinit var sendBtn : AppCompatButton
+    lateinit var sendBtn : ImageView
 
     lateinit var messageRecyclerViewAdapter : MessageAdapter
     lateinit var messageDataList : MutableList<MessageData>
@@ -112,11 +113,19 @@ class ChatFragment : Fragment() {
                 println("get 실패")
             }
 
+
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 var jsonObj = response.body()!!
-                messageDataList.add(MessageData(1, jsonObj["param"].toString(), 1, true))
+                val type = jsonObj["type"].toString()
+                println("type 출력 = $type")
+                if(type == "\"result_msg\""){
+                    messageDataList.add(MessageData(1, jsonObj["body"].toString().replace("\"", ""), StaticVariables.RECEIVE_NORMAL_MSG, true))
+                }
+                else if(type == "\"selection_msg\""){
+                    messageDataList.add(MessageData(1, jsonObj["body"].toString().replace("\"", ""), StaticVariables.RECEIVE_SELECTION_MSG, true))
+                }
                 messageRecyclerViewAdapter.notifyDataSetChanged()
-                println("대화내용은 ${response.body()!!["param"]}")
+                println("대화내용은 ${response.body()!!["body"]}")
             }
 
         })
