@@ -10,8 +10,6 @@
 ### response message (from server)
 | key         |  type             | description |
 | -------     | -------------     | -           |
-| seq         | `int`               | 대화 순서(request와 동일) |
-| isClear     | `bool`              | `True` 일시 end message |
 | type        | `int`               |-1: 에러, 0 : 예측 메시지, 1 : 증상 리스트 전송 |
 | predicts    | `vector<string>`    | top 3 |
 | probs       | `vector<float>`     | top 3 |
