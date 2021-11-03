@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import datetime
 import model
+from mapping_drug import getDrugByCondition
 
 app = Flask(__name__)
 app.msg_json_data = {}
@@ -25,10 +26,12 @@ def messageAccept():
     type = result['res_type']
     symptoms = result['symptoms']
     predicts = result['predict']
+    drugs = getDrugByCondition(predicts[0]['condition'])
 
     result_obj = jsonify({"type": type, "date" : current_date,
                           "predicts": predicts,
-                          "symptoms": symptoms,})
+                          "symptoms": symptoms,
+                          "drugs": drugs})
 
     print(result_obj.get_json())
     return result_obj
