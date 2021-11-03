@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import datetime
+import model
 
 app = Flask(__name__)
 app.msg_json_data = {}
@@ -10,24 +11,24 @@ CORS(app)
 @app.route('/AndroidChatMessage', methods=['POST'])
 def messageAccept():
     print("success accept message")
-    app.msg_json_data[0] = request.get_json()
-    msg = request.get_json()
-
-    text_body = msg['body']
+    # app.msg_json_data[0] = request.get_json()
+    # msg = request.get_json()
+    # text_body = msg['body']
     '''
     텍스트 전처리나 preprocessing
     '''
-    result = modelPrediction(text_body) # model 예측
-    current_date = str(datetime.datetime.now())
-    isClear = True
-    symptoms = None
-    drugs = None
-    predicts = None
-    probs = None
+    input_text = 'I have a fever and cough'
 
-    result_obj = jsonify({"type": "1", "body": result, "date" : current_date,
-                          "isClear": isClear, "predicts": predicts, "probs:": probs,
-                          "symptoms": symptoms, "drugs": drugs})
+    result = model.pred_drug(input_text)
+    
+    current_date = str(datetime.datetime.now())
+    type = result['res_type']
+    symptoms = result['symptoms']
+    predicts = result['predict']
+
+    result_obj = jsonify({"type": type, "date" : current_date,
+                          "predicts": predicts,
+                          "symptoms": symptoms,})
 
     print(result_obj.get_json())
     return result_obj
