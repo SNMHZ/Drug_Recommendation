@@ -28,7 +28,8 @@ def messageAccept():
     predicts = result['predict']
     drugs = getDrugByCondition(predicts[0]['condition'])
 
-    result_obj = jsonify({"type": type, "date" : current_date,
+    result_obj = jsonify({"type": type, 
+                          "date" : current_date,
                           "predicts": predicts,
                           "symptoms": symptoms,
                           "drugs": drugs})

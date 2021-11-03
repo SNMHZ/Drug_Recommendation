@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 import pickle
 import os
+from mapping_drug import getDrugByCondition
 
 THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
 my_model = os.path.join(THIS_FOLDER, 'mymodel/content/test-ynat/checkpoint-2500')
@@ -14,6 +15,8 @@ tokenizer = AutoTokenizer.from_pretrained('google/bert_uncased_L-12_H-512_A-8', 
 m_dict_csv = os.path.join(THIS_FOLDER, 'dataset/top20condition.csv')
 m_dict = pd.read_csv(m_dict_csv, index_col=0)
 
+def softmax(x):
+    return np.exp(x) / np.sum(np.exp(x), axis=0)
 
 def preprocess_function(examples):
     return tokenizer(
@@ -36,27 +39,45 @@ def pred_drug(input_text):
     res = to_json(output)
     
     return res
-   
 
 def to_json(output):
-    top3_ind = np.argpartition(output[0][0], -3)[-3:]
-    df_output = pd.DataFrame(output[0][0], columns=['prob'])
+    cond_prob = softmax(output[0][0])
+    top3_ind = np.argpartition(cond_prob, -3)[-3:]
+    df_output = pd.DataFrame(cond_prob, columns=['prob'])
     output = pd.concat([m_dict, df_output], axis=1)
 
     top3 = output.loc[top3_ind].sort_values(by=['prob'], ascending=False)
     top3 = top3.reset_index(drop=True)
     top3 = top3.to_dict('index')
 
-    res_type = 0
-    
-    drug_list = ['drug_list']
+    drugs = []
+    for cond in top3:
+        drugs.append(getDrugByCondition(cond))
+    '''
+    top3['drug list'] = drugs
 
+     type 지정 조건(시나리오)
+    
+    #if :
+    #    res_type = -1
+    print(type(top3[0]['prob']))
+    res_type = 0
+
+    if top3[0]['prob'] <= 0.8:
+        res_type = 1
+
+    else:
+        res_type = 0
+    '''
+    res_type = 0
     if res_type == 0:
         symptom_list = None
     
     elif res_type == 1:
         symptom_list = ['symptoms']
+
     elif res_type == -1:
+        top3 = None
         symptom_list = None
 
     result = {
@@ -67,4 +88,5 @@ def to_json(output):
     return result
 
 if __name__=='__main__':
-    pred_drug("I have a fever")
+    # 테스트용 입력
+    print(pred_drug("I have a fever"))
