@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/message_selection_left_layout"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/symptom_list_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:layout_margin="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:orientation="vertical"
+        android:background="@drawable/receiver_bubble_chat">
+
+        <TextView
+            android:id="@+id/selection_message_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="test message"/>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

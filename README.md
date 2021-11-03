@@ -6,7 +6,7 @@
  - [전처리된 데이터셋 설명](./dataset/readme.md)
 
 ### DATASET EDA
- - [UCI Drug Review Dataset](./EDA/EDA_DrugReview.md)
+ - [UCI Drug Review Dataset](./documents/EDA/EDA_Report.docx.pdf)
 
 ### Members
  - [이상목](https://github.com/SNMHZ)

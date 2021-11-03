@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">DrugRecommendationChatBot</string>
+    <string name="drugRecommendationServerURL">http://10.0.2.2:9889</string>
+</resources>
