@@ -14,7 +14,7 @@ interface RetrofitAPI {
         "content-type: application/json")
     fun postChatMsg(
         @Body jsonparams: PostChatMsgModel
-    ):Call<PostResult>
+    ):Call<JsonObject>
 
     //server로부터 응답(결과 get)
     @GET("/GetTest1")
