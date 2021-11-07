@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.Typeface
+import android.hardware.camera2.CameraDevice
 import android.text.Layout
 import android.text.Spannable
 import android.text.SpannableString
@@ -72,7 +73,12 @@ class MessageAdapter(private val context : Context) : RecyclerView.Adapter<Recyc
             return LeftLoadingViewHolder(LayoutInflater.from(context).inflate(R.layout.message_loading_item_left
                 ,parent, false))
 
-        } else{
+
+        }else if(viewType == StaticVariables.SYSTEM_MSG){
+            return SystemMessageViewHolder(LayoutInflater.from(context).inflate(R.layout.message_system_log_item
+                ,parent, false))
+        }
+        else{
 
             return LeftSelectionViewHolder(LayoutInflater.from(context).
             inflate(R.layout.selection_symptom_veiw_layout
@@ -100,6 +106,10 @@ class MessageAdapter(private val context : Context) : RecyclerView.Adapter<Recyc
                 (holder as LeftSelectionViewHolder).bind(messageDataList[position])
             }
             //loading은 딱히 bind 필요 없을거 같음
+
+            StaticVariables.SYSTEM_MSG->{
+                (holder as SystemMessageViewHolder).bind(messageDataList[position])
+            }
         }
     }
 
@@ -107,55 +117,73 @@ class MessageAdapter(private val context : Context) : RecyclerView.Adapter<Recyc
         return messageDataList[position].type
     }
 
+    inner class SystemMessageViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
+        private val messageBody = itemView.findViewById<TextView>(R.id.system_message_body)
+        fun bind(data : MessageData){
+            messageBody.text = data.body
+        }
+
+    }
+
 
     inner class LeftViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         private val messageBody  :TextView = itemView.findViewById(R.id.message_body)
         private val pieChart = itemView.findViewById<PieChart>(R.id.circular_chart)
 
-        val values = ArrayList<Entry>()
         fun bind(data : MessageData){
-            messageBody.text = ""
-            pieChart.description.isEnabled = false
-            pieChart.setExtraOffsets(5f, 10f, 5f, 5f)
-
-            pieChart.isDrawHoleEnabled = false
-
-            pieChart.dragDecelerationFrictionCoef = 0.95f
-            pieChart.setEntryLabelColor(Color.BLACK)
-
-            val yValues = ArrayList<PieEntry>()
-
-            var others = 0f
-            var sum = 0f
-
             if(data.predicts.size > 0){
+                pieChart.description.isEnabled = false
+                pieChart.setExtraOffsets(5f, 10f, 5f, 5f)
+
+                pieChart.isDrawHoleEnabled = false
+
+                pieChart.dragDecelerationFrictionCoef = 0.95f
+                pieChart.setEntryLabelColor(Color.BLACK)
+
+                val yValues = ArrayList<PieEntry>()
+
+                var others = 0f
+                var sum = 0f
+                var txt = "Are you " + data.predicts[0].first + "?\n\n"
                 messageBody.text = "Are you " + data.predicts[0].first + "?"
+                txt += "If you have " + data.predicts[0].first + " then how about have a " +
+                        data.drugs[0] +"?"
+
+                messageBody.text = txt
+
+                for(item in data.predicts){
+                    yValues.add(PieEntry(item.second.toFloat(), item.first))
+                    sum += item.second.toFloat()
+                }
+                others = 1f - sum
+                yValues.add(PieEntry(others, "others"))
+
+                val description = Description()
+                description.setText("예상되는 증상") //라벨
+
+                description.setTextSize(15F)
+                pieChart.description = description
+
+                pieChart.animateY(1000, Easing.EaseInOutCubic) //애니메이션
+
+                val dataSet = PieDataSet(yValues, "Conditions")
+                dataSet.sliceSpace = 3f
+                dataSet.selectionShift = 5f
+                dataSet.setColors(*ColorTemplate.COLORFUL_COLORS)
+
+                val data = PieData(dataSet)
+                data.setValueTextSize(10f)
+                data.setValueTextColor(Color.YELLOW)
+
+                pieChart.setData(data)
+                if(StaticVariables.PIE_CHART_FLAG == true)pieChart.visibility = View.VISIBLE
+                else pieChart.visibility = View.GONE
+
+            }else{
+                messageBody.text = data.body
+                pieChart.visibility = View.GONE
             }
-            for(item in data.predicts){
-                yValues.add(PieEntry(item.second.toFloat(), item.first))
-                sum += item.second.toFloat()
-            }
-            others = 1f - sum
-            yValues.add(PieEntry(others, "others"))
 
-            val description = Description()
-            description.setText("예상되는 증상") //라벨
-
-            description.setTextSize(15F)
-            pieChart.description = description
-
-            pieChart.animateY(1000, Easing.EaseInOutCubic) //애니메이션
-
-            val dataSet = PieDataSet(yValues, "Conditions")
-            dataSet.sliceSpace = 3f
-            dataSet.selectionShift = 5f
-            dataSet.setColors(*ColorTemplate.COLORFUL_COLORS)
-
-            val data = PieData(dataSet)
-            data.setValueTextSize(10f)
-            data.setValueTextColor(Color.YELLOW)
-
-            pieChart.setData(data)
         }
     }
 
