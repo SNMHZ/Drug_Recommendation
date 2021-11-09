@@ -53,23 +53,21 @@ def to_json(output):
     drugs = []
     for cond in top3:
         drugs.append(getDrugByCondition(cond))
-    '''
+    
     top3['drug list'] = drugs
 
-     type 지정 조건(시나리오)
+    # type 지정 조건(시나리오)
     
-    #if :
+    # if :
     #    res_type = -1
-    print(type(top3[0]['prob']))
-    res_type = 0
+    # print(type(top3[0]['prob']))
 
     if top3[0]['prob'] <= 0.8:
         res_type = 1
 
     else:
         res_type = 0
-    '''
-    res_type = 0
+    
     if res_type == 0:
         symptom_list = None
     

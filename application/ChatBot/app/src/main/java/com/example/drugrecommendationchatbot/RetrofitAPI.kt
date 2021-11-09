@@ -31,7 +31,7 @@ interface RetrofitAPI {
 
             return Retrofit
                 .Builder()
-                .baseUrl("http://10.0.2.2:5000")
+                .baseUrl(StaticVariables.SERVER_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson)).build()
                 .create(RetrofitAPI::class.java)
         }
