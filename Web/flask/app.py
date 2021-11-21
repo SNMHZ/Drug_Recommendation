@@ -12,21 +12,27 @@ CORS(app)
 @app.route('/AndroidChatMessage', methods=['POST'])
 def messageAccept():
     print("success accept message")
-    # app.msg_json_data[0] = request.get_json()
-    # msg = request.get_json()
-    # text_body = msg['body']
+    app.msg_json_data[0] = request.get_json()
+    msg = request.get_json()
+    text_body = msg['body']
+    print("input_text:", text_body)
     '''
     텍스트 전처리나 preprocessing
     '''
-    input_text = """Weight loss Cramping Diarrhea Itchy skin Joint and muscle pain Nausea and vomiting Headaches"""
-
-    result = model.pred_drug(input_text)
+    #input_text = """Weight loss Cramping Diarrhea Itchy skin Joint and muscle pain Nausea and vomiting Headaches"""
+    try:
+        result = model.pred_drug(text_body)
+    except:
+        result = {'res_type':'-1', 'symptoms':1, 'predicts':1}
     
     current_date = str(datetime.datetime.now())
     type = result['res_type']
     symptoms = result['symptoms']
     predicts = result['predict']
-    drugs = getDrugByCondition(predicts[0]['condition'])
+    try:
+        drugs = getDrugByCondition(predicts[0]['condition'])
+    except:
+        drugs = ["알 수 없는 질병입니다."]
 
     result_obj = jsonify({"type": type, 
                           "date" : current_date,
@@ -82,7 +88,8 @@ def post_echo_call():
     return jsonify(param)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0')
+    # app.run()
 
 
 '''
