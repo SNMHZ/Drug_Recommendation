@@ -18,7 +18,7 @@ def messageAccept():
     '''
     텍스트 전처리나 preprocessing
     '''
-    input_text = 'I have a fever and cough'
+    input_text = """Weight loss Cramping Diarrhea Itchy skin Joint and muscle pain Nausea and vomiting Headaches"""
 
     result = model.pred_drug(input_text)
     

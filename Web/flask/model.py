@@ -8,7 +8,7 @@ import os
 from mapping_drug import getDrugByCondition
 
 THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
-my_model = os.path.join(THIS_FOLDER, 'mymodel/content/test-ynat/checkpoint-2500')
+my_model = os.path.join(THIS_FOLDER, 'mymodel/content/test-ynat/checkpoint-2000')
 model = AutoModelForSequenceClassification.from_pretrained(my_model)
 tokenizer = AutoTokenizer.from_pretrained('google/bert_uncased_L-12_H-512_A-8', use_fast=True)
 
@@ -49,18 +49,11 @@ def to_json(output):
     top3 = output.loc[top3_ind].sort_values(by=['prob'], ascending=False)
     top3 = top3.reset_index(drop=True)
     top3 = top3.to_dict('index')
-
-    drugs = []
-    for cond in top3:
-        drugs.append(getDrugByCondition(cond))
-    '''
-    top3['drug list'] = drugs
-
-     type 지정 조건(시나리오)
     
-    #if :
+    # type 지정 조건(시나리오)
+    
+    # if :
     #    res_type = -1
-    print(type(top3[0]['prob']))
     res_type = 0
 
     if top3[0]['prob'] <= 0.8:
@@ -68,8 +61,7 @@ def to_json(output):
 
     else:
         res_type = 0
-    '''
-    res_type = 0
+    
     if res_type == 0:
         symptom_list = None
     
@@ -89,4 +81,4 @@ def to_json(output):
 
 if __name__=='__main__':
     # 테스트용 입력
-    print(pred_drug("I have a fever"))
+    print(pred_drug("""Weight loss Cramping Diarrhea Itchy skin Joint and muscle pain Nausea and vomiting Headaches"""))
