@@ -28,7 +28,7 @@ def messageAccept():
     current_date = str(datetime.datetime.now())
     type = result['res_type']
     predicts = result['predict']
-    symptoms = getSymptomsByCondition(predicts[0]['condition'], text_body)
+    symptoms, sym_word = getSymptomsByCondition(predicts[0]['condition'], text_body)
     try:
         drugs = getDrugByCondition(predicts[0]['condition'])
     except:
@@ -38,6 +38,7 @@ def messageAccept():
                           "date" : current_date,
                           "predicts": predicts,
                           "symptoms": symptoms,
+                          "sym_word": sym_word,
                           "drugs": drugs})
 
     print(result_obj.get_json())
