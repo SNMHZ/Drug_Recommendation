@@ -11,4 +11,6 @@ data class MessageData (
     var date : Int,
     var body : String,
     var type : Int,
-    var correctSendFlag : Boolean)
+    var correctSendFlag : Boolean,
+    val predicts : ArrayList<Pair<String, Float>> = ArrayList(),
+    val drugs : ArrayList<String> = ArrayList())

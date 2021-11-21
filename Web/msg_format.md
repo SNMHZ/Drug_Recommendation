@@ -13,5 +13,5 @@
 | type        | `int`               |-1: 에러, 0 : 예측 메시지, 1 : 증상 리스트 전송 |
 | predicts    | `vector<string>`    | top 3 |
 | probs       | `vector<float>`     | top 3 |
-| symptoms    | `vector<string>`    | isClear == `True` 일 시 `None` |
-| drugs       | `vector<string>`    | isClear == `False` 일 시 `None` |
+| symptoms    | `vector<string>`    | type == `0` 일 시 `None` |
+| drugs       | `vector<string>`    | type == `1` 일 시 `None` |

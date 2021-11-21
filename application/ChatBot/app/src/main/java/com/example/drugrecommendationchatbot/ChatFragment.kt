@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.AdapterView
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatButton
@@ -20,6 +21,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import kotlin.reflect.typeOf
+import com.github.ybq.android.spinkit.*
+import kotlinx.coroutines.*
+import com.github.mikephil.charting.*
 
 
 class ChatFragment : Fragment() {
@@ -29,8 +33,9 @@ class ChatFragment : Fragment() {
     lateinit var messageRecyclerViewAdapter : MessageAdapter
     lateinit var messageDataList : MutableList<MessageData>
 
-    var retrofitAPI = RetrofitAPI.setRetrofit()
+    lateinit var sendSymptomCallBackListener : CallbackListener
 
+    var retrofitAPI = RetrofitAPI.setRetrofit()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,8 +46,11 @@ class ChatFragment : Fragment() {
          * onViewCreated()에서 진행해야 함.
          */
 
-        sendInfo()
+        //sendInfo()
         initializeViewComponent()
+
+        messageDataList.add(MessageData(3, "Hi, i'm drug recommendation bot.\n\nPlease tell" +
+                " me what's your state.", StaticVariables.RECEIVE_NORMAL_MSG, true))
 
         println(messageRecyclerViewAdapter.itemCount)
     }
@@ -60,11 +68,21 @@ class ChatFragment : Fragment() {
         messageRecyclerViewAdapter = MessageAdapter(requireContext())
         messageDataList = mutableListOf<MessageData>()
 
-        messageDataList.apply {
-            add(MessageData(3, "수신용 더미 대화1", 1, true))
-            add(MessageData(3, "발신용 더미 대화2", 0, true))
-        }
         messageRecyclerViewAdapter.messageDataList = messageDataList
+
+        sendSymptomCallBackListener = object : CallbackListener{
+            override fun sendMsgCallBack(msg: String) {
+                messageDataList.add(MessageData(1, msg, 0, true))
+                messageRecyclerViewAdapter.notifyItemInserted(messageRecyclerViewAdapter.itemCount - 1)
+                message_recycler_container.scrollToPosition(messageRecyclerViewAdapter.itemCount - 1)
+                CoroutineScope(Dispatchers.Main).launch{
+                    loadingResponseMessage()
+                    delay(3000)
+                    makeChatResponse()
+                }
+            }
+        }
+        messageRecyclerViewAdapter.selectSymptomBtnListener = sendSymptomCallBackListener
         messageRecyclerViewAdapter.notifyDataSetChanged()
 
     }
@@ -76,27 +94,75 @@ class ChatFragment : Fragment() {
 
         sendBtn.setOnClickListener {
             val text = messageEditText.text.toString()
-            if(text.isNotBlank()){
-                messageDataList.add(MessageData(7, text, 0, true))
+            if(text.isNotBlank() && text.contains("git -change -ip")){
+                var changedServerURL = text.replace("git -change -ip ", "")
+                StaticVariables.SERVER_URL = changedServerURL
+                println("server ip is changed to [${StaticVariables.SERVER_URL}]")
+                retrofitAPI = RetrofitAPI.setRetrofit()
+                messageDataList.add(MessageData(-1, "server url changed to [${StaticVariables.SERVER_URL}]", StaticVariables.SYSTEM_MSG, false))
+                messageRecyclerViewAdapter.notifyItemInserted(messageRecyclerViewAdapter.itemCount - 1)
+                message_recycler_container.scrollToPosition(messageRecyclerViewAdapter.itemCount - 1)
                 messageEditText.text = null
                 messageEditText.clearFocus()
                 hideSoftKeyPad(messageEditText)
+            }
+            else if(text.isNotBlank() && text.contains("git -show -piechart")){
+                var showFlag = text.replace("git -show -piechart ", "")
+
+                if(showFlag.contains("true")){
+                    StaticVariables.PIE_CHART_FLAG = true
+                    messageDataList.add(MessageData(-1, "pie chart will be visible.", StaticVariables.SYSTEM_MSG, false))
+                }
+                else{
+                    StaticVariables.PIE_CHART_FLAG = false
+                    messageDataList.add(MessageData(-1, "pie chart will not be visible.", StaticVariables.SYSTEM_MSG, false))
+                }
+                messageRecyclerViewAdapter.notifyItemInserted(messageRecyclerViewAdapter.itemCount - 1)
                 message_recycler_container.scrollToPosition(messageRecyclerViewAdapter.itemCount - 1)
+                messageEditText.text = null
+                messageEditText.clearFocus()
+                hideSoftKeyPad(messageEditText)
+            }
+            else if(text.isNotBlank()){
+                messageDataList.add(MessageData(7, text, StaticVariables.SEND_MSG, true))
+                messageEditText.text = null
+                messageEditText.clearFocus()
+                hideSoftKeyPad(messageEditText)
+                messageRecyclerViewAdapter.notifyItemInserted(messageRecyclerViewAdapter.itemCount - 1)
+                message_recycler_container.scrollToPosition(messageRecyclerViewAdapter.itemCount - 1)
+
+                waitingPostMsg()
+                //post
 
                 //retrofit2 api를 이용해서, json 전송 시작
                 var jsonData = PostChatMsgModel("1999-09-09", "0", text)
-                retrofitAPI.postChatMsg(jsonData).enqueue(object : Callback<PostResult>{
-                    override fun onFailure(call: Call<PostResult>, t: Throwable) {
+                showJsonLogcat(jsonData)
+
+                retrofitAPI.postChatMsg(jsonData).enqueue(object : Callback<JsonObject>{
+                    override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                         t.printStackTrace()
                         println("fail to response when post the data.")
+                        messageDataList[messageDataList.size - 1] = MessageData(-1, t.message!!, StaticVariables.SYSTEM_MSG, false)
+                        messageRecyclerViewAdapter.notifyItemChanged(messageDataList.size - 1)
+                        message_recycler_container.smoothScrollToPosition(messageDataList.size)
                     }
 
                     override fun onResponse(
-                        call: Call<PostResult>,
-                        response: Response<PostResult>
+                        call: Call<JsonObject>,
+                        response: Response<JsonObject>
                     ) {
+                        print("======call json data logcat=====")
+                        println(jsonData)
 
-                        makeChatResponse()
+                        CoroutineScope(Dispatchers.Main).launch{
+                            //loadingResponseMessage()
+                            delay(3000)
+                            //makeChatResponse()
+                            messageDataList[messageDataList.size - 1] = addReceivedPostMsg(response.body()!!)
+                            messageRecyclerViewAdapter.notifyItemChanged(messageDataList.size - 1)
+                            message_recycler_container.smoothScrollToPosition(messageDataList.size)
+                        }
+                        println(response.body())
                         println("success to post!")
                     }
 
@@ -105,7 +171,64 @@ class ChatFragment : Fragment() {
         }
     }
 
+    private fun showJsonLogcat(jsonData : PostChatMsgModel){
+        print("{\ndate: " + jsonData.date + ",\ntext: "+jsonData.body+",\ntype: " + jsonData.type+"\n}")
+
+    }
+
+
+    private fun addReceivedPostMsg(data : JsonObject) : MessageData{
+        val body = data["body"].toString()
+
+        val result = MessageData(1, body, StaticVariables.RECEIVE_NORMAL_MSG, true)
+        if(!data["predicts"].isJsonNull){
+            val predicts = data["predicts"] as JsonObject
+            println("predicts 확인")
+            println(predicts)
+            for(i in 0 until 3){
+                var eachSymptomJsonObject = predicts[i.toString()] as JsonObject
+                println("predicts의 각 item 확인")
+                println(eachSymptomJsonObject)
+                var condition = eachSymptomJsonObject["condition"].asString
+                var prob = eachSymptomJsonObject["prob"].asFloat
+                result.predicts.add(Pair(condition, prob))
+            }
+            println("type 확인")
+            println(predicts)
+        }
+
+        if(!data["drugs"].isJsonNull){
+            val drugList = data["drugs"].toString().split(",").map { it.replace("[", "") }
+            for(drug in drugList){
+                result.drugs.add(drug)
+            }
+        }
+
+        println("drug 데이터 결과 확인")
+        for(item in result.drugs){
+            println(item)
+        }
+
+        return result
+    }
+
+    private fun waitingPostMsg(){
+        messageDataList.add(MessageData(0, "loading", StaticVariables.RECEIVE_MSG_LOADING, true))
+        messageRecyclerViewAdapter.notifyItemInserted(messageRecyclerViewAdapter.itemCount)
+        message_recycler_container.scrollToPosition(messageRecyclerViewAdapter.itemCount - 1)
+
+    }
+
+    private suspend fun loadingResponseMessage(){
+        messageDataList.add(MessageData(0, "t", StaticVariables.RECEIVE_MSG_LOADING, true))
+        //messageRecyclerViewAdapter.notifyItemRangeChanged(0, messageRecyclerViewAdapter.itemCount)
+        messageRecyclerViewAdapter.notifyItemInserted(messageRecyclerViewAdapter.itemCount)
+        message_recycler_container.scrollToPosition(messageRecyclerViewAdapter.itemCount - 1)
+
+    }
+
     private fun makeChatResponse(){
+
         retrofitAPI.getTest1().enqueue(object : Callback<JsonObject>{
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                 println("error 메시지 : ")
@@ -119,12 +242,16 @@ class ChatFragment : Fragment() {
                 val type = jsonObj["type"].toString()
                 println("type 출력 = $type")
                 if(type == "\"result_msg\""){
-                    messageDataList.add(MessageData(1, jsonObj["body"].toString().replace("\"", ""), StaticVariables.RECEIVE_NORMAL_MSG, true))
+                    val newData = MessageData(1, jsonObj["body"].toString().replace("\"", ""), StaticVariables.RECEIVE_NORMAL_MSG, true)
+                    messageDataList[messageRecyclerViewAdapter.itemCount - 1] = newData
                 }
                 else if(type == "\"selection_msg\""){
-                    messageDataList.add(MessageData(1, jsonObj["body"].toString().replace("\"", ""), StaticVariables.RECEIVE_SELECTION_MSG, true))
+                    val newData = MessageData(1, jsonObj["body"].toString().replace("\"", ""), StaticVariables.RECEIVE_SELECTION_MSG, true)
+                    messageDataList[messageRecyclerViewAdapter.itemCount - 1] = newData
                 }
-                messageRecyclerViewAdapter.notifyDataSetChanged()
+                messageRecyclerViewAdapter.notifyItemChanged(messageRecyclerViewAdapter.itemCount - 1)
+                message_recycler_container.scrollToPosition(messageRecyclerViewAdapter.itemCount - 1)
+
                 println("대화내용은 ${response.body()!!["body"]}")
             }
 
