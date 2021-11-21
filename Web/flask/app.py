@@ -3,6 +3,7 @@ from flask_cors import CORS
 import datetime
 import model
 from mapping_drug import getDrugByCondition
+from symptom import getSymptomsByCondition
 
 app = Flask(__name__)
 app.msg_json_data = {}
@@ -12,7 +13,6 @@ CORS(app)
 @app.route('/AndroidChatMessage', methods=['POST'])
 def messageAccept():
     print("success accept message")
-    app.msg_json_data[0] = request.get_json()
     msg = request.get_json()
     text_body = msg['body']
     print("input_text:", text_body)
@@ -27,8 +27,8 @@ def messageAccept():
     
     current_date = str(datetime.datetime.now())
     type = result['res_type']
-    symptoms = result['symptoms']
     predicts = result['predict']
+    symptoms = getSymptomsByCondition(predicts[0]['condition'], text_body)
     try:
         drugs = getDrugByCondition(predicts[0]['condition'])
     except:

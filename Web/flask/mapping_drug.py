@@ -2,8 +2,8 @@ import pandas as pd
 import os 
 
 THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
-drug_dict = os.path.join(THIS_FOLDER, 'mapping_table.pickle')
-drug_mapping = pd.read_pickle(drug_dict)
+drug_PATH = os.path.join(THIS_FOLDER, 'mapping_table.pickle')
+drug_mapping = pd.read_pickle(drug_PATH)
 
 def getDrugByCondition(condition):
     drugs = drug_mapping['drugs'][condition]
