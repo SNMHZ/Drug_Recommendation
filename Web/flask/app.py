@@ -3,8 +3,10 @@ from flask_cors import CORS
 import datetime
 import model
 from mapping_drug import getDrugByCondition
-from symptom import getSymptomsByCondition
+from symptom_logic import getSymptoms
+#from symptom_gpt import getSymptomsByCondition
 
+_DEBUG = True
 app = Flask(__name__)
 app.msg_json_data = {}
 app.result = {}
@@ -12,36 +14,60 @@ CORS(app)
 
 @app.route('/AndroidChatMessage', methods=['POST'])
 def messageAccept():
-    print("success accept message")
+    print("======================\nsuccess accept message\n======================")
     msg = request.get_json()
+    seq = msg['seq']
+    print(seq)
     text_body = msg['body']
-    print("input_text:", text_body)
-    '''
-    텍스트 전처리나 preprocessing
-    '''
-    #input_text = """Weight loss Cramping Diarrhea Itchy skin Joint and muscle pain Nausea and vomiting Headaches"""
+    print(text_body)
+    no_symptoms = list(map(lambda x: x[1:-1], msg['no_symptoms']))
+    print(no_symptoms)
+    yes_symptoms = msg['yes_symptoms']
+    print(yes_symptoms)
+    
+    if _DEBUG:
+        print("======================\ntext_body")
+        print(text_body)
+        print("======================")
+
+    #text_body = """Weight loss Cramping Diarrhea Itchy skin Joint and muscle pain Nausea and vomiting Headaches"""
     try:
-        result = model.pred_drug(text_body)
+        result = model.pred_condition(text_body, 20)
     except:
-        result = {'res_type':'-1', 'symptoms':1, 'predicts':1}
+        result = {'res_type':'-1', 'symptoms':[], 'predict':{0:{'condition':'', 'prob':0.0}}}
+    
+    if _DEBUG:
+        print("======================\nresult")
+        print(result)
+        print("======================")
     
     current_date = str(datetime.datetime.now())
     type = result['res_type']
     predicts = result['predict']
-    symptoms, sym_word = getSymptomsByCondition(predicts[0]['condition'], text_body)
+    #symptoms, sym_word = getSymptomsByCondition(predicts[0]['condition'], text_body)
+    sym_word = getSymptoms(predicts, no_symptoms, yes_symptoms)
+
     try:
         drugs = getDrugByCondition(predicts[0]['condition'])
     except:
         drugs = ["알 수 없는 질병입니다."]
 
-    result_obj = jsonify({"type": type, 
-                          "date" : current_date,
-                          "predicts": predicts,
-                          "symptoms": symptoms,
-                          "sym_word": sym_word,
-                          "drugs": drugs})
+    result_obj = jsonify({
+                            "type": type,                 # -1: 에러, 0 : (예측 완료)예측 메시지, 1 : (예측 미완료)증상 리스트 전송
+                            "seq": seq+1,                 # 이전 메시지 seq + 1
+                            "date" : current_date,        # 서버 시간
+                            "predicts": predicts,         # 예측 결과 top3 'condition', 'probability'
+                            "no_symptoms": no_symptoms,   # 부정적 대답 증상 리스트
+                            "yes_symptoms": yes_symptoms, # 긍정적 대답 증상 리스트
+                            "sym_word": sym_word,         # 증상 단어
+                            "drugs": drugs                # 약 정보
+                        })
+    
+    if _DEBUG:
+        print("result_obj:")
+        print(result_obj.get_json())
+        print()
 
-    print(result_obj.get_json())
     return result_obj
 
 @app.route('/GetResult', methods=['GET'])

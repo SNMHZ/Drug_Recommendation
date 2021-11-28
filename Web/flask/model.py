@@ -16,8 +16,8 @@ trainer = Trainer(
         tokenizer=tokenizer,
     )
 
-m_dict_csv = os.path.join(THIS_FOLDER, 'dataset/top20condition.csv')
-m_dict = pd.read_csv(m_dict_csv, index_col=0)
+condition_numbering_URL = os.path.join(THIS_FOLDER, 'dataset/top20condition.csv')
+condition_numbering = pd.read_csv(condition_numbering_URL, index_col=0)
 
 def softmax(x):
     return np.exp(x) / np.sum(np.exp(x), axis=0)
@@ -30,25 +30,30 @@ def preprocess_function(examples):
         max_length=184,
         return_token_type_ids=False,
     )
-def pred_drug(input_text):
+def pred_condition(input_text, n=3):
     test_dict = {'review': input_text}
     test_df = pd.DataFrame(test_dict, index=[0], columns=['review'])
     df_to_dataset = Dataset.from_pandas(test_df)
     encoded_datasets = df_to_dataset.map(preprocess_function, batched=True)
     output = trainer.predict(encoded_datasets)
-    res = to_json(output)
+    res = to_json(output, n)
     
     return res
 
-def to_json(output):
+def to_json(output, n=3):
     cond_prob = softmax(output[0][0])
-    top3_ind = np.argpartition(cond_prob, -3)[-3:]
+    #top3_ind = np.argpartition(cond_prob, -3)[-3:]
+    res_ind = np.argpartition(cond_prob, -n)[-n:]
     df_output = pd.DataFrame(cond_prob, columns=['prob'])
-    output = pd.concat([m_dict, df_output], axis=1)
+    output = pd.concat([condition_numbering, df_output], axis=1)
 
-    top3 = output.loc[top3_ind].sort_values(by=['prob'], ascending=False)
-    top3 = top3.reset_index(drop=True)
-    top3 = top3.to_dict('index')
+    # top3 = output.loc[top3_ind].sort_values(by=['prob'], ascending=False)
+    # top3 = top3.reset_index(drop=True)
+    # top3 = top3.to_dict('index')
+
+    predict = output.loc[res_ind].sort_values(by=['prob'], ascending=False)
+    predict = predict.reset_index(drop=True)
+    predict = predict.to_dict('index')
     
     # type 지정 조건(시나리오)
     
@@ -56,25 +61,20 @@ def to_json(output):
     #    res_type = -1
     res_type = 0
 
-    if top3[0]['prob'] <= 0.8:
+    if predict[0]['prob'] <= 0.8:
         res_type = 1
 
-    else:
-        res_type = 0
-    
     if res_type == 0:
         symptom_list = None
-    
     elif res_type == 1:
         symptom_list = ['symptoms']
-
     elif res_type == -1:
-        top3 = None
+        predict = None
         symptom_list = None
 
     result = {
         'res_type': res_type,
-        'predict': top3,
+        'predict': predict,
         'symptoms': symptom_list
     }
     return result
