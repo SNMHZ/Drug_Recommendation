@@ -16,7 +16,10 @@
  - [이현준](https://github.com/allieclan)
 
 ### System Architecture
- - [Image](./documents/image/SystemArchitecture.png)
+ - [Image](./documents/image/activity_diagram.png)
 
 ### Model Description
  - [모델 설명](./model/readme.md)
+
+### Service Description
+ - [서비스 설명](./Web/readme.md)
