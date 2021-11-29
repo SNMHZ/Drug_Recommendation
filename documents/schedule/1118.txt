@@ -1,0 +1,97 @@
+https://docs.google.com/document/d/10UZLpliFj4LGstWy09xRrIAlM29ZpBx3x0-8twlAAEM/edit?usp=sharing
+
+선택된 컨디션 20개에대한 데이터셋 생성 
+데이터셋으로 작업
+BERT 학습(리뷰 -> 컨디션)
+Symptom table 생성
+약 mapping table 생성(성분조사, 테이블 피클로 빼내기)
+GPT2 연결
+서버 제작 및 포트포워딩
+Application 레이아웃 simplify, 어떻게든 예쁘게(?), UML <- ppt에 넣을거
+
+!!중요
+20개 컨디션 셀렉!!
+
+---
+피드백 사항
+---
+더블체크
+symptom
+단순 확률 X
+-> 추가적인 알고리즘을 통한 체크(자연스러운 다이얼로그)
+ ex) chest pain이 있는게 맞아?
+	자연스러운 신뢰가능한 과정
+	봇이 매력이 있도록!
+	Q&A 하면서.
+	단순 입력 넣고 끝은 별로같다.
+
+Condition 다양화
+컨디션을 하나만 하는건 이상하다.
+컨디션 더블체크
+문장단위로 끊어서 예측한 결과 활용하기
+어떻게 자연스럽게, 유의미안 결과도출할지
+가지고 있는걸 활용하면서 좀더 좋은 결과 어떻게 극대화 할지 고민
+너무 자유도를 줘 버리면 안좋다.
+
+복합증상에 대한 대응
+단답식 대답 등 다양한 input에 대응.
+증상별로 나눈다.
+뻔한 답은 좋지 않다. 안해도 다 아는건 별로..
+---
+
+제외 질병
+진단이 따로 필요없는 질병(피부질환, 체중조절, 피임, 경련, 만성질환, 중독증세 등)
+너무 광범위한 질병(기침, 세균 감염, 메스꺼움, 고 콜레스테롤 등)
+기타 통합 대상 중 데이터셋 불균형을 일으킬 것으로 예상되는 질병(우울증 등)
+빨강 - 선택 / 파랑 - 후보 / 보라 - 통합
+
+Birth Control                   28788  			피임 - ?
+Depression                       9069 			우울 - 정신
+Pain                             6145 				통증 - ?
+Anxiety                          5904 				불안 - 정신
+Acne                             5588 				여드름 - 피부
+Bipolar Disorde                  4224 			양극성 장애(조울증) - 정신
+Insomnia                         3673 			불면증 - 정신
+Weight Loss                      3609 			살빼기 - ?
+Obesity                          3568 			비만 - ?
+ADHD                             3383 			ADHD - 정신
+Diabetes, Type 2                 2554 			당뇨 2형 - 순환계?내과?
+Emergency Contraception          2463 		긴급 피임 - ?
+High Blood Pressure              2321 			고혈압 - 내과?
+Vaginal Yeast Infection          2274			질염 - 내과
+Abnormal Uterine Bleeding        2096		자궁출혈 - 내과
+Bowel Preparation                1859 			관장 - 내과
+fibromyalgia                      1791 			섬유근통 - ?
+Smoking Cessation                1780 			금연 - ?
+Migraine                         1694				편두통 - 통증
+Anxiety and Stress               1663			불안과 스트레스 - 정신 -> 불안에 합치기
+Major Depressive Disorde         1607			우울증 - 정신
+Constipation                     1595			변비 - 대장
+Panic Disorder                    1463			공황장애 - 정신
+Chronic Pain                     1455			만성 통증 - 통증
+Migraine Prevention              1413			편두통 예방 - 통증 -> 편두통에 합치기
+Urinary Tract Infection          1316			요로감염증 - 
+Muscle Spasm                     1244			근육 경련 - 
+Osteoarthritis                   1239			골관절염 - 관절??? 염증???
+Generalized Anxiety Disorde      1164		범불안 장애 - 정신 -> 불안에 포함
+Erectile Dysfunction             1086			발기부전 - !
+Opiate Dependence                1079			아편 의존증 - 중독? 정신?
+Irritable Bowel Syndrome         1014			과민성 장 증후군 - 대장
+Rheumatoid Arthritis              995			류마티스 관절염 - 관절? 염증
+Allergic Rhinitis                 973			알레르기 비염 - 코 , 염증
+Bacterial Infection               945			세균 감염 - 감염
+Cough                             927				기침 - 기관지 
+Sinusitis                         835				축농증 - 기관지
+Nausea/Vomiting                   747			메스꺼움/토 - 내과
+GERD                              722				위식도역류병 - 내과
+Multiple Sclerosis                698			다발성 경화증 - 신경과
+Overactive Bladde                 683			과민성 방광 증후군 - ?
+Hyperhidrosis                     677			다한증 - 피부
+Hepatitis C                       656				c형 간염 - 내과
+Back Pain                         616			등 통증 - 신경계
+HIV Infection                     615			에이즈 - 내과?
+High Cholesterol                  611			높은 콜레스테롤 - 
+Psoriasis                         598				피부건선 - 피부
+Schizophrenia                     594			조현병 - 정신
+Constipation, Chronic             591			만성 변비 - 대장
+Obsessive Compulsive Disorde      579		강박장애 - 정신
