@@ -15,7 +15,7 @@ def replace_str(x):
     return x.replace(' ', '')
 
 def getSymptoms(predicts: dict, no_symptoms: list, yes_symptoms: list) -> str:
-    sym_word = ''
+    sym_word = 'no'
     no_sym_counts = [ (0, i) for i in range(20) ]
     for i in range(20):
         for no_sym in no_symptoms:

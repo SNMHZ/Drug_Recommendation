@@ -6,7 +6,6 @@ from mapping_drug import getDrugByCondition
 from symptom_logic import getSymptoms
 #from symptom_gpt import getSymptomsByCondition
 
-_DEBUG = True
 app = Flask(__name__)
 app.msg_json_data = {}
 app.result = {}
@@ -16,18 +15,18 @@ CORS(app)
 def messageAccept():
     print("======================\nsuccess accept message\n======================")
     msg = request.get_json()
+
     seq = msg['seq']
-    print(seq)
     text_body = msg['body']
-    print(text_body)
     no_symptoms = list(map(lambda x: x[1:-1], msg['no_symptoms']))
-    print(no_symptoms)
     yes_symptoms = msg['yes_symptoms']
-    print(yes_symptoms)
     
-    if _DEBUG:
+    if app.debug:
         print("======================\ntext_body")
+        print(seq)
         print(text_body)
+        print(no_symptoms)
+        print(yes_symptoms)
         print("======================")
 
     #text_body = """Weight loss Cramping Diarrhea Itchy skin Joint and muscle pain Nausea and vomiting Headaches"""
@@ -36,7 +35,7 @@ def messageAccept():
     except:
         result = {'res_type':'-1', 'symptoms':[], 'predict':{0:{'condition':'', 'prob':0.0}}}
     
-    if _DEBUG:
+    if app.debug:
         print("======================\nresult")
         print(result)
         print("======================")
@@ -63,7 +62,7 @@ def messageAccept():
                             "drugs": drugs                # 약 정보
                         })
     
-    if _DEBUG:
+    if app.debug:
         print("result_obj:")
         print(result_obj.get_json())
         print()
@@ -115,7 +114,7 @@ def post_echo_call():
     return jsonify(param)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=5000, debug=True)
     # app.run()
 
 

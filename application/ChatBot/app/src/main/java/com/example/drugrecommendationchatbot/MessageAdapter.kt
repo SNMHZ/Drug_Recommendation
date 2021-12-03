@@ -46,11 +46,12 @@ import java.security.KeyStore
 import com.github.mikephil.charting.utils.ColorTemplate
 
 import com.github.mikephil.charting.data.PieEntry
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashSet
 
 
-
-
-class MessageAdapter(private val context : Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class MessageAdapter(private val context : Context, private val chatFragmet : ChatFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     var messageDataList = mutableListOf<MessageData>()
     lateinit var selectSymptomBtnListener : CallbackListener
@@ -75,7 +76,13 @@ class MessageAdapter(private val context : Context) : RecyclerView.Adapter<Recyc
 
 
         }else if(viewType == StaticVariables.SYSTEM_MSG){
+            println("시스템 메시지 출력")
             return SystemMessageViewHolder(LayoutInflater.from(context).inflate(R.layout.message_system_log_item
+                ,parent, false))
+        }
+        else if(viewType == StaticVariables.RECEIVE_YES_OR_NO){
+            println("Yes or No 뷰홀더 생성해서 도려줌")
+            return LeftYesOrNoViewHolder(LayoutInflater.from(context).inflate(R.layout.message_yes_or_no
                 ,parent, false))
         }
         else{
@@ -109,6 +116,11 @@ class MessageAdapter(private val context : Context) : RecyclerView.Adapter<Recyc
 
             StaticVariables.SYSTEM_MSG->{
                 (holder as SystemMessageViewHolder).bind(messageDataList[position])
+            }
+
+            StaticVariables.RECEIVE_YES_OR_NO->{
+                println("yesorno 뷰 바인더 호출")
+                (holder as LeftYesOrNoViewHolder).bind(messageDataList[position])
             }
         }
     }
@@ -144,10 +156,7 @@ class MessageAdapter(private val context : Context) : RecyclerView.Adapter<Recyc
 
                 var others = 0f
                 var sum = 0f
-                var txt = "Are you " + data.predicts[0].first + "?\n\n"
-                messageBody.text = "Are you " + data.predicts[0].first + "?"
-                txt += "If you have " + data.predicts[0].first + " then how about have a " +
-                        data.drugs[0] +"?"
+                var txt = "Are you ${data.sym_word}?"
 
                 messageBody.text = txt
 
@@ -198,6 +207,66 @@ class MessageAdapter(private val context : Context) : RecyclerView.Adapter<Recyc
 
     inner class LeftLoadingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
+    }
+
+    inner class LeftYesOrNoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        private val messageBody : TextView = itemView.findViewById(R.id.message_body)
+        private val yesBtn : Button = itemView.findViewById(R.id.yes_btn)
+        private val noBtn : Button = itemView.findViewById(R.id.no_btn)
+
+        fun bind(data : MessageData){
+            messageBody.text = "do you have ${data.sym_word} ? "
+            yesBtn.setOnClickListener{
+                StaticVariables.yesSymList.add(data.sym_word)
+
+                var jsonData = PostChatMsgModel("1999-09-09", "0", "", yes_symptoms = StaticVariables.yesSymList, no_symptoms = StaticVariables.noSymList)
+                RetrofitAPI.setRetrofit().postChatMsg(jsonData).enqueue(object : Callback<JsonObject> {
+                    override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                        t.printStackTrace()
+                        println("fail to response when post the data.")
+                    }
+
+                    override fun onResponse(
+                        call: Call<JsonObject>,
+                        response: Response<JsonObject>
+                    ) {
+
+                        chatFragmet.messageDataList.add(chatFragmet.addReceivedPostMsg(response.body()!!))
+                        chatFragmet.messageRecyclerViewAdapter.notifyItemChanged(messageDataList.size - 1)
+                        chatFragmet.message_recycler_container.smoothScrollToPosition(messageDataList.size)
+                    }
+
+                })
+
+            }
+
+            noBtn.setOnClickListener{
+                var jsonData = PostChatMsgModel( "1999-09-09", "0", "", yes_symptoms = StaticVariables.yesSymList, no_symptoms = StaticVariables.noSymList)
+                RetrofitAPI.setRetrofit().postChatMsg(jsonData).enqueue(object : Callback<JsonObject> {
+                    override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                        t.printStackTrace()
+                        println("fail to response when post the data.")
+                    }
+
+                    
+
+
+                    override fun onResponse(
+                        call: Call<JsonObject>,
+                        response: Response<JsonObject>
+                    ) {
+                        println("no check")
+                        println(response.body())
+                        chatFragmet.messageDataList.add(chatFragmet.addReceivedPostMsg(response.body()!!))
+                        chatFragmet.messageRecyclerViewAdapter.notifyItemChanged(messageDataList.size - 1)
+                        chatFragmet.message_recycler_container.smoothScrollToPosition(messageDataList.size)
+                        println("success to post!")
+                    }
+
+                })
+
+            }
+        }
     }
 
     inner class LeftSelectionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){

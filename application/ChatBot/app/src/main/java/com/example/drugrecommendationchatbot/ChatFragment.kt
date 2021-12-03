@@ -24,6 +24,7 @@ import kotlin.reflect.typeOf
 import com.github.ybq.android.spinkit.*
 import kotlinx.coroutines.*
 import com.github.mikephil.charting.*
+import java.util.*
 
 
 class ChatFragment : Fragment() {
@@ -34,6 +35,7 @@ class ChatFragment : Fragment() {
     lateinit var messageDataList : MutableList<MessageData>
 
     lateinit var sendSymptomCallBackListener : CallbackListener
+
 
     var retrofitAPI = RetrofitAPI.setRetrofit()
 
@@ -65,7 +67,7 @@ class ChatFragment : Fragment() {
     }
 
     private fun initializeRecyclerView(){
-        messageRecyclerViewAdapter = MessageAdapter(requireContext())
+        messageRecyclerViewAdapter = MessageAdapter(requireContext(), this)
         messageDataList = mutableListOf<MessageData>()
 
         messageRecyclerViewAdapter.messageDataList = messageDataList
@@ -138,10 +140,11 @@ class ChatFragment : Fragment() {
                 var jsonData = PostChatMsgModel("1999-09-09", "0", text)
                 showJsonLogcat(jsonData)
 
+                println("null check = ")
+                println()
                 retrofitAPI.postChatMsg(jsonData).enqueue(object : Callback<JsonObject>{
                     override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                         t.printStackTrace()
-                        println("fail to response when post the data.")
                         messageDataList[messageDataList.size - 1] = MessageData(-1, t.message!!, StaticVariables.SYSTEM_MSG, false)
                         messageRecyclerViewAdapter.notifyItemChanged(messageDataList.size - 1)
                         message_recycler_container.smoothScrollToPosition(messageDataList.size)
@@ -157,7 +160,8 @@ class ChatFragment : Fragment() {
                         CoroutineScope(Dispatchers.Main).launch{
                             //loadingResponseMessage()
                             delay(3000)
-                            //makeChatResponse()
+                            //makeChatResponse
+                            println("null 값 체크 = ${response.body()!!}")
                             messageDataList[messageDataList.size - 1] = addReceivedPostMsg(response.body()!!)
                             messageRecyclerViewAdapter.notifyItemChanged(messageDataList.size - 1)
                             message_recycler_container.smoothScrollToPosition(messageDataList.size)
@@ -177,10 +181,17 @@ class ChatFragment : Fragment() {
     }
 
 
-    private fun addReceivedPostMsg(data : JsonObject) : MessageData{
-        val body = data["body"].toString()
+    public fun addReceivedPostMsg(data : JsonObject) : MessageData{
+        val body = data["sym_word"].toString()
+        var result : MessageData? = null
 
-        val result = MessageData(1, body, StaticVariables.RECEIVE_NORMAL_MSG, true)
+        if(data["sym_word"].toString() != ""){
+            println("받아온 대답이 sym_word가 있으니 예스 올 노우로 보여줘야 함")
+            result = MessageData(1, body, StaticVariables.RECEIVE_YES_OR_NO, true, sym_word = body)
+        }else{
+            result = MessageData(1, body, StaticVariables.RECEIVE_NORMAL_MSG, true, sym_word = body)
+        }
+
         if(!data["predicts"].isJsonNull){
             val predicts = data["predicts"] as JsonObject
             println("predicts 확인")
