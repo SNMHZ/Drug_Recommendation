@@ -215,11 +215,19 @@ class MessageAdapter(private val context : Context, private val chatFragmet : Ch
         private val noBtn : Button = itemView.findViewById(R.id.no_btn)
 
         fun bind(data : MessageData){
-            messageBody.text = "do you have ${data.sym_word} ? "
+            if(data.eof == 0){
+                messageBody.text = data.predicts.toString()
+                yesBtn.visibility = View.GONE
+                noBtn.visibility = View.GONE
+            }else{
+                messageBody.text = "do you have ${data.sym_word} ? "
+            }
+
             yesBtn.setOnClickListener{
+                yesBtn.isEnabled = false
                 StaticVariables.yesSymList.add(data.sym_word)
 
-                var jsonData = PostChatMsgModel("1999-09-09", "0", "", yes_symptoms = StaticVariables.yesSymList, no_symptoms = StaticVariables.noSymList)
+                var jsonData = PostChatMsgModel("1999-09-09", "0",  StaticVariables.initialSentence, yes_symptoms = StaticVariables.yesSymList, no_symptoms = StaticVariables.noSymList, seq = StaticVariables.seq, )
                 RetrofitAPI.setRetrofit().postChatMsg(jsonData).enqueue(object : Callback<JsonObject> {
                     override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                         t.printStackTrace()
@@ -230,7 +238,6 @@ class MessageAdapter(private val context : Context, private val chatFragmet : Ch
                         call: Call<JsonObject>,
                         response: Response<JsonObject>
                     ) {
-
                         chatFragmet.messageDataList.add(chatFragmet.addReceivedPostMsg(response.body()!!))
                         chatFragmet.messageRecyclerViewAdapter.notifyItemChanged(messageDataList.size - 1)
                         chatFragmet.message_recycler_container.smoothScrollToPosition(messageDataList.size)
@@ -241,26 +248,24 @@ class MessageAdapter(private val context : Context, private val chatFragmet : Ch
             }
 
             noBtn.setOnClickListener{
-                var jsonData = PostChatMsgModel( "1999-09-09", "0", "", yes_symptoms = StaticVariables.yesSymList, no_symptoms = StaticVariables.noSymList)
+                noBtn.isEnabled = false
+                StaticVariables.noSymList.add(data.sym_word)
+                var jsonData = PostChatMsgModel( "1999-09-09", "0", StaticVariables.initialSentence, yes_symptoms = StaticVariables.yesSymList, no_symptoms = StaticVariables.noSymList, seq = StaticVariables.seq, )
                 RetrofitAPI.setRetrofit().postChatMsg(jsonData).enqueue(object : Callback<JsonObject> {
                     override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                         t.printStackTrace()
                         println("fail to response when post the data.")
                     }
 
-                    
-
-
                     override fun onResponse(
                         call: Call<JsonObject>,
                         response: Response<JsonObject>
                     ) {
-                        println("no check")
-                        println(response.body())
+                        println("response 체크")
+                        println(response.body()!!)
                         chatFragmet.messageDataList.add(chatFragmet.addReceivedPostMsg(response.body()!!))
                         chatFragmet.messageRecyclerViewAdapter.notifyItemChanged(messageDataList.size - 1)
                         chatFragmet.message_recycler_container.smoothScrollToPosition(messageDataList.size)
-                        println("success to post!")
                     }
 
                 })

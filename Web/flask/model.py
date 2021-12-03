@@ -30,17 +30,17 @@ def preprocess_function(examples):
         max_length=184,
         return_token_type_ids=False,
     )
-def pred_condition(input_text, n=3):
+def pred_condition(input_text, seq, n=3):
     test_dict = {'review': input_text}
     test_df = pd.DataFrame(test_dict, index=[0], columns=['review'])
     df_to_dataset = Dataset.from_pandas(test_df)
     encoded_datasets = df_to_dataset.map(preprocess_function, batched=True)
     output = trainer.predict(encoded_datasets)
-    res = to_json(output, n)
+    res = to_json(output, seq, n)
     
     return res
 
-def to_json(output, n=3):
+def to_json(output, seq, n=3):
     cond_prob = softmax(output[0][0])
     #top3_ind = np.argpartition(cond_prob, -3)[-3:]
     res_ind = np.argpartition(cond_prob, -n)[-n:]
@@ -61,7 +61,11 @@ def to_json(output, n=3):
     #    res_type = -1
     res_type = 0
 
-    if predict[0]['prob'] <= 0.8:
+    print('--teste--')
+    print(predict[0]['prob'], seq)
+    print('-tasey-')
+    if predict[0]['prob'] <= 0.8 or seq <= 5:
+        print("이ㅣ거 실행되야 함!!!")
         res_type = 1
 
     if res_type == 0:

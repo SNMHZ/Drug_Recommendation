@@ -14,4 +14,5 @@ data class MessageData (
     var correctSendFlag : Boolean,
     val predicts : ArrayList<Pair<String, Float>> = ArrayList(),
     val drugs : ArrayList<String> = ArrayList(),
-    var sym_word : String = "None")
+    var sym_word : String = "None",
+    var eof : Int = 1)

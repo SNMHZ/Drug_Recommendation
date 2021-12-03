@@ -15,11 +15,14 @@ CORS(app)
 def messageAccept():
     print("======================\nsuccess accept message\n======================")
     msg = request.get_json()
+    print('--')
+    print(msg)
+    print('--')
 
     seq = msg['seq']
     text_body = msg['body']
     no_symptoms = list(map(lambda x: x[1:-1], msg['no_symptoms']))
-    yes_symptoms = msg['yes_symptoms']
+    yes_symptoms = list(map(lambda x: x[1:-1], msg['yes_symptoms']))#msg['yes_symptoms']
     
     if app.debug:
         print("======================\ntext_body")
@@ -31,20 +34,40 @@ def messageAccept():
 
     #text_body = """Weight loss Cramping Diarrhea Itchy skin Joint and muscle pain Nausea and vomiting Headaches"""
     try:
-        result = model.pred_condition(text_body, 20)
+        for i, yes in enumerate(yes_symptoms):
+            if i>0:
+                text_body += 'and '
+            else:
+                text_body += '. '
+            text_body += ' I have '+yes+'. '
+        print('text_body:', text_body)
+        result = model.pred_condition(text_body, seq, 20)
     except:
         result = {'res_type':'-1', 'symptoms':[], 'predict':{0:{'condition':'', 'prob':0.0}}}
     
-    if app.debug:
-        print("======================\nresult")
-        print(result)
-        print("======================")
+    # if app.debug:
+    #     print("======================\nresult")
+    #     print(result)
+    #     print("======================")
     
     current_date = str(datetime.datetime.now())
     type = result['res_type']
     predicts = result['predict']
-    #symptoms, sym_word = getSymptomsByCondition(predicts[0]['condition'], text_body)
-    sym_word = getSymptoms(predicts, no_symptoms, yes_symptoms)
+    
+    predicts_res = {}
+    sym_word = ''
+    print('--')
+    print(type)
+    print('--?')
+    if seq == 10:
+        type = 0
+    if type == 0: # 예측 완료
+        predicts_res[0] = predicts[0]
+        predicts_res[1] = predicts[1]
+        predicts_res[2] = predicts[2]
+        predicts = predicts_res
+    elif type == 1: # 예측 미완료
+        sym_word = getSymptoms(predicts, no_symptoms, yes_symptoms)
 
     try:
         drugs = getDrugByCondition(predicts[0]['condition'])

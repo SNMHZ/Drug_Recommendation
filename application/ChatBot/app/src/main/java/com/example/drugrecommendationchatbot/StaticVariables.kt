@@ -19,6 +19,8 @@ object StaticVariables {
 
 
     var PIE_CHART_FLAG = false
+    var seq = 0
+    var initialSentence = ""
     var yesSymList = LinkedList<String>()
     var noSymList = LinkedList<String>()
 }

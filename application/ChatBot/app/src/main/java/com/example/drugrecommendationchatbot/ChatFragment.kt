@@ -96,6 +96,7 @@ class ChatFragment : Fragment() {
 
         sendBtn.setOnClickListener {
             val text = messageEditText.text.toString()
+            StaticVariables.initialSentence = text
             if(text.isNotBlank() && text.contains("git -change -ip")){
                 var changedServerURL = text.replace("git -change -ip ", "")
                 StaticVariables.SERVER_URL = changedServerURL
@@ -137,7 +138,7 @@ class ChatFragment : Fragment() {
                 //post
 
                 //retrofit2 api를 이용해서, json 전송 시작
-                var jsonData = PostChatMsgModel("1999-09-09", "0", text)
+                var jsonData = PostChatMsgModel("1999-09-09", "0", text, 0)
                 showJsonLogcat(jsonData)
 
                 println("null check = ")
@@ -184,12 +185,17 @@ class ChatFragment : Fragment() {
     public fun addReceivedPostMsg(data : JsonObject) : MessageData{
         val body = data["sym_word"].toString()
         var result : MessageData? = null
+        var eof = data["type"].asInt
 
-        if(data["sym_word"].toString() != ""){
+        StaticVariables.seq = data["seq"].asInt
+        if(eof == 0){
+            result = MessageData(1, body, StaticVariables.RECEIVE_YES_OR_NO, true, sym_word = body, eof = eof)
+        }
+        else if(data["sym_word"].toString() != ""){
             println("받아온 대답이 sym_word가 있으니 예스 올 노우로 보여줘야 함")
-            result = MessageData(1, body, StaticVariables.RECEIVE_YES_OR_NO, true, sym_word = body)
+            result = MessageData(1, body, StaticVariables.RECEIVE_YES_OR_NO, true, sym_word = body, eof = eof)
         }else{
-            result = MessageData(1, body, StaticVariables.RECEIVE_NORMAL_MSG, true, sym_word = body)
+            result = MessageData(1, body, StaticVariables.RECEIVE_NORMAL_MSG, true, sym_word = body, eof = eof)
         }
 
         if(!data["predicts"].isJsonNull){
