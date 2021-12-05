@@ -24,6 +24,7 @@ import kotlin.reflect.typeOf
 import com.github.ybq.android.spinkit.*
 import kotlinx.coroutines.*
 import com.github.mikephil.charting.*
+import java.time.LocalDateTime
 import java.util.*
 
 
@@ -33,9 +34,12 @@ class ChatFragment : Fragment() {
 
     lateinit var messageRecyclerViewAdapter : MessageAdapter
     lateinit var messageDataList : MutableList<MessageData>
+    var seq = 0
+
+    val yesSymptomList = LinkedList<String>()
+    val noSymptomList = LinkedList<String>()
 
     lateinit var sendSymptomCallBackListener : CallbackListener
-
 
     var retrofitAPI = RetrofitAPI.setRetrofit()
 
@@ -97,6 +101,7 @@ class ChatFragment : Fragment() {
         sendBtn.setOnClickListener {
             val text = messageEditText.text.toString()
             StaticVariables.initialSentence = text
+
             if(text.isNotBlank() && text.contains("git -change -ip")){
                 var changedServerURL = text.replace("git -change -ip ", "")
                 StaticVariables.SERVER_URL = changedServerURL
@@ -134,6 +139,35 @@ class ChatFragment : Fragment() {
                 messageRecyclerViewAdapter.notifyItemInserted(messageRecyclerViewAdapter.itemCount - 1)
                 message_recycler_container.scrollToPosition(messageRecyclerViewAdapter.itemCount - 1)
 
+
+                /*
+                tmpTxt += " "+ text
+                tmpTxt += messageDataList[messageDataList.size - 1].sym.replace("\"", " ") + "."
+                result = tmpTxt
+                */
+                /*
+                if(text.contains("yes")){
+                    val beforeSendMsg = messageDataList[messageDataList.size - 2]
+                    val beforedAcceptMsg = messageDataList[messageDataList.size - 1]
+
+                    result = beforeSendMsg.body +
+                            //beforedAcceptMsg.body.replace("Do you have", "I have") +
+                            beforedAcceptMsg.sym + "yes"
+                }
+                else if((text.contains("no"))){
+                    val beforeSendMsg = messageDataList[messageDataList.size - 2]
+                    val beforedAcceptMsg = messageDataList[messageDataList.size - 1]
+
+                    result = beforeSendMsg.body +
+                            //beforedAcceptMsg.body.replace("Do you have", "I don't have") +
+                            beforedAcceptMsg.sym + "no"
+                }else{
+                    result = text
+                }
+                */
+
+                //val currentTime = LocalDateTime.now().hour * 60 + LocalDateTime.now().minute
+
                 waitingPostMsg()
                 //post
 
@@ -141,8 +175,6 @@ class ChatFragment : Fragment() {
                 var jsonData = PostChatMsgModel("1999-09-09", "0", text, 0)
                 showJsonLogcat(jsonData)
 
-                println("null check = ")
-                println()
                 retrofitAPI.postChatMsg(jsonData).enqueue(object : Callback<JsonObject>{
                     override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                         t.printStackTrace()
@@ -161,8 +193,7 @@ class ChatFragment : Fragment() {
                         CoroutineScope(Dispatchers.Main).launch{
                             //loadingResponseMessage()
                             delay(3000)
-                            //makeChatResponse
-                            println("null 값 체크 = ${response.body()!!}")
+                            //makeChatResponse()
                             messageDataList[messageDataList.size - 1] = addReceivedPostMsg(response.body()!!)
                             messageRecyclerViewAdapter.notifyItemChanged(messageDataList.size - 1)
                             message_recycler_container.smoothScrollToPosition(messageDataList.size)
@@ -187,13 +218,13 @@ class ChatFragment : Fragment() {
         var result : MessageData? = null
         var eof = data["type"].asInt
 
-        StaticVariables.seq = data["seq"].asInt
+        seq = data["seq"].asInt
         if(eof == 0){
-            result = MessageData(1, body, StaticVariables.RECEIVE_YES_OR_NO, true, sym_word = body, eof = eof)
+            result = MessageData(1, body, StaticVariables.RECEIVE_YES_OR_NO_MSG, true, sym_word = body, eof = eof)
         }
         else if(data["sym_word"].toString() != ""){
             println("받아온 대답이 sym_word가 있으니 예스 올 노우로 보여줘야 함")
-            result = MessageData(1, body, StaticVariables.RECEIVE_YES_OR_NO, true, sym_word = body, eof = eof)
+            result = MessageData(1, body, StaticVariables.RECEIVE_YES_OR_NO_MSG, true, sym_word = body, eof = eof)
         }else{
             result = MessageData(1, body, StaticVariables.RECEIVE_NORMAL_MSG, true, sym_word = body, eof = eof)
         }
@@ -229,7 +260,7 @@ class ChatFragment : Fragment() {
         return result
     }
 
-    private fun waitingPostMsg(){
+    fun waitingPostMsg(){
         messageDataList.add(MessageData(0, "loading", StaticVariables.RECEIVE_MSG_LOADING, true))
         messageRecyclerViewAdapter.notifyItemInserted(messageRecyclerViewAdapter.itemCount)
         message_recycler_container.scrollToPosition(messageRecyclerViewAdapter.itemCount - 1)
@@ -278,15 +309,6 @@ class ChatFragment : Fragment() {
     private fun hideSoftKeyPad(editText : EditText){
         val inputManager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputManager.hideSoftInputFromWindow(editText.windowToken, 0)
-    }
-
-    private fun sendInfo(){
-        val model = Build.MODEL
-        val osVersion = Build.VERSION.RELEASE.toString()
-        val manufacturer = Build.MANUFACTURER
-
-        messageDataList.add(MessageData(0, "model = $model\nos = $osVersion\n" +
-                "제조사 = $manufacturer\n", 0, true) )
     }
 
 

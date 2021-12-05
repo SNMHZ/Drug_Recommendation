@@ -30,7 +30,6 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildToolsVersion '31.0.0'
 }
 
 dependencies {
@@ -49,6 +48,9 @@ dependencies {
 
     //MPAndroidChart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    //Button API
+    implementation 'com.github.dmytrodanylyk:circular-progress-button:1.2'
 
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 

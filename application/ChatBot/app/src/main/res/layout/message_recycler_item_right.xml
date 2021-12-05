@@ -13,12 +13,14 @@
         android:text="대화 내용"
         android:textSize="25dp"
         android:textColor="@color/white"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="20dp"
         android:paddingLeft="10dp"
         android:paddingRight="20dp"
         android:paddingTop="10dp"
+        android:elevation="10dp"
         android:paddingBottom="10dp"
         android:background="@drawable/send_bubble_chat"/>
+
+
 
 </LinearLayout>

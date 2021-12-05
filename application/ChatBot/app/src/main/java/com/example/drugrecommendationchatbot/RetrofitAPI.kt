@@ -11,9 +11,18 @@ import retrofit2.http.*
 interface RetrofitAPI {
     @POST("/AndroidChatMessage")
     @Headers("accept: application/json",
-        "content-type: application/json")
+        "content-type: application/json",
+    "Connection: close")
     fun postChatMsg(
         @Body jsonparams: PostChatMsgModel
+    ):Call<JsonObject>
+
+    @POST("/AndroidChatMessage")
+    @Headers("accept: application/json",
+        "content-type: application/json",
+        "Connection: close")
+    fun postYesOrNoChatMsg(
+        @Body jsonparams: PostChatYesOrNoMsgModel
     ):Call<JsonObject>
 
     //server로부터 응답(결과 get)
@@ -32,7 +41,8 @@ interface RetrofitAPI {
             return Retrofit
                 .Builder()
                 .baseUrl(StaticVariables.SERVER_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson)).build()
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build()
                 .create(RetrofitAPI::class.java)
         }
     }

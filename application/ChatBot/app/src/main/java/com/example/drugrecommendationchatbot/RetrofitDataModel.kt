@@ -10,9 +10,18 @@ data class PostChatMsgModel(
     var date : String? = null,
     var type : String? = null,
     var body : String? = null,
-    var seq : Int = 1,
+    var seq: Int = 1,
     var no_symptoms : LinkedList<String> = LinkedList<String>(),
     var yes_symptoms : LinkedList<String> = LinkedList<String>()
+)
+
+data class PostChatYesOrNoMsgModel(
+    var date : String? = null,
+    var type : String? = null,
+    var body : String? = null,
+    var seq : Int? = 1,
+    var yes_symptoms : Array<String>? = null,
+    var no_symptoms : Array<String>? = null
 )
 
 data class GetTest1Model(

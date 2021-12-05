@@ -23,6 +23,7 @@ import android.widget.AdapterView
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.children
 import androidx.core.view.marginLeft
 import androidx.recyclerview.widget.RecyclerView
@@ -46,15 +47,12 @@ import java.security.KeyStore
 import com.github.mikephil.charting.utils.ColorTemplate
 
 import com.github.mikephil.charting.data.PieEntry
-import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.collections.HashSet
 
-
-class MessageAdapter(private val context : Context, private val chatFragmet : ChatFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class MessageAdapter(private val context : Context, private val chatFragment : ChatFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     var messageDataList = mutableListOf<MessageData>()
     lateinit var selectSymptomBtnListener : CallbackListener
+    var currentCount = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if(viewType == StaticVariables.LEFT_CHAT){
@@ -76,19 +74,16 @@ class MessageAdapter(private val context : Context, private val chatFragmet : Ch
 
 
         }else if(viewType == StaticVariables.SYSTEM_MSG){
-            println("시스템 메시지 출력")
             return SystemMessageViewHolder(LayoutInflater.from(context).inflate(R.layout.message_system_log_item
                 ,parent, false))
-        }
-        else if(viewType == StaticVariables.RECEIVE_YES_OR_NO){
-            println("Yes or No 뷰홀더 생성해서 도려줌")
-            return LeftYesOrNoViewHolder(LayoutInflater.from(context).inflate(R.layout.message_yes_or_no
-                ,parent, false))
+
+        }else if(viewType == StaticVariables.RECEIVE_YES_OR_NO_MSG){
+            return LeftYesOrNoSelectionViewHolder(LayoutInflater.from(context).inflate(R.layout.message_recycler_itme_left_yes_or_no_selection,
+                parent, false))
+
         }
         else{
-
-            return LeftSelectionViewHolder(LayoutInflater.from(context).
-            inflate(R.layout.selection_symptom_veiw_layout
+            return LeftSelectionViewHolder(LayoutInflater.from(context).inflate(R.layout.selection_symptom_veiw_layout
                 ,parent, false))
 
         }
@@ -117,10 +112,8 @@ class MessageAdapter(private val context : Context, private val chatFragmet : Ch
             StaticVariables.SYSTEM_MSG->{
                 (holder as SystemMessageViewHolder).bind(messageDataList[position])
             }
-
-            StaticVariables.RECEIVE_YES_OR_NO->{
-                println("yesorno 뷰 바인더 호출")
-                (holder as LeftYesOrNoViewHolder).bind(messageDataList[position])
+            StaticVariables.RECEIVE_YES_OR_NO_MSG->{
+                (holder as LeftYesOrNoSelectionViewHolder).bind(messageDataList[position])
             }
         }
     }
@@ -156,9 +149,7 @@ class MessageAdapter(private val context : Context, private val chatFragmet : Ch
 
                 var others = 0f
                 var sum = 0f
-                var txt = "Are you ${data.sym_word}?"
-
-                messageBody.text = txt
+                messageBody.text = data.body.replace("\"", "")
 
                 for(item in data.predicts){
                     yValues.add(PieEntry(item.second.toFloat(), item.first))
@@ -193,6 +184,10 @@ class MessageAdapter(private val context : Context, private val chatFragmet : Ch
                 pieChart.visibility = View.GONE
             }
 
+            if(data.date != -1){
+
+            }
+
         }
     }
 
@@ -209,13 +204,14 @@ class MessageAdapter(private val context : Context, private val chatFragmet : Ch
 
     }
 
-    inner class LeftYesOrNoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        private val messageBody : TextView = itemView.findViewById(R.id.message_body)
-        private val yesBtn : Button = itemView.findViewById(R.id.yes_btn)
-        private val noBtn : Button = itemView.findViewById(R.id.no_btn)
+    inner class LeftYesOrNoSelectionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        val messageBody = itemView.findViewById<TextView>(R.id.message_body)
+        val yesBtn = itemView.findViewById<com.dd.CircularProgressButton>(R.id.yes_btn)
+        val noBtn = itemView.findViewById<com.dd.CircularProgressButton>(R.id.no_btn)
 
         fun bind(data : MessageData){
-            if(data.eof == 0){
+
+            if (data.eof == 0){
                 messageBody.text = data.predicts.toString()
                 yesBtn.visibility = View.GONE
                 noBtn.visibility = View.GONE
@@ -223,53 +219,103 @@ class MessageAdapter(private val context : Context, private val chatFragmet : Ch
                 messageBody.text = "do you have ${data.sym_word} ? "
             }
 
-            yesBtn.setOnClickListener{
-                yesBtn.isEnabled = false
-                StaticVariables.yesSymList.add(data.sym_word)
+            yesBtn.isIndeterminateProgressMode = true
+            noBtn.isIndeterminateProgressMode = true
 
-                var jsonData = PostChatMsgModel("1999-09-09", "0",  StaticVariables.initialSentence, yes_symptoms = StaticVariables.yesSymList, no_symptoms = StaticVariables.noSymList, seq = StaticVariables.seq, )
+            yesBtn.setOnClickListener {
+                val yesLinkedList = chatFragment.yesSymptomList
+                val noLinkedList = chatFragment.noSymptomList
+
+                yesBtn.isClickable = false
+                noBtn.isClickable = false
+
+                yesBtn.progress = 50
+
+                yesLinkedList.add(data.sym_word)
+
+
+                var jsonData = PostChatMsgModel("1999-09-09", "0",  StaticVariables.initialSentence, yes_symptoms = yesLinkedList, no_symptoms = noLinkedList, seq = chatFragment.seq, )
                 RetrofitAPI.setRetrofit().postChatMsg(jsonData).enqueue(object : Callback<JsonObject> {
                     override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                         t.printStackTrace()
-                        println("fail to response when post the data.")
+                        println("fail to response when post the data. so recently added last element will be deleted.")
+                        yesLinkedList.pop()
+                        yesBtn.progress = 0
+                        yesBtn.isClickable = true
+                        noBtn.isClickable = true
                     }
 
                     override fun onResponse(
                         call: Call<JsonObject>,
                         response: Response<JsonObject>
                     ) {
-                        chatFragmet.messageDataList.add(chatFragmet.addReceivedPostMsg(response.body()!!))
-                        chatFragmet.messageRecyclerViewAdapter.notifyItemChanged(messageDataList.size - 1)
-                        chatFragmet.message_recycler_container.smoothScrollToPosition(messageDataList.size)
+                        print("======call json data logcat=====")
+                        println(jsonData)
+
+                        chatFragment.waitingPostMsg()
+
+                        CoroutineScope(Dispatchers.Main).launch{
+                            //loadingResponseMessage()
+                            delay(3000)
+                            //makeChatResponse()
+                            messageDataList[messageDataList.size - 1] = chatFragment.addReceivedPostMsg(response.body()!!)
+                            chatFragment.messageRecyclerViewAdapter.notifyItemChanged(messageDataList.size - 1)
+                            chatFragment.message_recycler_container.smoothScrollToPosition(messageDataList.size)
+                            println("어뎁터안에서 데이터가 바뀌는가?")
+                        }
+                        println(response.body())
+                        println("success to post!")
+                        yesBtn.progress = 100
                     }
 
                 })
-
             }
+            noBtn.setOnClickListener {
+                val yesLinkedList = chatFragment.yesSymptomList
+                val noLinkedList = chatFragment.noSymptomList
 
-            noBtn.setOnClickListener{
-                noBtn.isEnabled = false
-                StaticVariables.noSymList.add(data.sym_word)
-                var jsonData = PostChatMsgModel( "1999-09-09", "0", StaticVariables.initialSentence, yes_symptoms = StaticVariables.yesSymList, no_symptoms = StaticVariables.noSymList, seq = StaticVariables.seq, )
+                yesBtn.isClickable = false
+                noBtn.isClickable = false
+
+                noBtn.progress = 50
+
+                noLinkedList.add(data.sym_word)
+
+
+                var jsonData = PostChatMsgModel( "1999-09-09", "0", StaticVariables.initialSentence, yes_symptoms = yesLinkedList, no_symptoms = noLinkedList, seq = chatFragment.seq, )
                 RetrofitAPI.setRetrofit().postChatMsg(jsonData).enqueue(object : Callback<JsonObject> {
                     override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                         t.printStackTrace()
-                        println("fail to response when post the data.")
+                        println("fail to response when post the data. so recently added last element will be deleted.")
+                        noLinkedList.pop()
+                        yesBtn.isClickable = true
+                        noBtn.isClickable = true
                     }
 
                     override fun onResponse(
                         call: Call<JsonObject>,
                         response: Response<JsonObject>
                     ) {
-                        println("response 체크")
-                        println(response.body()!!)
-                        chatFragmet.messageDataList.add(chatFragmet.addReceivedPostMsg(response.body()!!))
-                        chatFragmet.messageRecyclerViewAdapter.notifyItemChanged(messageDataList.size - 1)
-                        chatFragmet.message_recycler_container.smoothScrollToPosition(messageDataList.size)
+                        print("======call json data logcat=====")
+                        println(jsonData)
+
+                        chatFragment.waitingPostMsg()
+
+                        CoroutineScope(Dispatchers.Main).launch{
+                            //loadingResponseMessage()
+                            delay(3000)
+                            //makeChatResponse()
+                            messageDataList[messageDataList.size - 1] = chatFragment.addReceivedPostMsg(response.body()!!)
+                            chatFragment.messageRecyclerViewAdapter.notifyItemChanged(messageDataList.size - 1)
+                            chatFragment.message_recycler_container.smoothScrollToPosition(messageDataList.size)
+                            println("어뎁터안에서 데이터가 바뀌는가?")
+                        }
+                        println(response.body())
+                        println("success to post!")
+                        noBtn.progress = -1
                     }
 
                 })
-
             }
         }
     }
