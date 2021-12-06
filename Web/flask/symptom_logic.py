@@ -53,9 +53,9 @@ def getSymptoms(pr_dict: dict, no_symptoms: list, yes_symptoms: list) -> str:
     ###########################################
 
     # 티어 1 질문인지 티어 2 질문인지 판단
-    isTier1 = False if seq > 3 and pr_dict[0]['prob'] > 0.5 else True
-    isTier1 = False if seq > 4 and pr_dict[0]['prob'] > 0.4 else True
-    isTier1 = False if seq > 5 and pr_dict[0]['prob'] > 0.3 else True
+    isTier1 = not (seq > 3 and pr_dict[0]['prob'] > 0.5)
+    isTier1 = not (seq > 4 and pr_dict[0]['prob'] > 0.4) and isTier1
+    isTier1 = not (seq > 5 and pr_dict[0]['prob'] > 0.3) and isTier1
 
 
     ###########################################
