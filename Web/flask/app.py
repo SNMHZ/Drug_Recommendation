@@ -3,7 +3,7 @@ from flask_cors import CORS
 import datetime
 import model
 from mapping_drug import getDrugByCondition
-from symptom_logic import getSymptoms
+from symptom_logic import getSymptoms, getSymptomFromFirstMsg, getCompleteSentenceBySymptom
 #from symptom_gpt import getSymptomsByCondition
 
 app = Flask(__name__)
@@ -32,6 +32,9 @@ def messageAccept():
         print(yes_symptoms)
         print("======================")
 
+    if seq == 0:
+        getSymptomFromFirstMsg(text_body, yes_symptoms)
+
     #text_body = """Weight loss Cramping Diarrhea Itchy skin Joint and muscle pain Nausea and vomiting Headaches"""
     try:
         for i, yes in enumerate(yes_symptoms):
@@ -55,7 +58,7 @@ def messageAccept():
     predicts = result['predict']
     
     predicts_res = {}
-    sym_word = ''
+    sym_word, sym_msg = '', ''
     print('--')
     print(type)
     print('--?')
@@ -68,6 +71,7 @@ def messageAccept():
         predicts = predicts_res
     elif type == 1: # 예측 미완료
         sym_word = getSymptoms(predicts, no_symptoms, yes_symptoms)
+        sym_msg = getCompleteSentenceBySymptom(sym_word)
 
     try:
         drugs = getDrugByCondition(predicts[0]['condition'])
@@ -82,6 +86,7 @@ def messageAccept():
                             "no_symptoms": no_symptoms,   # 부정적 대답 증상 리스트
                             "yes_symptoms": yes_symptoms, # 긍정적 대답 증상 리스트
                             "sym_word": sym_word,         # 증상 단어
+                            "sym_msg" : sym_msg,          # 증상 메시지(문장)
                             "drugs": drugs                # 약 정보
                         })
     
