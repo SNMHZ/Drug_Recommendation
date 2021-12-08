@@ -3,10 +3,9 @@
 
     <item
         android:gravity="center"
-        android:height="35dp"
-        android:width="35dp">
+        android:height="5dp"
+        android:width="5dp">
         <bitmap android:src="@drawable/cross"
             android:tint="@color/white"/>
-
     </item>
 </layer-list>

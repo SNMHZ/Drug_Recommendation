@@ -6,20 +6,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#D1D0D0"
     android:orientation="vertical">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:background="@color/white"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/input_layout"
-        android:id="@+id/message_recycler_container"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_weight="9.9"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/message_recycler_item_left"
-        />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/input_layout"
+            android:id="@+id/message_recycler_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="9.9"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:listitem="@layout/message_recycler_item_left"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="10dp"/>
+    </LinearLayout>
+
+
     <LinearLayout
         android:id="@+id/input_layout"
         app:layout_constraintBottom_toBottomOf="parent"

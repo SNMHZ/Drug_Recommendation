@@ -15,4 +15,8 @@ data class MessageData (
     val predicts : ArrayList<Pair<String, Float>> = ArrayList(),
     val drugs : ArrayList<String> = ArrayList(),
     var sym_word : String = "None",
-    var eof : Int = 1)
+    var eof : Int = 1,
+    var alreaySelected : Boolean = false,
+    var selected_YesBtn : Boolean = false,
+    var selectedNoBtn : Boolean = false,
+    var result : Boolean = false)

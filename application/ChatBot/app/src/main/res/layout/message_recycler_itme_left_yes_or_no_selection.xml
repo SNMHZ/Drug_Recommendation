@@ -42,11 +42,10 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             app:cpb_selectorComplete="@drawable/yes_state_selector"
-            app:cpb_textComplete="done"
+            app:cpb_textComplete="O"
             app:cpb_textError="no"
             app:cpb_textIdle="yes"
-            app:cpb_cornerRadius="35dp"
-            app:cpb_iconComplete="@drawable/check_edit"/>
+            app:cpb_cornerRadius="35dp" />
 
         <com.dd.CircularProgressButton
             android:id="@+id/no_btn"
@@ -59,11 +58,10 @@
             app:cpb_selectorComplete="@drawable/yes_state_selector"
             app:cpb_selectorError="@drawable/no_state_selector"
             app:cpb_textComplete="done"
-            app:cpb_textError="no"
+            app:cpb_textError="X"
             app:cpb_textIdle="no"
             app:cpb_cornerRadius="35dp"
-            android:layout_marginBottom="15dp"
-            app:cpb_iconError="@drawable/cross_edit"/>
+            android:layout_marginBottom="15dp" />
 
 
         <com.github.mikephil.charting.charts.PieChart

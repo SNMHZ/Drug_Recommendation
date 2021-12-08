@@ -11,7 +11,7 @@ object StaticVariables {
     const val RECEIVE_SELECTION_MSG = 2
     //모델 예측을 향상시키기 위해, 가능한 symptom 후부중에서 선택하도록 요구하는 메시지
 
-    var SERVER_URL = "http://10.0.2.2:5000"
+    var SERVER_URL = "http://snmhz325.asuscomm.com:5000"
         // "http://snmhz325.asuscomm.com:5000"
         //"http://10.0.2.2:5000"
 

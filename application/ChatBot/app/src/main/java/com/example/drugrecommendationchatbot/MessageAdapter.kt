@@ -47,6 +47,7 @@ import java.security.KeyStore
 import com.github.mikephil.charting.utils.ColorTemplate
 
 import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.utils.MPPointF
 
 class MessageAdapter(private val context : Context, private val chatFragment : ChatFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
@@ -208,15 +209,76 @@ class MessageAdapter(private val context : Context, private val chatFragment : C
         val messageBody = itemView.findViewById<TextView>(R.id.message_body)
         val yesBtn = itemView.findViewById<com.dd.CircularProgressButton>(R.id.yes_btn)
         val noBtn = itemView.findViewById<com.dd.CircularProgressButton>(R.id.no_btn)
+        val pieChart = itemView.findViewById<PieChart>(R.id.circular_chart)
 
         fun bind(data : MessageData){
 
+            yesBtn.progress = 0
+            noBtn.progress = 0
+
+            //아이템들이 새로 그려질 때, 버튼들이 다시 선택되는 현상을 방지
+            if(data.alreaySelected){
+                println("매번 호출됨?")
+                yesBtn.isClickable = false
+                noBtn.isClickable = false
+
+                if(data.selected_YesBtn){
+                    yesBtn.progress = 100
+                }else{
+                    noBtn.progress = -1
+                }
+            }
+
             if (data.eof == 0){
-                messageBody.text = data.predicts.toString()
+                println("결과 메시지 표시 bind!")
+                messageBody.text = data.body
                 yesBtn.visibility = View.GONE
                 noBtn.visibility = View.GONE
+                pieChart.visibility = View.VISIBLE
+
+                pieChart.description.isEnabled = false
+                pieChart.setExtraOffsets(5f, 10f, 5f, 5f)
+
+                pieChart.isDrawHoleEnabled = false
+
+                pieChart.dragDecelerationFrictionCoef = 0.95f
+                pieChart.setEntryLabelColor(Color.BLACK)
+
+                val yValues = ArrayList<PieEntry>()
+
+                var others = 0f
+                var sum = 0f
+
+                for(item in data.predicts){
+                    yValues.add(PieEntry(item.second.toFloat(), item.first))
+                    sum += item.second.toFloat()
+                }
+                others = 1f - sum
+                yValues.add(PieEntry(others, "others"))
+
+                val description = Description()
+                description.setPosition(pieChart.center.x, 10f)
+                description.setText("예상되는 증상") //라벨
+
+                description.setTextSize(15F)
+                pieChart.description = description
+
+                pieChart.animateY(1000, Easing.EaseInOutCubic) //애니메이션
+
+                val dataSet = PieDataSet(yValues, "Conditions")
+                dataSet.sliceSpace = 3f
+                dataSet.selectionShift = 5f
+                dataSet.setColors(*ColorTemplate.COLORFUL_COLORS)
+
+                val data = PieData(dataSet)
+                data.setValueTextSize(10f)
+                data.setValueTextColor(Color.YELLOW)
+
+                pieChart.setData(data)
+
             }else{
-                messageBody.text = "do you have ${data.sym_word} ? "
+                pieChart.visibility = View.GONE
+                messageBody.text = data.body
             }
 
             yesBtn.isIndeterminateProgressMode = true
@@ -226,6 +288,8 @@ class MessageAdapter(private val context : Context, private val chatFragment : C
                 val yesLinkedList = chatFragment.yesSymptomList
                 val noLinkedList = chatFragment.noSymptomList
 
+                data.alreaySelected = true
+                data.selected_YesBtn = true
                 yesBtn.isClickable = false
                 noBtn.isClickable = false
 
@@ -274,6 +338,8 @@ class MessageAdapter(private val context : Context, private val chatFragment : C
                 val yesLinkedList = chatFragment.yesSymptomList
                 val noLinkedList = chatFragment.noSymptomList
 
+                data.alreaySelected = true
+                data.selectedNoBtn = true
                 yesBtn.isClickable = false
                 noBtn.isClickable = false
 
@@ -288,6 +354,7 @@ class MessageAdapter(private val context : Context, private val chatFragment : C
                         t.printStackTrace()
                         println("fail to response when post the data. so recently added last element will be deleted.")
                         noLinkedList.pop()
+                        noBtn.progress = 0
                         yesBtn.isClickable = true
                         noBtn.isClickable = true
                     }

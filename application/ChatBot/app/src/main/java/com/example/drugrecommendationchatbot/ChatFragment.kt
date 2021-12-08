@@ -1,9 +1,14 @@
 package com.example.drugrecommendationchatbot
 
 import android.content.Context
+import android.graphics.Typeface
 import android.hardware.input.InputManager
 import android.os.Build
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.RelativeSizeSpan
+import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,8 +41,8 @@ class ChatFragment : Fragment() {
     lateinit var messageDataList : MutableList<MessageData>
     var seq = 0
 
-    val yesSymptomList = LinkedList<String>()
-    val noSymptomList = LinkedList<String>()
+    var yesSymptomList = LinkedList<String>()
+    var noSymptomList = LinkedList<String>()
 
     lateinit var sendSymptomCallBackListener : CallbackListener
 
@@ -101,6 +106,8 @@ class ChatFragment : Fragment() {
         sendBtn.setOnClickListener {
             val text = messageEditText.text.toString()
             StaticVariables.initialSentence = text
+            yesSymptomList = LinkedList()
+            noSymptomList = LinkedList()
 
             if(text.isNotBlank() && text.contains("git -change -ip")){
                 var changedServerURL = text.replace("git -change -ip ", "")
@@ -138,35 +145,6 @@ class ChatFragment : Fragment() {
                 hideSoftKeyPad(messageEditText)
                 messageRecyclerViewAdapter.notifyItemInserted(messageRecyclerViewAdapter.itemCount - 1)
                 message_recycler_container.scrollToPosition(messageRecyclerViewAdapter.itemCount - 1)
-
-
-                /*
-                tmpTxt += " "+ text
-                tmpTxt += messageDataList[messageDataList.size - 1].sym.replace("\"", " ") + "."
-                result = tmpTxt
-                */
-                /*
-                if(text.contains("yes")){
-                    val beforeSendMsg = messageDataList[messageDataList.size - 2]
-                    val beforedAcceptMsg = messageDataList[messageDataList.size - 1]
-
-                    result = beforeSendMsg.body +
-                            //beforedAcceptMsg.body.replace("Do you have", "I have") +
-                            beforedAcceptMsg.sym + "yes"
-                }
-                else if((text.contains("no"))){
-                    val beforeSendMsg = messageDataList[messageDataList.size - 2]
-                    val beforedAcceptMsg = messageDataList[messageDataList.size - 1]
-
-                    result = beforeSendMsg.body +
-                            //beforedAcceptMsg.body.replace("Do you have", "I don't have") +
-                            beforedAcceptMsg.sym + "no"
-                }else{
-                    result = text
-                }
-                */
-
-                //val currentTime = LocalDateTime.now().hour * 60 + LocalDateTime.now().minute
 
                 waitingPostMsg()
                 //post
@@ -212,22 +190,58 @@ class ChatFragment : Fragment() {
 
     }
 
+    public fun makeConclusion(data : JsonObject) : String{
+        var result = ""
+        val predictsJson = data["predicts"] as JsonObject
+        var drugsList = data["drugs"].toString().split(",").map {
+            it.replace("\"", "").replace("[", "") }
+
+        for (idx in 0 until 3){
+            var eachSymptomJsonObject = predictsJson[idx.toString()] as JsonObject
+            var condition = eachSymptomJsonObject["condition"].asString
+            var prob = eachSymptomJsonObject["prob"].asFloat * 100
+
+            result += "${condition} : ${String.format("%.1f", prob)}%\n"
+            result += "Drug : ${drugsList[idx]}\n\n"
+        }
+        return  result
+    }
+
 
     public fun addReceivedPostMsg(data : JsonObject) : MessageData{
-        val body = data["sym_word"].toString()
+        val body = data["sym_msg"].toString().replace("\"", "")
         var result : MessageData? = null
         var eof = data["type"].asInt
 
         seq = data["seq"].asInt
         if(eof == 0){
-            result = MessageData(1, body, StaticVariables.RECEIVE_YES_OR_NO_MSG, true, sym_word = body, eof = eof)
+            println("마지막 메시지 : ")
+            println(data)
+            var msgBody = makeConclusion(data)
+            println("처리 결과 메시지")
+            println(msgBody)
+            result = MessageData(1, msgBody, StaticVariables.RECEIVE_YES_OR_NO_MSG, true, sym_word = data["sym_word"].toString(), eof = eof, result = true)
         }
         else if(data["sym_word"].toString() != ""){
             println("받아온 대답이 sym_word가 있으니 예스 올 노우로 보여줘야 함")
-            result = MessageData(1, body, StaticVariables.RECEIVE_YES_OR_NO_MSG, true, sym_word = body, eof = eof)
+            result = MessageData(1, body, StaticVariables.RECEIVE_YES_OR_NO_MSG, true, sym_word = data["sym_word"].toString(), eof = eof)
         }else{
             result = MessageData(1, body, StaticVariables.RECEIVE_NORMAL_MSG, true, sym_word = body, eof = eof)
         }
+        /**
+         *
+         * 증상 1 : 확률100분위
+         * 약 1 :
+         *
+         * 증상 2 : 확률100분위
+         * 약 2 :
+         *
+         * 증상 3 : 확률100분위
+         * 약 3 :
+         *
+         * pie chart
+         *
+         */
 
         if(!data["predicts"].isJsonNull){
             val predicts = data["predicts"] as JsonObject
