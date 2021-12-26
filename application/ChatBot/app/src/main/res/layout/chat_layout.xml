@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#D1D0D0"
+    android:background="@drawable/chat_layout_background"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,7 +13,6 @@
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:background="@color/white"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/input_layout"
             android:id="@+id/message_recycler_container"
@@ -27,10 +26,9 @@
             />
         <LinearLayout
             android:layout_width="match_parent"
-            android:background="@color/white"
             android:layout_height="10dp"/>
-    </LinearLayout>
 
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/input_layout"
@@ -52,10 +50,11 @@
             android:layout_weight="9.5"/>
         <ImageView
             android:id="@+id/send_btn"
-            android:background="@android:drawable/ic_media_play"
+            android:background="@drawable/send_btn_icon"
             android:adjustViewBounds="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:text="전송"/>
     </LinearLayout>
 </LinearLayout>

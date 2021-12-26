@@ -32,6 +32,23 @@
         <entry key="..\:/Users/KJG/Desktop/ChatBot/app/src/main/res/layout/message_recycler_itme_left_yes_or_no_selection.xml" value="0.33125" />
         <entry key="..\:/Users/KJG/Desktop/ChatBot/app/src/main/res/layout/message_system_log_item.xml" value="0.32916666666666666" />
         <entry key="..\:/Users/KJG/Desktop/ChatBot/app/src/main/res/layout/selection_symptom_veiw_layout.xml" value="0.32708333333333334" />
+        <entry key="app/src/main/res/drawable/chat_layout_background.xml" value="0.23055555555555557" />
+        <entry key="app/src/main/res/drawable/doctor_icon.xml" value="0.23055555555555557" />
+        <entry key="app/src/main/res/drawable/incoming_chat_bubble_bg.xml" value="0.23055555555555557" />
+        <entry key="app/src/main/res/drawable/input_message_chat_bg.xml" value="0.23055555555555557" />
+        <entry key="app/src/main/res/drawable/no_state_selector.xml" value="0.23055555555555557" />
+        <entry key="app/src/main/res/drawable/outgoing_chat_bubble_bg.xml" value="0.23055555555555557" />
+        <entry key="app/src/main/res/drawable/receiver_bubble_chat.xml" value="0.23055555555555557" />
+        <entry key="app/src/main/res/drawable/send_btn_icon.xml" value="0.23055555555555557" />
+        <entry key="app/src/main/res/drawable/send_bubble_chat.xml" value="0.23055555555555557" />
+        <entry key="app/src/main/res/drawable/test.xml" value="0.2712962962962963" />
+        <entry key="app/src/main/res/drawable/test2.xml" value="0.23055555555555557" />
+        <entry key="app/src/main/res/layout/chat_layout.xml" value="0.25227963525835867" />
+        <entry key="app/src/main/res/layout/main_layout.xml" value="0.25227963525835867" />
+        <entry key="app/src/main/res/layout/message_loading_item_left.xml" value="0.25227963525835867" />
+        <entry key="app/src/main/res/layout/message_recycler_item_left.xml" value="0.25227963525835867" />
+        <entry key="app/src/main/res/layout/message_recycler_item_right.xml" value="0.25227963525835867" />
+        <entry key="app/src/main/res/layout/message_recycler_itme_left_yes_or_no_selection.xml" value="0.25227963525835867" />
       </map>
     </option>
   </component>

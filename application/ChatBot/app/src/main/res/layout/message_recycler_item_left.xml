@@ -11,9 +11,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/receiver_bubble_chat"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginTop="20dp"
+
+        android:layout_marginRight="20dp"
         android:layout_marginLeft="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:elevation="15dp"
+        android:paddingBottom="10dp"
         android:orientation="vertical"
         >
         <TextView
@@ -48,15 +54,15 @@
         app:layout_constraintLeft_toLeftOf="@id/message_body_layout"
         android:layout_marginLeft="10dp"
         android:layout_width="45dp"
-        android:elevation="1dp"
-        android:visibility="gone"
+        android:elevation="16dp"
+        android:visibility="visible"
         android:layout_height="45dp"
-        app:cardCornerRadius="25dp">
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="20dp">
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:elevation="2dp"
-            android:background="@drawable/doctor"/>
+            android:background="@drawable/doctor_icon"/>
     </androidx.cardview.widget.CardView>
 
 
