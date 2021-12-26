@@ -3,7 +3,7 @@
 
     <item>
         <shape android:shape="oval">
-            <solid android:color="#80FFFFFF"/>
+            <solid android:color="@color/cpb_green"/>
         </shape>
     </item>
 
@@ -11,7 +11,10 @@
         android:gravity="center"
         android:height="45dp"
         android:width="45dp">
-        <bitmap android:src="@drawable/cross"
-            android:tint="@color/black"/>
+        <bitmap android:src="@drawable/check"
+            android:tint="@color/white"/>
+
     </item>
+
+
 </layer-list>

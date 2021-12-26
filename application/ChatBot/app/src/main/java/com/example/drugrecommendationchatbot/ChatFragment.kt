@@ -220,7 +220,7 @@ class ChatFragment : Fragment() {
             var msgBody = makeConclusion(data)
             println("처리 결과 메시지")
             println(msgBody)
-            result = MessageData(1, msgBody, StaticVariables.RECEIVE_YES_OR_NO_MSG, true, sym_word = data["sym_word"].toString(), eof = eof, result = true)
+            result = MessageData(1, msgBody, StaticVariables.RECEIVE_NORMAL_MSG, true, sym_word = data["sym_word"].toString(), eof = eof, result = true)
         }
         else if(data["sym_word"].toString() != ""){
             println("받아온 대답이 sym_word가 있으니 예스 올 노우로 보여줘야 함")

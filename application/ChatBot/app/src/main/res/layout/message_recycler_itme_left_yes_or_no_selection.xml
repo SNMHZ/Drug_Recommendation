@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/receiver_bubble_chat"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="30dp"
         android:layout_marginLeft="10dp"
         android:orientation="vertical"
@@ -32,47 +32,54 @@
             android:elevation="10dp"
             android:paddingBottom="10dp" />
 
-
-        <com.dd.CircularProgressButton
-            android:id="@+id/yes_btn"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp"
             android:layout_gravity="center"
-            android:layout_width="196dp"
-            android:layout_height="64dp"
-            android:layout_marginTop="16dp"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            app:cpb_selectorComplete="@drawable/yes_state_selector"
-            app:cpb_textComplete="O"
-            app:cpb_textError="no"
-            app:cpb_textIdle="yes"
-            app:cpb_cornerRadius="35dp" />
+            android:layout_marginBottom="15dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-        <com.dd.CircularProgressButton
-            android:id="@+id/no_btn"
-            android:layout_gravity="center"
-            android:layout_width="196dp"
-            android:layout_height="64dp"
-            android:layout_marginTop="16dp"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            app:cpb_selectorComplete="@drawable/yes_state_selector"
-            app:cpb_selectorError="@drawable/no_state_selector"
-            app:cpb_textComplete="done"
-            app:cpb_textError="X"
-            app:cpb_textIdle="no"
-            app:cpb_cornerRadius="35dp"
-            android:layout_marginBottom="15dp" />
+            <ImageView
+                android:id="@+id/yes_btn"
+                android:layout_width="wrap_content"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true"
+                android:layout_marginRight="30dp"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:background="@drawable/yes_btn_selector"/>
 
+            <ImageView
+                android:id="@+id/no_btn"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/no_btn_selector"/>
 
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/circular_chart"
-            android:visibility="gone"
-            android:elevation="10dp"
-            android:layout_margin="20dp"
-            android:layout_width="300dp"
-            android:layout_height="200dp"/>
+        </LinearLayout>
 
     </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/message_body_layout"
+        app:layout_constraintLeft_toLeftOf="@id/message_body_layout"
+        android:layout_marginLeft="10dp"
+        android:layout_width="45dp"
+        android:elevation="16dp"
+        android:visibility="visible"
+        android:layout_height="45dp"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="20dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/doctor_icon"/>
+    </androidx.cardview.widget.CardView>
 
 
 

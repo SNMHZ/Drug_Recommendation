@@ -15,10 +15,10 @@
         android:layout_marginRight="20dp"
         android:background="@drawable/send_bubble_chat"
         android:elevation="15dp"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
         android:paddingRight="20dp"
-        android:paddingBottom="10dp"
+        android:paddingBottom="20dp"
         android:text="대화 내용"
         android:textColor="@color/black"
         android:textSize="25dp" />
