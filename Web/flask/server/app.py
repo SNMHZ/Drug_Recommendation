@@ -4,6 +4,7 @@ import datetime
 import model
 from mapping_drug import getDrugByCondition
 from symptom_logic import getSymptoms, getSymptomFromFirstMsg, getCompleteSentenceBySymptom
+from cal_weight import cal_weight
 #from symptom_gpt import getSymptomsByCondition
 
 app = Flask(__name__)
