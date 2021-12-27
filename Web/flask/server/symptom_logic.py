@@ -43,7 +43,6 @@ def getSymptoms(pr_dict: dict, no_symptoms: list, yes_symptoms: list) -> str:
     yes_len, no_len = len(yes_symptoms), len(no_symptoms)
     seq = yes_len + no_len
     predicts = [ pr_dict[i]['condition'] for i in range(20) ] # list of sorted 20 predictions by the model
-    print(predicts)
 
     ###########################################
     # 첫 seq이면서, 아직 안나온 증상이 있는 경우
@@ -54,28 +53,15 @@ def getSymptoms(pr_dict: dict, no_symptoms: list, yes_symptoms: list) -> str:
                 return sym_word
     ###########################################
 
-    # 티어 1 질문인지 티어 2 질문인지 판단
-    isTier1 = True
-    # isTier1 = not (seq > 3 and pr_dict[0]['prob'] > 0.5)
-    # isTier1 = not (seq > 4 and pr_dict[0]['prob'] > 0.4) and isTier1
-    # isTier1 = not (seq > 5 and pr_dict[0]['prob'] > 0.3) and isTier1
-
-
     ###########################################
     # 첫 seq가 아닌 경우
-    # 전체 sym1에서 predict0이면, predict0에 있는 sym에서 no_sym이랑 yes_sym에 없는거 넣기.
-    # sym1에 predict행에 있는 것 중에서 no_sym이랑 yes_sym에 없는거 넣기.
-
+    # sym에 predict행에 있는 것 중에서 no_sym이랑 yes_sym에 없는거 넣기.
     no_sym_set = set(no_symptoms)
     yes_sym_set = set(yes_symptoms)
-    sym_set = None
-    if isTier1:
-        sym_set = [ set(sym_final.loc[p]['data'])-yes_sym_set for p in predicts ]
-    else:
-        sym_set = [ set(sym_final.loc[p]['data'])-yes_sym_set for p in predicts ]
+
+    sym_set = [ set(sym_final.loc[p]['data'])-yes_sym_set for p in predicts ]
 
     sym_word = getSymFromSymtableAndNoSym(sym_set, no_sym_set)
-    
     ###########################################
 
     return sym_word

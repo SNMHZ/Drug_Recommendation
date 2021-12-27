@@ -4,7 +4,7 @@ import datetime
 import model
 from mapping_drug import getDrugByCondition
 from symptom_logic import getSymptoms, getSymptomFromFirstMsg, getCompleteSentenceBySymptom
-from cal_weight import cal_weight
+from cal_weight import cal_weight, sort_predict, minmax_prob
 #from symptom_gpt import getSymptomsByCondition
 
 app = Flask(__name__)
@@ -48,8 +48,14 @@ def messageAccept():
         # print('text_body:', text_body)
         result = model.pred_condition(text_body, seq, 20)
         if seq != 0:
-            result['predict'] = cal_weight(result['predict'])
-    except:
+            result['predict'] = cal_weight(result['predict'], yes_symptoms, no_symptoms)
+            result['predict'] = sort_predict(result['predict'])
+    except Exception as e:
+        print('Exception:', e)
+        print(e)
+        print(e.args)
+        print(e.with_traceback())
+        print("###############################")
         result = {'res_type':'-1', 'symptoms':[], 'predict':{0:{'condition':'', 'prob':0.0}}}
     
 
@@ -66,7 +72,7 @@ def messageAccept():
     
     current_date = str(datetime.datetime.now())
     type = result['res_type']
-    predicts = result['predict']
+    predicts = minmax_prob(result['predict'])
     
     predicts_res = {}
     sym_word, sym_msg = '', ''
