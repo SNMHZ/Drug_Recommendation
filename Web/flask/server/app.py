@@ -33,21 +33,31 @@ def messageAccept():
         print("======================")
 
     if seq == 0:
+        # 첫번째 문장
         getSymptomFromFirstMsg(text_body, yes_symptoms)
 
-    #text_body = """Weight loss Cramping Diarrhea Itchy skin Joint and muscle pain Nausea and vomiting Headaches"""
+        #text_body = """Weight loss Cramping Diarrhea Itchy skin Joint and muscle pain Nausea and vomiting Headaches"""
     try:
-        for i, yes in enumerate(yes_symptoms):
-            if i>0:
-                text_body += 'and '
-            else:
-                text_body += '. '
-            text_body += ' I have '+yes+'. '
-        print('text_body:', text_body)
+        # for i, yes in enumerate(yes_symptoms):
+        #     if i>0:
+        #         text_body += 'and '
+        #     else:
+        #         text_body += '. '
+        #     text_body += ' I have '+yes+'. '
+        # print('text_body:', text_body)
         result = model.pred_condition(text_body, seq, 20)
+        if seq != 0:
+            result['predict'] = cal_weight(result['predict'])
     except:
         result = {'res_type':'-1', 'symptoms':[], 'predict':{0:{'condition':'', 'prob':0.0}}}
     
+
+    if result['predict'][0]['prob'] <= 0.8 or seq <= 5:
+        print("이ㅣ거 실행되야 함!!!")
+        result['res_type'] = 1
+
+    else: 
+        result['res_type'] = 0
     # if app.debug:
     #     print("======================\nresult")
     #     print(result)

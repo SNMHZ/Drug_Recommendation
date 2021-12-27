@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 import pickle
 import os
-from mapping_drug import getDrugByCondition
+#from mapping_drug import getDrugByCondition
 
 THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
 my_model = os.path.join(THIS_FOLDER, 'mymodel/content/test-ynat/checkpoint-2000')
@@ -19,6 +19,7 @@ trainer = Trainer(
 condition_numbering_URL = os.path.join(THIS_FOLDER, 'dataset/top20condition.csv')
 condition_numbering = pd.read_csv(condition_numbering_URL, index_col=0)
 
+
 def softmax(x):
     return np.exp(x) / np.sum(np.exp(x), axis=0)
 
@@ -30,6 +31,7 @@ def preprocess_function(examples):
         max_length=184,
         return_token_type_ids=False,
     )
+
 def pred_condition(input_text, seq, n=3):
     test_dict = {'review': input_text}
     test_df = pd.DataFrame(test_dict, index=[0], columns=['review'])
@@ -83,6 +85,8 @@ def to_json(output, seq, n=3):
     }
     return result
 
+
 if __name__=='__main__':
     # 테스트용 입력
     print(pred_condition("""My boyfriend of 8 years took this medication for migraine for a year and ahalf. It was great for his migraine but hell on his personality and character as a person. This medication made him confused, unable to make decisions, angry because he was confused. He became argumentative with me , coworkers, and family members. Every task he took on was filled with confusion and his ego. In 8 years I never seen him be so cold ..he was not the same person. I thought his behaviour was cause from some other medicine so I convince him to stop. Then the behaviour continued..after reading on this medicine I convince him to drop it. It had been 3 weeks since he took the medication and it&#039;s like night and day.  He is slowly returning to the man I know."""))
+
