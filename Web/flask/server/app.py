@@ -72,7 +72,7 @@ def messageAccept():
     
     current_date = str(datetime.datetime.now())
     type = result['res_type']
-    predicts = minmax_prob(result['predict'])
+    predicts = result['predict']
     
     predicts_res = {}
     sym_word, sym_msg = '', ''
@@ -82,12 +82,16 @@ def messageAccept():
     if seq == 10:
         type = 0
     if type == 0: # 예측 완료
+        predicts = minmax_prob(predicts)
         predicts_res[0] = predicts[0]
         predicts_res[1] = predicts[1]
         predicts_res[2] = predicts[2]
         predicts = predicts_res
     elif type == 1: # 예측 미완료
         sym_word = getSymptoms(predicts, no_symptoms, yes_symptoms)
+        if sym_word == 'doesn\'t cause any symptoms':
+            no_symptoms.append(sym_word)
+            sym_word = getSymptoms(predicts, no_symptoms, yes_symptoms)
         sym_msg = getCompleteSentenceBySymptom(sym_word)
 
     try:

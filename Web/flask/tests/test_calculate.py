@@ -15,4 +15,4 @@ def test_cal_weight():
     print(predicts)
     predicts_wonbon = deepcopy( predicts)
     cal_weight_out = cal_weight(predicts, yes_list, no_list)
-    assert cal_weight_out[0]['prob'] == predicts_wonbon[0]['prob']-MOD_PRED
+    assert cal_weight_out[0]['prob'] == predicts_wonbon[0]['prob']-MOD_PRED_SUB

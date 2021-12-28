@@ -27,13 +27,13 @@ def sort_predict(predict: dict):
     pred_dict = dict( [ (i, x) for i, x in enumerate(pred_list) ] )
     return pred_dict
 
-def minmax_prob(predict: dict):
+def minmax_prob(predict: dict, mul=10):
     pred_list = list(predict.values())
     min_prob = min(x['prob'] for x in pred_list)
     max_prob = max(x['prob'] for x in pred_list)
     _sum = 0
     for i, x in enumerate(pred_list):
-        predict[i]['prob'] = (predict[i]['prob'] - min_prob) / (max_prob - min_prob)
+        predict[i]['prob'] = mul**(((predict[i]['prob'] - min_prob) / (max_prob - min_prob))*2)
         _sum += predict[i]['prob']
     for i, x in enumerate(pred_list):
         predict[i]['prob'] /= _sum
