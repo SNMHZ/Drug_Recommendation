@@ -1,22 +1,15 @@
-Dataset Description Document
+## Dataset 처리
 
-[EDA](/EDA/EDA_DrugReview.md)
+### Condition
+Unique한 Condition이 총 `937개`, 이를 분류하긴 어려울 것이라 생각하여 20개의 Condition에 대해서 분류를 하는 모델을 만든다.  
+review개수가 많은 상위 50개 Condition을 뽑고, 유사한 Condition을 합친 뒤, 정신적인 질병을 제외하여 20개의 Condition을 선별함.  
 
-| num |      file name          |   pre-process  |  description  | 
-| --- | ----------------------- | -------------- | ------------- | 
-|  1  | drugsComTest_raw.csv    |        -       | 원본          |
-|  2  | before_review_testw.csv |    drop na     | 결측치 제거    |
-|  3  | lem_test.csv            | lemmatization  | 동사 -> 원형. 특수문자 전체 제거 |
-|  4  | snow_test.csv           | stemming       | ing, ed등 제거  |
-|  5  | lem_test2.xlsx          | lemmatization  | 동사 -> 원형. '.','!','?'유지(문장별 구분 목적) |
+### DrugName
+DrugName의 경우 똑같은 성분, 용량임에도 회사마다 이름이 다른 데이터가 있는 것을 확인함.  
+선별한 20개의 Condition에 사용하는 약물 중 이를 모두 합쳐준다.  
 
-### lemmatization과 stemming의 차이
-    lemmatization - 등록된 동사만 등록된 원형으로 변형. 등록되지 않은 동사는 변환되지 않을 수 있음.
-    stemming      - 규칙에 따라 제거. 단순 규칙 기반 추출로 의도치 않은 결과 발생 가능성 높음.
 
-### 기타
-| num |      file name         |  description   | 
-| --- | ---------------------- | -------------  | 
-|  1  | inquirerbasic.xls      | 하버드 감정분석 |
-|  2  | spaced_condition.csv   | 인덱스 / 원본 컨디션 / 공백제거한 컨디션 / 단어 수 |
-|  3  | ex_merged.xlsx         | train+test(엑셀 형태) |
+### 추가 데이터
+각 Condition에 대한 Symptom정보가 없었기에 아래 두 사이트를 참고하여 Symptom 추가.  
+[NHS](https://www.nhs.uk/)  
+[Mayo Clinic](https://www.mayoclinic.org/)  
